@@ -2,6 +2,8 @@ from datetime import datetime
 from typing import Optional, List, Dict
 from enum import Enum
 from pydantic import BaseModel, Field
+import json
+import os
 
 class DomainEnum(str, Enum):
     CHARACTER = "character"
@@ -53,66 +55,52 @@ class SourceInventoryExport(BaseModel):
     total_mentions: int
     entity_details: Dict[str, EntityExport]
 
-KNOWN_ENTITIES = [
-    "Kael", "Michael", "Michaels", "Lex", "Alex", "Rhys", "Selene", "Nyx", "Kiko", "Lia",
-    "Isabelle", "Moros", "Argus", "Nox", "Echo", "Limina", "Praetor", "Nova", "Silas",
-    "Oblivion", "Flicker", "Eos", "Elara", "Sentinel", "Juna", "Komponente 734", "AEGIS",
-    "Primal Directive", "Genesis-Krise", "Algorithmische Melancholie", "LogOS", "Mnemosyne",
-    "Cerberus", "Kairos", "Sophia", "Guardian", "ZTEM", "RTSV", "BPoF", "EIC",
-    "Integrity Guardian", "Cognitive Firewall", "Consensus Enforcer", "SIS",
-    "Entropic Management", "RIVE", "PMAS", "SARM", "RCV", "SVI", "AFP", "PKP", "OSR",
-    "CFT", "PMC", "FDE", "CAS", "ECQ", "VOA", "BFT", "PSE", "DKT", "Dual-Kernel",
-    "Dual Kernel", "Kohärenz-Kernel", "Kollaps-Kernel", "K₁", "K₀", "K1", "K0", "Coheron",
-    "Coherons", "Erason", "Erasonen", "Persistenzgleichung", "Landauer", "Landauer-Prinzip",
-    "Gödel", "Gödel-Unvollständigkeit", "Gödel-Satz", "Gödel-Gambit", "Living Gödel",
-    "Bekenstein", "Bekenstein Bound", "Schwarzschild", "Schwarzschild-Protokoll",
-    "Unitarität", "Entropie", "Qualia", "Negentropie", "Phase Alignment Lock", "PAL",
-    "Holographisches Prinzip", "Dead Universe", "Dead Universe Theory", "Vakuum", "Bootstrap",
-    "Kernwelt", "KW1", "KW2", "KW3", "KW4", "Logos-Prime", "Konstrukt", "Konstrukt-Stadt",
-    "Co₁", "Co1", "McL", "Babymonster", "Baby-Monster", "Lyons", "Theta-9", "Nexus",
-    "Archiv", "Schwelle", "Labyrinth", "Nullpunkt", "Lethe", "Void", "Nichts-Rauschen",
-    "Riss-Mandat", "Computational Class", "Somatic Rulebook", "Moonshine-Link", "Moonshine",
-    "Triadische Währung", "Ratchet-Prinzip", "Amnestic Barrier", "Witness Function",
-    "K-J Verbindung", "K-J", "Riss", "Risse", "TSDP", "IFS", "ANP", "EP", "DID",
-    "Funktionale Multiplizität", "Cache Kohärenz", "Phobische Vermeidung", "Dramatica",
-    "Heldinnenreise", "Throughline", "Signpost", "Story Driver", "Optionlock", "MC Resolve",
-    "Zyklus", "Mosaikstruktur", "NCP", "Kohärenztheorie", "Korrespondenztheorie",
-    "Dialetheismus", "Parakonsistente Logik", "Parakonsistenz", "Autopoiesis",
-    "Agential Realism", "Agential Cut", "Dasein", "Existenz", "Monstergruppe",
-    "Babymonstergruppe", "Sporadische Gruppen", "Conway", "Leech", "Leech-Gitter", "Golay",
-    "Moonshine Conjecture", "Stilebene", "Polyphonische Prosa", "polyphon", "Chorische Stimme",
-    "chorisch", "We-Voice", "Wir-Stimme", "Staccato", "Fundament", "Strange Attractor",
-    "Gardener", "Gardeners Axiom", "Wächter-Dilemma", "Panopticon"
-]
+def load_known_entities() -> List[str]:
+    """Liest die bekannten Entitäten aus known_entities.txt."""
+    entities = []
+    filepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "known_entities.txt")
+    if not os.path.exists(filepath):
+        return entities
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                entities.append(line)
+    return entities
 
-DOMAIN_MAPPING = {
-    "Kael": DomainEnum.CHARACTER,
-    "Lex": DomainEnum.CHARACTER,
-    "Juna": DomainEnum.CHARACTER,
-    "Dr. Xylophon": DomainEnum.CHARACTER,
-    "AEGIS": DomainEnum.AEGIS,
-    "Integrity Guardian": DomainEnum.AEGIS,
-    "Kohärenz-Kernel": DomainEnum.PHYSICS,
-    "Holographisches Prinzip": DomainEnum.PHYSICS,
-    "Riss-Mandat": DomainEnum.MECHANIC,
-    "K-J Verbindung": DomainEnum.MECHANIC,
-    "Genesis-Krise": DomainEnum.NARRATIVE,
-    "Primal Directive": DomainEnum.AEGIS,
-    "Konstrukt-Stadt": DomainEnum.WORLD,
-    "Nexus": DomainEnum.WORLD,
-    "Komponente 734": DomainEnum.CHARACTER,
-    "Alters": DomainEnum.ALTER_SYSTEM
-}
+def _load_domain_keywords() -> Dict[str, List[str]]:
+    """Läd die Domain-Keywords aus config/domain_keywords.json."""
+    filepath = os.path.join(os.path.dirname(__file__), "config", "domain_keywords.json")
+    if not os.path.exists(filepath):
+        return {}
+    with open(filepath, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-def guess_domain(entity_name: str, spacy_tag: Optional[str] = None) -> DomainEnum:
-    if entity_name in DOMAIN_MAPPING:
-        return DOMAIN_MAPPING[entity_name]
+def guess_domain(all_contexts: str) -> Optional[DomainEnum]:
+    """
+    Bestimmt die Domäne basierend auf Keyword-Häufigkeiten über alle Kontexte hinweg.
+    min_score = 2 (Cutoff).
+    """
+    keywords_map = _load_domain_keywords()
+    if not keywords_map:
+        return None
 
-    if spacy_tag == "PER":
-        return DomainEnum.CHARACTER
-    elif spacy_tag == "LOC":
-        return DomainEnum.WORLD
-    elif spacy_tag == "ORG":
-        return DomainEnum.AEGIS
+    scores = {domain: 0 for domain in keywords_map}
+    text = all_contexts.lower()
 
-    return DomainEnum.FUNDAMENT
+    for domain, keywords in keywords_map.items():
+        for keyword in keywords:
+            # Einfaches zählen des Keywords im Gesamttext
+            scores[domain] += text.count(keyword.lower())
+
+    # Domäne mit höchstem Score finden
+    best_domain = max(scores, key=scores.get)
+    best_score = scores[best_domain]
+
+    if best_score >= 2:
+        try:
+            return DomainEnum(best_domain)
+        except ValueError:
+            return None
+    return None
+

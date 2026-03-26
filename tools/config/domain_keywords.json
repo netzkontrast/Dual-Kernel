@@ -1,0 +1,15 @@
+{
+  "character": ["er", "sie", "Kael", "Lex", "Juna", "Komponente 734", "Dr. Xylophon", "Mensch", "Person", "Held"],
+  "alter-system": ["Alter", "Alters", "System", "Persönlichkeit", "Identität", "multipl", "Riss", "K-J Verbindung"],
+  "world": ["Konstrukt-Stadt", "Nexus", "Ort", "Stadt", "Welt", "Archiv", "Schwelle", "Labyrinth"],
+  "physics": ["Kohärenz-Kernel", "Holographisches Prinzip", "Energie", "Materie", "Vakuum", "Entropie", "Unitarität"],
+  "aegis": ["AEGIS", "Integrity Guardian", "Primal Directive", "Organisation", "Sicherheit", "Protokoll", "Consensus Enforcer"],
+  "narrative": ["Genesis-Krise", "Geschichte", "Ereignis", "Mythos", "Vergangenheit", "Plot", "Heldinnenreise"],
+  "style": ["Stil", "polyphon", "chorisch", "We-Voice"],
+  "philosophy": ["Sinn", "Bedeutung", "Existenz", "Dasein", "Dialetheismus", "Parakonsistenz"],
+  "theme": ["Thema", "Motiv", "Leitmotiv"],
+  "mechanic": ["Riss-Mandat", "Regel", "Gesetzmäßigkeit", "Mechanismus", "Funktion", "Witness Function"],
+  "juna": ["Juna", "Mädchen", "Kind"],
+  "fundament": ["Fundament", "Basis", "Grundlage", "Struktur"],
+  "mathematics": ["Mathematik", "Gruppe", "Monstergruppe", "Gleichung", "Berechnung", "Sporadische Gruppen"]
+}
