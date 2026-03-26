@@ -1,575 +1,575 @@
-## Inspiration for this ultimate outline:
+## Inspiration für diese ultimative Gliederung:
 
-Screenwriters have often, by necessity, had to make their screenplays fit certain models, often in a way that seems formulaic (though not in a bad way, as evidenced by the fact that some of the best films, from Academy Award winners to hugely successful blockbusters all use the same formula).
+Drehbuchautoren mussten ihre Drehbücher oft zwangsläufig an bestimmte Modelle anpassen, oft auf eine Art und Weise, die formelhaft wirkte (wenn auch nicht im schlechten Sinne, wie die Tatsache zeigt, dass einige der besten Filme, von Oscar-Gewinnern bis hin zu überaus erfolgreichen Blockbustern, alle dieselbe Formel verwenden).
 
-Most films even go so far as to have the same number of scenes, give or take a few. (spoiler alert, it’s around 40 scenes)
+Die meisten Filme gehen sogar so weit, dass sie mehr oder weniger gleich viele Szenen haben. (Spoiler-Alarm, es sind etwa 40 Szenen)
 
-I thought, why can’t books be that way?
+Ich dachte, warum können Bücher nicht so sein?
 
-Most people agree on certain beats that need to be hit in a book, such as the inciting incident, the first pinch point, the midpoint, etc. But almost no one actually bothered to plot out the number of chapters this would take, and what should come between each of those points.
+Die meisten Menschen sind sich über bestimmte Punkte einig, die in einem Buch getroffen werden müssen, wie zum Beispiel den auslösenden Vorfall, den ersten Knackpunkt, den Mittelpunkt usw. Aber fast niemand hat sich wirklich die Mühe gemacht, die Anzahl der Kapitel dafür festzulegen und was zwischen jedem dieser Punkte stehen sollte.
 
-So I went to study story structure in depth, and after some time, realized that several people, especially in the film industry, were suggesting having around 40 scenes. And by researching almost every major plot guru known to man, I managed to take everything and fit it into a cohesive 40-scene outline. Assuming an average of 1,500-3000 words per scene, this places a book at a nice 60,000-120,000 word novel.
+Also habe ich mich eingehend mit der Struktur der Geschichte beschäftigt und nach einiger Zeit festgestellt, dass mehrere Leute, insbesondere in der Filmindustrie, etwa 40 Szenen vorschlagen. Und indem ich fast jeden großen Plot-Guru recherchierte, den die Menschheit kennt, gelang es mir, alles in einen zusammenhängenden 40-Szenen-Entwurf zu integrieren. Geht man von durchschnittlich 1.500–3.000 Wörtern pro Szene aus, entspricht dies einem Buch einem Roman mit 60.000–120.000 Wörtern.
 
-## The Elephant in the room:
+## Der Elefant im Raum:
 
-Now, of course, I know that not everyone will like something so prescriptive, and that’s fine. This is not intended for everyone.
+Nun weiß ich natürlich, dass nicht jedem etwas so Vorschreibendes gefallen wird, und das ist auch in Ordnung. Dies ist nicht für jedermann gedacht.
 
-But I do feel like most newer authors (and even a few experienced ones) don’t have a clue what to do about story structure, and having something more solid like this will help them learn the basics, so that (once they have improved their writing skills through experience) they will better know where it’s okay to deviate from the formula and when it’s not.
+Aber ich habe das Gefühl, dass die meisten neueren Autoren (und sogar einige erfahrene) keine Ahnung haben, was sie mit der Struktur der Geschichte tun sollen, und wenn sie so etwas Solideres haben, können sie die Grundlagen erlernen, sodass sie (sobald sie ihre Schreibfähigkeiten durch Erfahrung verbessert haben) besser wissen, wo es in Ordnung ist, von der Formel abzuweichen und wann nicht.
 
-Additionally, I know that by adding additional viewpoints, worldbuilding info for sci-fi/fantasy, and other genre-dependent changes may drastically change the number of required scenes. I plan on eventually creating a modular approach to be able to layer those things into this basic outline to expand it, but that’s a job for later.
+Darüber hinaus weiß ich, dass sich die Anzahl der erforderlichen Szenen durch das Hinzufügen zusätzlicher Blickwinkel, Worldbuilding-Informationen für Science-Fiction/Fantasy und andere genreabhängige Änderungen drastisch ändern kann. Ich habe vor, irgendwann einen modularen Ansatz zu entwickeln, um diese Dinge in diese grundlegende Gliederung einordnen zu können, um sie zu erweitern, aber das ist eine Aufgabe für später.
 
-For now, this is just intended to be the ultimate outline for a standard novel with one major viewpoint character that works regardless of genre.
+Im Moment soll dies nur der ultimative Entwurf für einen Standardroman mit einer Hauptfigur sein, der unabhängig vom Genre funktioniert.
 
-## How This Outline is Structured:
+## Wie diese Gliederung aufgebaut ist:
 
-This outline is divided into 4 parts, with ten chapters each. These four parts are:
+Diese Gliederung ist in vier Teile mit jeweils zehn Kapiteln unterteilt. Diese vier Teile sind:
 
-- **Act 1:** Making up 25% of the story, Act 1 introduces us to the protagonist, the Ordinary World they live in, their goals, their flaws, and the inciting incident that causes them to leave their Ordinary World.
+- **Akt 1:** Akt 1 macht 25 % der Geschichte aus und stellt uns den Protagonisten, die gewöhnliche Welt, in der sie leben, ihre Ziele, ihre Fehler und den auslösenden Vorfall vor, der sie dazu veranlasst, ihre gewöhnliche Welt zu verlassen.
 
-- **Act 2A:** Making up 25% of the story, Act 2A is the first half of the middle section, which shows us positive rising action as the protagonist enters the New World, learns, grows, and has more successes than failures.
+- **Akt 2A:** Akt 2A macht 25 % der Geschichte aus und ist die erste Hälfte des Mittelteils, der uns eine positive Entwicklung der Handlung zeigt, wenn der Protagonist die Neue Welt betritt, lernt, wächst und mehr Erfolge als Misserfolge hat.
 
-- **Act 2B:** Making up 25% of the story, Act 2B is the second half of the middle section, which is a reversal of Act 2A, resulting in negative rising action as the protagonist struggles against the antagonist and things slowly fall apart.
+- **Akt 2B:** Akt 2B macht 25 % der Geschichte aus und ist die zweite Hälfte des Mittelteils, der eine Umkehrung von Akt 2A darstellt, was zu einer negativen Handlung führt, während der Protagonist gegen den Antagonisten kämpft und die Dinge langsam auseinanderfallen.
 
-- **Act 3:** Making up 25% of the story, Act 3 is the Climax of the story, where the protagonist finally confronts their inner flaw and overcomes it, which allows them to defeat the antagonist despite tall odds.
+- **Akt 3:** Akt 3 macht 25 % der Geschichte aus und ist der Höhepunkt der Geschichte, in dem sich der Protagonist schließlich seinem inneren Fehler stellt und ihn überwindet, was ihm ermöglicht, den Antagonisten trotz großer Widrigkeiten zu besiegen.
 
-This outline also contains an optional prologue and epilogue chapter, which may or may not be used.
+Diese Gliederung enthält auch ein optionales Prolog- und Epilogkapitel, die verwendet werden können oder nicht.
 
-## Act 1:
+## Akt 1:
 
-## 0. Prologue (optional):
+## 0. Prolog (optional):
 
-- Starts with an opening image that visually represents the central conflict of the story and/or the Antagonist, and shows how the world we’re in is in trouble
+- Beginnt mit einem Eröffnungsbild, das den zentralen Konflikt der Geschichte und/oder des Antagonisten visuell darstellt und zeigt, wie die Welt, in der wir uns befinden, in Schwierigkeiten steckt
 
-- Should set the tone for the genre and conflict level of the story
+- Sollte den Ton für das Genre und die Konfliktebene der Geschichte festlegen
 
-- Usually does not involve the protagonist, but may be about the protagonist, or thematically linked to the protagonist
+- Bezieht sich in der Regel nicht auf den Protagonisten, kann sich aber um den Protagonisten drehen oder thematisch mit dem Protagonisten verknüpft sein
 
-## 1. The Unusual Day:
+## 1. Der ungewöhnliche Tag:
 
-- We get introduced to the protagonist and the “ordinary world” they live in. This should be done through an opening image that visually represents and tells the readers as much as possible about the main character, the flaw they have, and the ordinary world they live in.
+- Wir werden mit dem Protagonisten und der „normalen Welt“, in der er lebt, bekannt gemacht. Dies sollte durch ein Eröffnungsbild erfolgen, das den Leser visuell darstellt und so viel wie möglich über den Hauptcharakter, seine Fehler und die gewöhnliche Welt, in der er lebt, erzählt.
 
-- The protagonist wants something (doesn’t have to be related to the overall plot) which they think will “fix” their life
+- Der Protagonist möchte etwas (muss nichts mit der Gesamthandlung zu tun haben), von dem er glaubt, dass es sein Leben „repariert“.
 
-- There is an obstacle/conflict that stops them from getting it (hence the really bad day)
+- Es gibt ein Hindernis/einen Konflikt, der sie davon abhält, es zu bekommen (daher der wirklich schlechte Tag)
 
-- The protagonist has a need that would solve their problem, but is not self-aware enough to realize it.
+- Der Protagonist hat ein Bedürfnis, das sein Problem lösen würde, ist sich seiner selbst jedoch nicht bewusst genug, um es zu erkennen.
 
-- We learn the character’s flaw, the thing that keeps them from getting what they need
+- Wir lernen den Fehler des Charakters kennen, der ihn davon abhält, das zu bekommen, was er braucht
 
-- Introduce some friends and family members
+- Stellen Sie einige Freunde und Familienmitglieder vor
 
-- The protagonist also has a “save the cat” moment (the character becomes compelling, via an act of kindness, a sense of humor, they are competent in something, or they are oppressed in a way that makes us feel for them, meaning that even if they are deeply flawed, they are oppressed by someone who is worse)
+- Der Protagonist hat auch einen „Rettet die Katze“-Moment (die Figur wird durch einen Akt der Freundlichkeit oder eines Sinns für Humor fesselnd, sie ist in etwas kompetent oder sie wird auf eine Weise unterdrückt, die uns Mitgefühl für sie weckt, was bedeutet, dass sie, selbst wenn sie zutiefst fehlerhaft ist, von jemandem unterdrückt wird, der schlimmer ist)
 
-- This scene should take place in the protagonist’s home, work, or play environment
+- Diese Szene sollte in der Wohn-, Arbeits- oder Spielumgebung des Protagonisten stattfinden
 
-## 2. Mystery and Theme:
+## 2. Geheimnis und Thema:
 
-- An event happens that foreshadows future problems, something that is unusual for the ordinary world that the protagonist lives in
+- Es ereignet sich ein Ereignis, das zukünftige Probleme vorhersagt, etwas, das für die gewöhnliche Welt, in der der Protagonist lebt, ungewöhnlich ist
 
-- There may also be a mystery associated with this event, something peculiar that makes the protagonist and the reader curious as to what’s going on
+- Möglicherweise ist mit diesem Ereignis auch ein Geheimnis verbunden, etwas Eigenartiges, das den Protagonisten und den Leser neugierig macht, was vor sich geht
 
-- The protagonist has distractions that prevent them from understanding the actual ramifications of this event
+- Der Protagonist wird durch Ablenkungen abgelenkt, die ihn daran hindern, die tatsächlichen Auswirkungen dieses Ereignisses zu verstehen
 
-- (optional) have the reader understand the ramifications of the event, despite the protagonist not knowing.
+- (optional) Lassen Sie den Leser die Auswirkungen des Ereignisses verstehen, auch wenn der Protagonist es nicht weiß.
 
-- Introduce more friends/family members if necessary
+- Stellen Sie bei Bedarf weitere Freunde/Familienmitglieder vor
 
-- We learn more of the protagonists’s unresolved emotional issues that are the source of their flaws.
+- Wir erfahren mehr über die ungelösten emotionalen Probleme der Protagonisten, die die Ursache ihrer Fehler sind.
 
-- In this chapter, the theme is stated, usually by someone other than the protagonist
+- In diesem Kapitel wird das Thema dargelegt, normalerweise von jemand anderem als dem Protagonisten
 
-- This theme is a hint at what the protagonist needs/will have to overcome
+- Dieses Thema ist ein Hinweis darauf, was der Protagonist überwinden muss/muss
 
-- This theme/life lesson is often ignored by the protagonist
+- Dieses Thema/diese Lektion fürs Leben wird vom Protagonisten oft ignoriert
 
-## 3. Link to the Antagonist
+## 3. Link zum Antagonisten
 
-- This scene should take place in the protagonists’s home, work, or play environment (whichever hasn’t been used previously)
+- Diese Szene sollte im Zuhause, am Arbeitsplatz oder in der Spielumgebung der Protagonisten stattfinden (je nachdem, was zuvor noch nicht verwendet wurde).
 
-- Something happens to the protagonist: a challenge, threat, or opportunity that is somehow related to the antagonist, even if indirectly. The two become linked.
+- Dem Protagonisten passiert etwas: eine Herausforderung, Bedrohung oder Chance, die irgendwie, wenn auch indirekt, mit dem Antagonisten zusammenhängt. Die beiden werden miteinander verbunden.
 
-- May be presented as an opportunity to the protagonist
+- Kann dem Protagonisten als Chance präsentiert werden
 
-- The mystery deepens
+- Das Geheimnis vertieft sich
 
-## 4. Grasping at Straws
+## 4. Nach Strohhalmen greifen
 
-- The want that the protagonist has deepens
+- Der Wunsch, den der Protagonist hegt, vertieft sich
 
-- We get a stronger glimpse of the character’s flaw as they criticize the ordinary world they live in
+- Wir bekommen einen deutlicheren Einblick in die Fehler der Charaktere, wenn sie die gewöhnliche Welt, in der sie leben, kritisieren
 
-- They are not yet fully honest with themselves about what they need
+- Sie sind sich selbst gegenüber noch nicht ganz ehrlich, was sie brauchen
 
-## 5. The Hint of Death
+## 5. Der Hinweis auf den Tod
 
-- This scene should take place in the protagonist's home, work, or play environment (whichever hasn’t been used previously)
+- Diese Szene sollte im Zuhause, am Arbeitsplatz oder in der Spielumgebung des Protagonisten stattfinden (je nachdem, was zuvor noch nicht verwendet wurde).
 
-- We learn that if the protagonist continues to live their life the way they are, they will eventually die (literally, socially, financially, in their relationship, etc.) and they will never truly be happy
+- Wir erfahren, dass der Protagonist, wenn er sein Leben weiterhin so lebt, wie er ist, irgendwann sterben wird (im wahrsten Sinne des Wortes, sozial, finanziell, in seiner Beziehung usw.) und nie wirklich glücklich sein wird
 
-- And even if they don’t die now, they will eventually die unfulfilled
+- Und selbst wenn sie jetzt nicht sterben, werden sie irgendwann unerfüllt sterben
 
-- This scene basically sums up what we’ve come to learn in the previous scenes
+- Diese Szene fasst im Grunde das zusammen, was wir in den vorherigen Szenen gelernt haben
 
-## 6. Inciting Incident:
+## 6. Anstiftender Vorfall:
 
-- Something dramatic happens to upset the status quo in the ordinary world
+- Es passiert etwas Dramatisches, das den Status quo in der gewöhnlichen Welt durcheinander bringt
 
-- There should be a lot of conflict
+- Es dürfte viele Konflikte geben
 
-- The disruption is something that cannot be resolved on its own
+- Die Störung ist etwas, das nicht alleine gelöst werden kann
 
-- This should impact the protagonist deeply, but not enough that they are quite willing to leave their ordinary world yet
+- Dies sollte den Protagonisten tiefgreifend beeinflussen, aber noch nicht so sehr, dass er bereit wäre, seine gewöhnliche Welt zu verlassen
 
-## 7. The Call to Adventure:
+## 7. Der Ruf zum Abenteuer:
 
-- The protagonist is forced into a situation where they have no choice but to focus on the new issues arising and the immediate fallout of the inciting incident
+- Der Protagonist wird in eine Situation gezwungen, in der er keine andere Wahl hat, als sich auf die neuen Probleme und die unmittelbaren Folgen des auslösenden Vorfalls zu konzentrieren
 
-- The call to adventure should get in the way of the protagonist’s previous goals
+- Der Ruf zum Abenteuer sollte den bisherigen Zielen des Protagonisten im Weg stehen
 
-- Answer these questions:
+- Beantworten Sie diese Fragen:
 
-   - With the character and their flaws in mind, how does the Protagonist react to the Call? How do they begin to push back against it?
+   - Wie reagiert der Protagonist angesichts der Figur und ihrer Fehler auf den Ruf? Wie fangen sie an, sich dagegen zu wehren?
 
-   - What is the Protagonist's emotional state in light of the Call? Are they mad or perhaps depressed over having their original plans foiled?
+   - Wie ist der emotionale Zustand des Protagonisten angesichts des Anrufs? Sind sie wütend oder vielleicht deprimiert darüber, dass ihre ursprünglichen Pläne vereitelt wurden?
 
-## 8. Meeting the Mentor:
+## 8. Treffen mit dem Mentor:
 
-- A mentor enters the Protagonist’s life, which can be but doesn’t have to be a person but could also come in the form of crucial information, supernatural aid, etc.
+- Ein Mentor tritt in das Leben des Protagonisten ein. Dies kann eine Person sein, muss aber nicht, kann aber auch in Form wichtiger Informationen, übernatürlicher Hilfe usw. erfolgen.
 
-- The mentor encourages the Protagonist to take action and heed the call to adventure
+- Der Mentor ermutigt den Protagonisten, Maßnahmen zu ergreifen und dem Ruf zum Abenteuer zu folgen
 
-- The mentor gives the Protagonist tools, training, information, or other forms of support that they will need to heed the call to adventure.
+- Der Mentor gibt dem Protagonisten Werkzeuge, Schulungen, Informationen oder andere Formen der Unterstützung, die er benötigt, um dem Ruf zum Abenteuer zu folgen.
 
-- The mentor gives the Protagonist the first hint of their Fatal Flaw, but the Protagonist either doesn’t realize it or chooses to continue ignoring it
+- Der Mentor gibt dem Protagonisten den ersten Hinweis auf seinen fatalen Fehler, aber der Protagonist erkennt ihn entweder nicht oder beschließt, ihn weiterhin zu ignorieren
 
-## 9. Refusal of the Call:
+## 9. Ablehnung des Anrufs:
 
-- The protagonist refuses to deal with or accept the reality of the Call to Adventure.
+- Der Protagonist weigert sich, sich mit der Realität des Rufs zum Abenteuer auseinanderzusetzen oder diese zu akzeptieren.
 
-- Intrigue, tension, mystery, perhaps supernatural events, etc. are building, but the Protagonist is trying to put their head in the sand. They do not want to face the new challenge of the New world
+- Intrigen, Spannungen, Mysterien, vielleicht übernatürliche Ereignisse usw. nehmen zu, aber der Protagonist versucht, den Kopf in den Sand zu stecken. Sie wollen sich der neuen Herausforderung der Neuen Welt nicht stellen
 
-- The Protagonist begins to build regret and doubt
+- Der Protagonist beginnt, Bedauern und Zweifel aufzubauen
 
-- The Protagonist is increasingly unable to continue in the Ordinary World
+- Der Protagonist ist zunehmend nicht mehr in der Lage, in der gewöhnlichen Welt weiterzumachen
 
-## 10. Pull Out Rug:
+## 10. Ausziehbarer Teppich:
 
-- The Protagonist tries to fix the issues in the Ordinary World in order to resist the Call to Adventure
+- Der Protagonist versucht, die Probleme in der gewöhnlichen Welt zu lösen, um dem Ruf zum Abenteuer zu widerstehen
 
-- Something happens that pulls the rug out from under them and sends them tumbling into the Point of No Return
+- Es passiert etwas, das ihnen den Boden unter den Füßen wegzieht und sie in den Punkt ohne Wiederkehr stürzen lässt
 
-- They are forced into action
+- Sie werden zum Handeln gezwungen
 
-- Examples include: kidnapping, killing of a pet/loved one, loss of financial security, driving from one’s home, etc.
+- Beispiele hierfür sind: Entführung, Tötung eines Haustiers/einer geliebten Person, Verlust der finanziellen Sicherheit, Verlassen des eigenen Zuhauses usw.
 
-- The protagonist must take on the mission or be placed in a life or death situation (whether that’s literally life-threatening, or social life threatening)
+- Der Protagonist muss die Mission übernehmen oder in eine Lebens- oder Todessituation geraten (sei es nun buchstäblich lebensbedrohlich oder sozial lebensbedrohlich).
 
-- The event is more personal, forcing the protagonist to get involved, even if they still do not want to
+- Das Ereignis ist persönlicher und zwingt den Protagonisten, sich darauf einzulassen, auch wenn er es noch nicht möchte
 
-- This scene should hook the reader
+- Diese Szene sollte den Leser fesseln
 
-- The stakes/tensions should be high
+- Der Einsatz/die Spannung dürfte hoch sein
 
-## ACT 2A
+## AKT 2A
 
-## 11. First Plot Point:
+## 11. Erster Handlungspunkt:
 
-- The protagonist actively chooses to enter the New World, which is new and they are uncomfortable
+- Der Protagonist entscheidet sich aktiv dafür, die Neue Welt zu betreten, die neu ist und ihm Unbehagen bereitet
 
-- It may or may not involve an environmental change, but could also involve the protagonist simply trying something new, i.e. a new relationship, getting a gym membership, confronting their boss, etc.
+- Dabei kann es sich um eine Veränderung der Umgebung handeln oder auch nicht, aber es könnte auch bedeuten, dass der Protagonist einfach etwas Neues ausprobiert, z. B. eine neue Beziehung, eine Mitgliedschaft im Fitnessstudio, eine Konfrontation mit seinem Chef usw.
 
-- This is a big turning point in the story
+- Dies ist ein großer Wendepunkt in der Geschichte
 
-- There’s no going back to the Ordinary World at this point
+- An diesem Punkt gibt es kein Zurück zur gewöhnlichen Welt
 
-- The protagonist still has their flaw and is still chasing the thing they want, and this still gets in the way, but the protagonist is at least willing to push through into the New World, which is a good sign
+- Der Protagonist hat immer noch seinen Fehler und jagt immer noch dem nach, was er will, und das steht ihm immer noch im Weg, aber der Protagonist ist zumindest bereit, in die Neue Welt vorzudringen, was ein gutes Zeichen ist
 
-## 12. Enemies & Allies:
+## 12. Feinde und Verbündete:
 
-- We get a sense of the protagonist’s new life in this uncomfortable New World
+- Wir bekommen einen Eindruck vom neuen Leben des Protagonisten in dieser unbequemen neuen Welt
 
-- The protagonist feels like a fish out of water
+- Der Protagonist fühlt sich wie ein Fisch auf dem Trockenen
 
-- Any remaining characters should be introduced
+- Alle verbleibenden Zeichen sollten eingeführt werden
 
-- We get additional information on the main antagonist
+- Wir erhalten zusätzliche Informationen zum Hauptgegner
 
-- A good time to introduce character archetypes such as the side character, ally, or love interest. At least one of these characters should represent the “B story” who will ultimately help the protagonist learn the theme, or the thing that they need.
+- Ein guter Zeitpunkt, um Charakterarchetypen wie den Nebencharakter, den Verbündeten oder das Liebesinteresse vorzustellen. Mindestens einer dieser Charaktere sollte die „B-Story“ repräsentieren, die dem Protagonisten letztendlich dabei hilft, das Thema oder das, was er braucht, zu lernen.
 
-- A new role for the protagonist is established
+- Eine neue Rolle für den Protagonisten wird etabliert
 
-- The protagonist may face antagonism from side characters
+- Der Protagonist kann mit der Feindseligkeit von Nebencharakteren konfrontiert werden
 
-- There should be initial friction between the protagonist and other characters
+- Es sollte zu anfänglichen Spannungen zwischen dem Protagonisten und anderen Charakteren kommen
 
-## 13. The B Story
+## 13. Die B-Geschichte
 
-- The protagonist spends this scene with the B story character, where the B story character figuratively holds a mirror to the protagonist to see their flaw. This could be through a love interest or a mentor
+- Der Protagonist verbringt diese Szene mit der B-Story-Figur, in der die B-Story-Figur dem Protagonisten im übertragenen Sinne einen Spiegel vorhält, um ihren Fehler zu erkennen. Dies könnte durch ein Liebesinteresse oder einen Mentor geschehen
 
-- It is explained to the protagonist that there is no going back, and is given reasons and the motivation to continue
+- Dem Protagonisten wird erklärt, dass es kein Zurück mehr gibt, und er erhält Gründe und Motivation, weiterzumachen
 
-- The theme is restated here, often as advice on how to succeed, though often overlooked/ignored/not fully understood by the protagonist
+- Das Thema wird hier wiederholt, oft als Ratschlag für den Erfolg, obwohl es vom Protagonisten oft übersehen/ignoriert/nicht vollständig verstanden wird
 
-## 14. Games & Trials:
+## 14. Spiele und Prüfungen:
 
-- Some of the most interesting and exciting things the New World has to offer are presented
+- Es werden einige der interessantesten und aufregendsten Dinge vorgestellt, die die Neue Welt zu bieten hat
 
-- The protagonist gets to explore the New World and learn how to navigate it.
+- Der Protagonist kann die Neue Welt erkunden und lernen, sich darin zurechtzufinden.
 
-- There is lingering friction with side characters such as the love interest
+- Es gibt anhaltende Spannungen mit Nebencharakteren wie dem Liebesinteresse
 
-- There is some form of training and/or learning required for the protagonist to harness their abilities in their new role
+- Damit der Protagonist seine Fähigkeiten in seiner neuen Rolle nutzen kann, ist irgendeine Form von Training und/oder Lernen erforderlich
 
-- The Protagonist undergoes one trial and either succeeds or fails (if they fail, it must still be a victory of some kind, even if that victory is just growth/learning a valuable lesson)
+- Der Protagonist durchläuft eine Prüfung und hat entweder Erfolg oder scheitert (wenn er scheitert, muss es sich immer noch um einen Sieg handeln, selbst wenn dieser Sieg nur Wachstum oder das Erlernen einer wertvollen Lektion ist).
 
-- This should be another glimpse of the protagonist’s flaw that is keeping them from fully achieving what they need
+- Dies sollte ein weiterer Einblick in den Fehler des Protagonisten sein, der ihn davon abhält, das zu erreichen, was er braucht
 
-- This chapter is an opportunity to wow readers through wonder
+- Dieses Kapitel ist eine Gelegenheit, die Leser durch Staunen zu begeistern
 
-- This and the next few chapters are also where the author should deliver on the promise of the premise of the story
+- In diesem und den nächsten Kapiteln sollte der Autor auch das Versprechen der Prämisse der Geschichte einlösen
 
-- There is a good opportunity for needed exposition in this and the next few chapters
+- In diesem und den nächsten Kapiteln besteht eine gute Gelegenheit für die erforderliche Darstellung
 
-## 15. No More Games:
+## 15. Keine Spiele mehr:
 
-- The protagonist makes a second attempt at overcoming a trial and seemingly fails (though there must still be overall growth and lessons learned)
+- Der Protagonist unternimmt einen zweiten Versuch, eine Prüfung zu bestehen, und scheitert scheinbar (allerdings muss es dennoch allgemeines Wachstum und gewonnene Erkenntnisse geben).
 
-- This time the cost of the failure is more pronounced to the protagonist
+- Diesmal sind die Kosten des Scheiterns für den Protagonisten stärker ausgeprägt
 
-- The protagonist should experience a lot of frustration and self-doubt
+- Der Protagonist sollte viel Frustration und Selbstzweifel erleben
 
-## 16. Earning Respect:
+## 16. Respekt verdienen:
 
-- With the third trial, the Protagonist succeeds
+- Beim dritten Versuch ist der Protagonist erfolgreich
 
-- Even though the Protagonist may not have complete control over their abilities, they experience a small victory that proves they’re not completely useless
+- Auch wenn der Protagonist möglicherweise nicht die vollständige Kontrolle über seine Fähigkeiten hat, erlebt er einen kleinen Sieg, der beweist, dass er nicht völlig nutzlos ist
 
-- This should result in increased self-confidence for the protagonist
+- Dies soll zu einem gesteigerten Selbstvertrauen des Protagonisten führen
 
-- This may also gain the attention of the allies and enemies
+- Dies kann auch die Aufmerksamkeit der Verbündeten und Feinde erregen
 
-- The protagonist, confident after their recent success, may show overconfidence that will lead to the first pinch point
+- Der Protagonist, der nach seinem jüngsten Erfolg zuversichtlich ist, kann ein übertriebenes Selbstvertrauen an den Tag legen, das zum ersten Knackpunkt führt
 
-- This is an opportunity for the B character to remind the protagonist of the life lesson they need to learn
+- Dies ist eine Gelegenheit für die B-Figur, den Protagonisten an die Lektion fürs Leben zu erinnern, die er lernen muss
 
-- But the protagonist clearly shows that they have not learned that lesson yet
+- Aber der Protagonist zeigt deutlich, dass er diese Lektion noch nicht gelernt hat
 
-## 17. First Pinch Point:
+## 17. Erster Quetschpunkt:
 
-- Can be a literal or nonliteral battle, the first major interaction between the Protagonist and Antagonist (or forces of evil).
+- Kann ein buchstäblicher oder nichtwörtlicher Kampf sein, die erste große Interaktion zwischen dem Protagonisten und dem Antagonisten (oder den Mächten des Bösen).
 
-- Antagonist may not be visible yet, but should be the one pulling the strings.
+- Der Antagonist ist möglicherweise noch nicht sichtbar, sollte aber derjenige sein, der die Fäden in der Hand hält.
 
-- The Antagonist is after something, something tied to the Protagonist.
+- Der Antagonist ist hinter etwas her, etwas, das mit dem Protagonisten verbunden ist.
 
-- The Protagonist still has little idea of what is going on, but still finds themselves at the center of the conflict.
+- Der Protagonist hat immer noch keine Ahnung, was vor sich geht, befindet sich aber immer noch im Zentrum des Konflikts.
 
-- The protagonist may not win, but they do survive, and the stakes become clearer
+- Der Protagonist gewinnt vielleicht nicht, aber er überlebt, und die Einsätze werden klarer
 
-- The stakes should be as dire as possible. Answer these questions:
+- Es sollte so schlimm wie möglich auf dem Spiel stehen. Beantworten Sie diese Fragen:
 
-   - What’s the worst thing that could happen, and how could I make it even worse for the protagonist?
+   - Was ist das Schlimmste, was passieren kann, und wie könnte ich es für den Protagonisten noch schlimmer machen?
 
-   - What can we add to make the setting reflect the mood?
+   - Was können wir hinzufügen, damit die Umgebung die Stimmung widerspiegelt?
 
-   - What can we add to make it more urgent?
+   - Was können wir hinzufügen, um die Dringlichkeit zu erhöhen?
 
-   - What can we add to deepen character?
+   - Was können wir hinzufügen, um den Charakter zu vertiefen?
 
-- This is a big turning point for the story.
+- Dies ist ein großer Wendepunkt für die Geschichte.
 
-- Portray how the Protagonist is humbled by the event and their realization of what is actually happening.
+- Stellen Sie dar, wie der Protagonist durch das Ereignis demütigt wird und erkennt, was tatsächlich passiert.
 
-- This is an ideal spot for a plot twist
+- Dies ist ein idealer Ort für eine Wendung in der Handlung
 
-## 18. Problem Revealed:
+## 18. Aufgedecktes Problem:
 
-- The Protagonist feels down and overwhelmed once more as they realize how much they don’t know, as revealed by the challenges in the previous chapter.
+- Der Protagonist fühlt sich erneut niedergeschlagen und überfordert, als ihm klar wird, wie viel er nicht weiß, wie die Herausforderungen im vorherigen Kapitel zeigen.
 
-- One or more of the allies may have known the danger and true level of threat, but did not tell the Protagonist. Or the information might come in the form of “Meeting the Goddess” as in a trusted advisor or other individual
+- Einer oder mehrere der Verbündeten kannten die Gefahr und das tatsächliche Ausmaß der Bedrohung, teilten es dem Protagonisten jedoch nicht mit. Oder die Informationen kommen in Form einer „Begegnung mit der Göttin“ wie bei einem vertrauenswürdigen Berater oder einer anderen Person
 
-- The Protagonist confronts the Allies, demanding answers.
+- Der Protagonist konfrontiert die Alliierten und fordert Antworten.
 
-- May be brushed off initially/told they are not ready/need to further develop their powers
+- Kann anfangs abgewiesen werden/man sagt ihnen, dass sie nicht bereit sind/müssen, ihre Kräfte weiterzuentwickeln
 
-- The Protagonist will insist on more information
+- Der Protagonist wird auf weitere Informationen bestehen
 
-## 19. Truth & Ultimatum:
+## 19. Wahrheit und Ultimatum:
 
-- The Protagonist learns critical new information that changes their whole worldview
+- Der Protagonist erfährt wichtige neue Informationen, die sein gesamtes Weltbild verändern
 
-- Now they know the full extent of the Antagonist’s forces, the backstory of the problem, what they are up against
+- Jetzt kennen sie das volle Ausmaß der Kräfte des Antagonisten, die Hintergrundgeschichte des Problems und wissen, womit sie es zu tun haben
 
-- May also have a new perspective on the Allies, realizing they are not as cut and dry as originally thought, or even a new sympathetic perspective on the Antagonist
+- Möglicherweise hat er auch eine neue Perspektive auf die Alliierten, da er erkennt, dass sie nicht so dürftig sind, wie ursprünglich angenommen, oder sogar eine neue sympathische Perspektive auf den Antagonisten
 
-- With this more complete information, the protagonist must decide whether or not to continue “all in” for the remainder of the journey.
+- Mit diesen umfassenderen Informationen muss der Protagonist entscheiden, ob er für den Rest der Reise „all in“ weitermachen möchte oder nicht.
 
-- May involve a plot twist or revelation that causes the Protagonist to second guess their decisions
+- Kann eine Wendung oder Enthüllung in der Handlung beinhalten, die den Protagonisten dazu veranlasst, seine Entscheidungen zu hinterfragen
 
-- The Protagonist considers trying to find a way out to get back to the Ordinary World
+- Der Protagonist überlegt, einen Ausweg zu finden, um in die gewöhnliche Welt zurückzukehren
 
-- If they do decide to go forward, they will be committed until the end
+- Wenn sie sich entscheiden, weiterzumachen, werden sie bis zum Ende verpflichtet sein
 
-## 20. Midpoint:
+## 20. Mittelpunkt:
 
-- This is a single scene that marks either a false victory or a false defeat
+- Dies ist eine einzelne Szene, die entweder einen falschen Sieg oder eine falsche Niederlage markiert
 
-- This marks the point when the protagonist decides to be more proactive, to stop being the victim and instead take action
+- Dies markiert den Punkt, an dem der Protagonist beschließt, proaktiver zu sein, nicht mehr das Opfer zu sein und stattdessen Maßnahmen zu ergreifen
 
-- They form a new goal
+- Sie bilden ein neues Ziel
 
-- They are forced to figuratively look at themselves in a mirror and confront who they are, and contemplate what they need to change to become the person they need to be to succeed at their new goal
+- Sie sind gezwungen, sich selbst im Spiegel zu betrachten, sich selbst zu konfrontieren und darüber nachzudenken, was sie ändern müssen, um die Person zu werden, die sie sein müssen, um ihr neues Ziel zu erreichen
 
-- The first time the protagonist fully engages with their flaw and realizes that they need to change, even if they can’t yet. This is a moment of true self-reflection.
+- Das erste Mal setzt sich der Protagonist voll und ganz mit seinem Fehler auseinander und erkennt, dass er sich ändern muss, auch wenn er es noch nicht kann. Dies ist ein Moment wahrer Selbstreflexion.
 
-- The stakes of the story must be raised (a love story ramps up, ticking time bomb, a plot twist, a public “outing”, etc.)
+- Der Einsatz der Geschichte muss erhöht werden (eine Liebesgeschichte nimmt ihren Lauf, eine tickende Zeitbombe, eine Wendung in der Handlung, ein öffentlicher „Ausflug“ usw.)
 
-- The A and B story must intersect here
+- Die A- und B-Geschichte müssen sich hier überschneiden
 
-- This is a major turning point of the story
+- Dies ist ein wichtiger Wendepunkt der Geschichte
 
-## ACT 2B
+## AKT 2B
 
-## 21. External Demons Close In:
+## 21. Externe Dämonen kommen näher:
 
-- The protagonist is beset by external demons, the antagonist or forces of the antagonist
+- Der Protagonist wird von externen Dämonen, dem Antagonisten oder Kräften des Antagonisten bedrängt
 
-- This is where the bad guys regroup after the first pinch point and midpoint.
+- Hier gruppieren sich die Bösewichte nach dem ersten Pinch Point und Midpoint neu.
 
-- Even if we don’t see these bad guys directly, we see evidence or speculation of their preparations
+- Auch wenn wir diese Bösewichte nicht direkt sehen, sehen wir Beweise oder Spekulationen über ihre Vorbereitungen
 
-- This could also be a chance to inflict more complications on the protagonist
+- Dies könnte auch eine Chance sein, dem Protagonisten weitere Komplikationen zu bereiten
 
-- Another great opportunity for a plot twist
+- Eine weitere großartige Gelegenheit für eine Wendung in der Handlung
 
-## 22. Things Get Worse
+## 22. Die Dinge werden schlimmer
 
-- Just when things can’t seem to get any worse, they do
+- Gerade wenn es scheinbar nicht schlimmer werden kann, tun sie es
 
-- This could be through the betrayal of a side character, an unexpected plot twist, a shocking revelation, etc.
+- Dies kann durch den Verrat einer Nebenfigur, eine unerwartete Wendung in der Handlung, eine schockierende Enthüllung usw. geschehen.
 
-- The stakes heighten
+- Der Einsatz steigt
 
-- The protagonist survives, but only barely, and only because they have (at least partially) started to doubt that the flaw they have been holding onto so hard is still good for them
+- Der Protagonist überlebt, aber nur knapp, und nur, weil er (zumindest teilweise) angefangen hat zu zweifeln, dass der Fehler, an dem er so fest festhält, immer noch gut für ihn ist
 
-## 23. Internal Demons Close In:
+## 23. Innere Dämonen kommen näher:
 
-- Internal doubt and the weight of the protagonist’s flaw messing everything up becomes apparent
+- Innerer Zweifel und das Gewicht des Fehlers des Protagonisten, der alles durcheinander bringt, werden deutlich
 
-- This is where the protagonist’s psyche messes things up, such as messing up relationships, self-sabotage, fighting to go back to the ordinary world and trying to convince the protagonist to stop fighting their flaw, etc.
+- Hier bringt die Psyche des Protagonisten Dinge durcheinander, wie zum Beispiel Beziehungen durcheinanderzubringen, sich selbst zu sabotieren, darum zu kämpfen, in die normale Welt zurückzukehren, und versucht, den Protagonisten davon zu überzeugen, mit dem Kampf gegen seine Fehler aufzuhören usw.
 
-- May involve a continuation of the external demons closing in, exploiting or magnifying the internal demons
+- Kann damit einhergehen, dass die äußeren Dämonen sich weiterhin den inneren Dämonen nähern, sie ausnutzen oder vergrößern
 
-## 24. Plan of Attack:
+## 24. Angriffsplan:
 
-- The protagonist and their allies regroup
+- Der Protagonist und seine Verbündeten gruppieren sich neu
 
-- The protagonist decides to go all in and formulate a “plan of attack”
+- Der Protagonist beschließt, alles zu tun und einen „Angriffsplan“ zu formulieren.
 
-- They create a plan to confront the problem presented in the “Problem Revealed” chapter.
+- Sie erstellen einen Plan zur Bewältigung des im Kapitel „Aufgedecktes Problem“ dargestellten Problems.
 
-- A planning session working with the Allies to use their new information to form a plan
+- Eine Planungssitzung mit den Alliierten, um deren neue Informationen für die Ausarbeitung eines Plans zu nutzen
 
-- Understanding of what the Antagonist’s plans are and what needs to be done to stop them
+- Verständnis dafür, was die Pläne des Antagonisten sind und was getan werden muss, um sie zu stoppen
 
-## 25. Crucial Role:
+## 25. Entscheidende Rolle:
 
-- The protagonist is given a crucial role
+- Dem Protagonisten kommt eine entscheidende Rolle zu
 
-- This is their chance to prove themselves and be tested in the real world
+- Dies ist ihre Chance, sich zu beweisen und in der realen Welt getestet zu werden
 
-- Other characters are beginning to trust the Protagonist
+- Andere Charaktere beginnen, dem Protagonisten zu vertrauen
 
-- The Protagonist must be responsible for what happens in order to build emotion
+- Der Protagonist muss für das, was passiert, verantwortlich sein, um Emotionen aufzubauen
 
-## 26. Second Pinch Point:
+## 26. Zweiter Quetschpunkt:
 
-- A second battle with the Antagonist (or the Antagonist’s forces), often instigated by the Antagonist, taking the Protagonist by surprise
+- Ein zweiter Kampf mit dem Antagonisten (oder den Streitkräften des Antagonisten), der oft vom Antagonisten angezettelt wird und den Protagonisten überrascht
 
-- The result of the Protagonist taking action in the previous chapters
+- Das Ergebnis der Maßnahmen des Protagonisten in den vorherigen Kapiteln
 
-- The Protagonist is determined to see this Battle through and feels responsible for the outcome
+- Der Protagonist ist entschlossen, diesen Kampf durchzuhalten und fühlt sich für den Ausgang verantwortlich
 
-- Chances must be slim
+- Die Chancen dürften gering sein
 
-- During the conflict, the Protagonist realizes they have underestimated the Antagonist’s power.
+- Während des Konflikts erkennt der Protagonist, dass er die Macht des Antagonisten unterschätzt hat.
 
-## 27. All Is Lost:
+## 27. Alles ist verloren:
 
-- The Antagonist defeats the Protagonist’s forces
+- Der Antagonist besiegt die Streitkräfte des Protagonisten
 
-- The Protagonist’s plans go horribly wrong and they fail
+- Die Pläne des Protagonisten gehen furchtbar schief und scheitern
 
-- Being in direct contact with the Antagonist’s forces means their (the protagonist and their allies) identity is revealed and real consequences may arise, such as the death of an
+- Der direkte Kontakt mit den Kräften des Antagonisten bedeutet, dass seine Identität (der Protagonist und seine Verbündeten) enthüllt wird und echte Konsequenzen entstehen können, wie zum Beispiel der Tod eines
 
-Ally, permanent disfigurement, loss of an important object, etc. This should raise the stakes.
+Verbündeter, dauerhafte Entstellung, Verlust eines wichtigen Gegenstands usw. Dies sollte den Einsatz erhöhen.
 
-- The Protagonist and their Allies are in danger, the plan has been shattered
+- Der Protagonist und seine Verbündeten sind in Gefahr, der Plan ist gescheitert
 
-- Deepen the problems for the Protagonist and their Allies
+- Vertiefen Sie die Probleme des Protagonisten und seiner Verbündeten
 
-- The Allies should be at a loss of what to do next.
+- Die Alliierten sollten nicht wissen, was sie als nächstes tun sollen.
 
-- Usually the failure is due to the Protagonist’s flaw or lack of knowledge
+- Normalerweise ist das Scheitern auf einen Fehler oder mangelndes Wissen des Protagonisten zurückzuführen
 
-## 28. Shocking Revelation:
+## 28. Schockierende Offenbarung:
 
-- The Protagonist learns new information in the new predicament they are facing
+- Der Protagonist erfährt in der neuen misslichen Lage, mit der er konfrontiert ist, neue Informationen
 
-- The Antagonist’s full plan/true identity is revealed.
+- Der vollständige Plan/die wahre Identität des Antagonisten wird enthüllt.
 
-- The Protagonist may experience guilt and anger – anger at themselves for failing and/or anger at the Antagonist for outsmarting them or getting away. They may also feel personally responsible for letting everyone down.
+- Der Protagonist kann Schuldgefühle und Wut verspüren – Wut auf sich selbst, weil er versagt hat, und/oder Wut auf den Antagonisten, weil er ihn überlistet hat oder davongekommen ist. Möglicherweise fühlen sie sich auch persönlich dafür verantwortlich, alle im Stich gelassen zu haben.
 
-- The stakes are raised as the worst has happened.
+- Der Einsatz wird erhöht, da das Schlimmste passiert ist.
 
-## 29. Giving Up:
+## 29. Aufgeben:
 
-- Having lost the battle, the Protagonist loses their confidence and essentially gives up as they face the Dark Night of the Soul.
+- Nachdem der Protagonist den Kampf verloren hat, verliert er sein Selbstvertrauen und gibt praktisch auf, während er sich der Dunklen Nacht der Seele stellt.
 
-- They underestimated the Antagonist, their plan didn’t work, and they lost their one shot at getting it right.
+- Sie haben den Antagonisten unterschätzt, ihr Plan hat nicht funktioniert und sie haben ihre einzige Chance, es richtig zu machen, verloren.
 
-- They feel powerless as whatever hope they had is gone, leading them to self-doubt and feeling like a failure. Adding to their problems, they may also feel guilt and responsibility for the outcome.
+- Sie fühlen sich machtlos, weil die Hoffnung, die sie hatten, verloren gegangen ist, was zu Selbstzweifeln und dem Gefühl führt, ein Versager zu sein. Zusätzlich zu ihren Problemen empfinden sie möglicherweise auch Schuldgefühle und Verantwortung für das Ergebnis.
 
-- There is a real fallout from their failure
+- Ihr Scheitern hat echte Konsequenzen
 
-- There should be a sense that the stakes are raised and the impression that victory is impossible
+- Man sollte das Gefühl haben, dass der Einsatz erhöht ist, und den Eindruck, dass ein Sieg unmöglich ist
 
 ## 30. Pep Talk:
 
-- The Protagonist no longer believes in themselves and needs someone else to pull them out of their depressive cycle.
+- Der Protagonist glaubt nicht mehr an sich selbst und braucht jemand anderen, der ihn aus seinem depressiven Kreislauf herausholt.
 
-- They receive a pep talk, which could be encouragement from an Ally, or someone sharing a vulnerable story
+- Sie erhalten eine aufmunternde Ansprache, die Ermutigung von einem Verbündeten oder jemandem sein kann, der eine verletzliche Geschichte erzählt
 
-- The Ally helps the Protagonist realize what their fatal flaw is, and how it has been a blind spot for them, though this may not be perfectly obvious yet.
+- Der Verbündete hilft dem Protagonisten zu erkennen, was sein fataler Fehler ist und wie er für ihn einen blinden Fleck darstellt, auch wenn dies vielleicht noch nicht ganz offensichtlich ist.
 
-- Having this pep talk rebuilds their confidence, reaffirms what is at stake, and presents the choice of how to move forward
+- Dieses aufmunternde Gespräch stärkt ihr Selbstvertrauen, bekräftigt, worum es geht, und stellt die Wahl vor, wie es weitergehen soll
 
-## Act 3
+## Akt 3
 
-## 31. Seizing the Sword:
+## 31. Das Schwert ergreifen:
 
-- The Protagonist now has the courage to make a deliberate choice to continue, no matter how impossible the odds of success are.
+- Der Protagonist hat nun den Mut, eine bewusste Entscheidung zu treffen, weiterzumachen, egal wie unmöglich die Erfolgsaussichten sind.
 
-- A piece of critical information may be revealed that has been hidden up to this point gives the Protagonist and their Allies an extra boost
+- Es kann vorkommen, dass eine wichtige Information enthüllt wird, die bis zu diesem Zeitpunkt verborgen war, was dem Protagonisten und seinen Verbündeten einen zusätzlichen Schub gibt
 
-- The Protagonist gears up for the Final Battle, assembling any needed assets, such as special weapons, information, gathering forces, etc.
+- Der Protagonist bereitet sich auf die letzte Schlacht vor und stellt alle benötigten Ressourcen zusammen, wie z. B. Spezialwaffen, Informationen, das Sammeln von Streitkräften usw.
 
-- Another plan of attack is created
+- Ein weiterer Angriffsplan wird erstellt
 
-## 32. Gathering the Team:
+## 32. Zusammenstellen des Teams:
 
-- The protagonist gathers the team they need via inspiration
+- Der Protagonist stellt durch Inspiration das Team zusammen, das er braucht
 
-- They may need to make amends with previously scorned allies
+- Möglicherweise müssen sie mit zuvor verachteten Verbündeten Wiedergutmachung leisten
 
-- There is some antagonism between the protagonist and the allies, but the protagonist is more confident now and they agree to help
+- Es gibt einen gewissen Widerspruch zwischen dem Protagonisten und den Verbündeten, aber der Protagonist ist jetzt selbstbewusster und willigt ein, zu helfen
 
-- Together they coordinate on what to do next
+- Gemeinsam stimmen sie ab, was als nächstes zu tun ist
 
-- They also gather any tools they will need to enact their plan
+- Sie sammeln auch alle Werkzeuge, die sie zur Umsetzung ihres Plans benötigen
 
-## 33. Final Battle, First Stage:
+## 33. Letzte Schlacht, erste Phase:
 
-- The plan moves into motion
+- Der Plan wird in die Tat umgesetzt
 
-- This is the first stage of that plan
+- Dies ist die erste Phase dieses Plans
 
-- This is the “Storming the Castle” moment
+- Dies ist der „Sturm auf das Schloss“-Moment
 
-- This part of the plan goes relatively smoothly, and there is hope that the protagonist might succeed
+- Dieser Teil des Plans verläuft relativ reibungslos und es besteht Hoffnung, dass der Protagonist Erfolg haben könnte
 
-- Skills and information learned in Act 2A help the protagonist succeed here
+- Die in Akt 2A erlernten Fähigkeiten und Informationen verhelfen dem Protagonisten hier zum Erfolg
 
-- There may be payoff for subplots between the protagonist and other ally characters here
+- Es könnte sich hier für Nebenhandlungen zwischen dem Protagonisten und anderen verbündeten Charakteren lohnen
 
-## 34. Final Battle, Second Stage:
+## 34. Letzte Schlacht, zweite Phase:
 
-- The protagonist and their allies move on to the next stage of the plan
+- Der Protagonist und seine Verbündeten gehen zur nächsten Phase des Plans über
 
-- This stage also goes relatively well, though more difficult than the first
+- Auch diese Etappe verläuft relativ gut, wenn auch schwieriger als die erste
 
-- Once again, skills and information learned in act 2A help the protagonist succeed here
+- Auch hier helfen die in Akt 2A erlernten Fähigkeiten und Informationen dem Protagonisten, hier erfolgreich zu sein
 
-- There may be payoff for subplots between the protagonist and other ally characters here
+- Es könnte sich hier für Nebenhandlungen zwischen dem Protagonisten und anderen verbündeten Charakteren lohnen
 
-- There is a real test here that proves that the protagonist has indeed learned to reverse the flaw that held them back in Act 2A, or at least that’s how it seems
+- Hier gibt es einen echten Test, der beweist, dass der Protagonist tatsächlich gelernt hat, den Fehler, der ihn in Akt 2A zurückgehalten hat, umzukehren, oder zumindest scheint es so
 
-- Often the Allies drop off by this scene, either sacrificing themselves or being needed elsewhere, forcing the protagonist to go on alone
+- Oft kommen die Alliierten bei dieser Szene vorbei, entweder indem sie sich selbst opfern oder woanders gebraucht werden, was den Protagonisten dazu zwingt, alleine weiterzumachen
 
-## 35. Final Battle, Third Stage:
+## 35. Letzte Schlacht, dritte Phase:
 
-- The Protagonist goes into the third stage of the final battle alone
+- Der Protagonist geht allein in die dritte Phase des letzten Kampfes
 
-- The Protagonist so far has thought that they understand their Fatal Flaw, but they really did not, not fully
+- Bisher hat der Protagonist geglaubt, dass er seinen fatalen Fehler versteht, aber das ist ihm wirklich nicht klar, nicht ganz
 
-- They go into the battle confident, which leads to their undoing.
+- Sie gehen selbstbewusst in den Kampf, was zu ihrem Untergang führt.
 
-- But the protagonist is fighting to save others or perhaps the world, heightening the stakes
+- Aber der Protagonist kämpft darum, andere oder vielleicht die Welt zu retten, was den Einsatz erhöht
 
-- This is another “All is Lost” moment for the Protagonist and the reader.
+- Dies ist ein weiterer „Alles ist verloren“-Moment für den Protagonisten und den Leser.
 
-- There is a final plot twist that is completely unexpected and causes the Antagonist to have the upper hand
+- Es gibt eine letzte Wendung in der Handlung, die völlig unerwartet ist und dazu führt, dass der Antagonist die Oberhand behält
 
-## 36. Ultimate Defeat:
+## 36. Ultimative Niederlage:
 
-- The Protagonist has a humiliation scene, where they are at the mercy of the Antagonist
+- Der Protagonist hat eine Demütigungsszene, in der er dem Antagonisten ausgeliefert ist
 
-- The Antagonist reveals their full plan, allowing the author to tie up any loose ends of the story
+- Der Antagonist enthüllt seinen vollständigen Plan und ermöglicht es dem Autor, alle losen Enden der Geschichte zu verknüpfen
 
-- The Protagonist comes to a full understanding of their flaw and lets go of whatever was holding them back
+- Der Protagonist erkennt seinen Fehler vollständig und lässt alles los, was ihn zurückgehalten hat
 
-- The Antagonist may even be the one to point the flaw out
+- Der Antagonist könnte sogar derjenige sein, der auf den Fehler hinweist
 
-- The Protagonist has no hope of winning unless they are able to face their Fatal Flaw
+- Der Protagonist hat keine Hoffnung auf den Sieg, es sei denn, er kann sich seinem fatalen Fehler stellen
 
-## 37. The Drop:
+## 37. Der Tropfen:
 
-- The Antagonist believes they have won.
+- Der Antagonist glaubt, dass er gewonnen hat.
 
-- However, the Protagonist now has a new understanding of themselves and the unhealed wound (the Fatal Flaw) that was holding them back, and they decide to let it go or move past it.
+- Allerdings hat der Protagonist jetzt ein neues Verständnis von sich selbst und der nicht verheilten Wunde (dem tödlichen Makel), die ihn zurückgehalten hat, und er beschließt, sie loszulassen oder darüber hinwegzukommen.
 
-- The Protagonist’s want versus need comes to a head here, and they realize they may never achieve their want, but they are going to sacrifice it and fight anyway
+- Das Bedürfnis des Protagonisten spitzt sich hier zu und ihm wird klar, dass er sein Bedürfnis vielleicht nie erreichen wird, aber er wird es opfern und trotzdem kämpfen
 
-- The Protagonist realizes that they’ve been wrong all along, and they must rid themselves of their flaw and embrace their new self in order to win
+- Der Protagonist erkennt, dass er sich die ganze Zeit geirrt hat und dass er sich von seinem Fehler befreien und sein neues Selbst annehmen muss, um zu gewinnen
 
-## 38. Unexpected Victory:
+## 38. Unerwarteter Sieg:
 
-- The Protagonist, now having fully abandoned their flaw, executes a new plan, one that allows them to achieve success
+- Der Protagonist, der seinen Fehler nun vollständig aufgegeben hat, führt einen neuen Plan aus, der es ihm ermöglicht, Erfolg zu haben
 
-- They may also have a secret weapon, one unexpected thing that was overlooked for the duration of the story. This could be a secret item, ability, or hidden Ally
+- Möglicherweise besitzen sie auch eine Geheimwaffe, eine unerwartete Sache, die im Verlauf der Geschichte übersehen wurde. Dabei kann es sich um einen geheimen Gegenstand, eine Fähigkeit oder einen versteckten Verbündeten handeln
 
-- This secret thing, plus their newly changed self, gets them out of trouble and brings them victory
+- Dieses Geheimnis und ihr neu verändertes Selbst helfen ihnen aus der Klemme und bescheren ihnen den Sieg
 
-- There is a satisfying ultimate victory over the Antagonist
+- Es gibt einen zufriedenstellenden Endsieg über den Antagonisten
 
-- (optional) sacrifice more Allies and character in this scene, perhaps even the Protagonist themself.
+- (optional) Opfere in dieser Szene mehr Verbündete und Charaktere, vielleicht sogar den Protagonisten selbst.
 
-## 39. Bittersweet Reflection:
+## 39. Bittersüße Reflexion:
 
-- The Protagonist has won the battle
+- Der Protagonist hat die Schlacht gewonnen
 
-- Now is the time for joyful celebration or bittersweet reflection
+- Jetzt ist die Zeit für freudiges Feiern oder bittersüßes Nachdenken
 
-- (if part of a series) They may not have defeated the Antagonist, but driven them off or been in a battle with a powerful but lesser henchman
+- (falls Teil einer Serie) Sie haben den Antagonisten möglicherweise nicht besiegt, sondern vertrieben oder sich mit einem mächtigen, aber schwächeren Handlanger im Kampf befunden
 
-- The Protagonist is now a changed person
+- Der Protagonist ist jetzt eine veränderte Person
 
-## 40. Death of Self:
+## 40. Tod des Selbst:
 
-- All remaining loose ends are tied up, such as the storylines and character arcs of the other main characters and Allies
+- Alle verbleibenden losen Enden werden zusammengeführt, etwa die Handlungsstränge und Charakterbögen der anderen Hauptfiguren und Verbündeten
 
-- This chapter should come full circle and represent the rebirth of the Protagonist
+- Dieses Kapitel sollte den Kreis schließen und die Wiedergeburt des Protagonisten darstellen
 
-- They always wanted their own thing, tried to get what they wanted, but ultimately sacrificed it to save others and defeat the Antagonist
+- Sie wollten immer ihr eigenes Ding, versuchten zu bekommen, was sie wollten, opferten es aber letztendlich, um andere zu retten und den Antagonisten zu besiegen
 
-- This is a very big shift and may even deserve an acknowledgment ceremony or public recognition
+- Dies ist eine sehr große Veränderung und verdient möglicherweise sogar eine Anerkennungszeremonie oder öffentliche Anerkennung
 
-- (if part of a series) Hints of future challenges
+- (falls Teil einer Serie) Hinweise auf zukünftige Herausforderungen
 
-- Ends with a closing image of the protagonist, which should complement the opening image but show just how much they have changed.
+- Endet mit einem Abschlussbild des Protagonisten, das das Eröffnungsbild ergänzen, aber zeigen soll, wie sehr sich dieser verändert hat.
 
-## 41. After-Credit Scene (optional):
+## 41. After-Credit-Szene (optional):
 
-- Should involve a closing image, visually representing the upcoming conflict for future books/series, and in a way that increases the stakes
+- Sollte ein Abschlussbild beinhalten, das den bevorstehenden Konflikt für zukünftige Bücher/Serien visuell darstellt und den Einsatz erhöht
 
-- Similar to a Marvel after-credit scene that teases upcoming films
+- Ähnlich einer Marvel-After-Credit-Szene, die kommende Filme ankündigt
