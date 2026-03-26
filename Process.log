@@ -1,0 +1,370 @@
+=== Process Log: Deep Re-Clustering, Summarization and Importance Sorting ===
+This log details the exact reasoning for assigning each file to its cluster based on full section analysis.
+
+File: KoharenzProtokollPlotBlueprintErstellung.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 23)
+-> Reason: Found keywords: 'plot'(1x), 'plot'(title), 'blueprint'(1x), 'blueprint'(title), 'kohärenz protokoll'(1x).
+
+File: NarrativeRekombinationPotenzialExplorationPlotSynopsen.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 30)
+-> Reason: Found keywords: 'narrativ'(title), 'plot'(title), 'synopse'(title).
+
+File: SymmetrieParadoxieExistenzJenseitsSimulation.md
+-> Assigned to: '⚡ Konflikte (cross-domain: Widersprüche)' (Score: 21)
+-> Reason: Found keywords: 'paradox'(title), 'paradoxie'(1x), 'paradoxie'(title).
+
+File: PlotExplorationKoharenzProtokollkonzepte.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: RomanWorldbuildingFragmentierteIdentitatMetaRealitat.md
+-> Assigned to: '🌍 Welten (world: KW1-4, Zonen, Orte)' (Score: 23)
+-> Reason: Found keywords: 'welt'(1x), 'world'(title), 'worldbuilding'(2x), 'worldbuilding'(title).
+
+File: IdentitatGrenzenUndWandel.md
+-> Assigned to: '🧠 Alter-System (alter-system: TSDP, IFS, ANP/EP)' (Score: 2)
+-> Reason: Found keywords: 'identität'(2x).
+
+File: TranszendenzUndParadoxienVerbindungslinien.md
+-> Assigned to: '⚡ Konflikte (cross-domain: Widersprüche)' (Score: 21)
+-> Reason: Found keywords: 'paradox'(title), 'paradoxie'(1x), 'paradoxie'(title).
+
+File: VTheFoundationAndKaelsIntegrationArc.md
+-> Assigned to: '🎭 Figuren (character)' (Score: 10)
+-> Reason: Found keywords: 'kael'(title).
+
+File: TheThematicArchitectureOfKoharenzProtokollAConceptualLexiconOfCoreDualities.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 24)
+-> Reason: Found keywords: 'protokoll'(2x), 'protokoll'(title), 'core'(title), 'kohärenz'(2x).
+
+File: RomanRefactoringKoharenzUndCharakterentwicklung.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 31)
+-> Reason: Found keywords: 'akt'(title), 'kohärenz protokoll'(1x), 'roman'(title), 'entwicklung'(title).
+
+File: RomanentwurfKoharenzProtokollTeil1.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: TsdpAnalyseKaelsInnereWelt.md
+-> Assigned to: '🧠 Alter-System (alter-system: TSDP, IFS, ANP/EP)' (Score: 12)
+-> Reason: Found keywords: 'tsdp'(1x), 'tsdp'(title), 'anteile'(1x).
+
+File: NarrativePlotExplorationExistenzielleKoharenz.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 21)
+-> Reason: Found keywords: 'narrativ'(title), 'plot'(1x), 'plot'(title).
+
+File: CharakterarchitekturFurNarrativesRomanprojekt.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 41)
+-> Reason: Found keywords: 'narrativ'(title), 'akt'(title), 'romanprojekt'(title), 'roman'(title), 'entwicklung'(1x).
+
+File: InterdisziplinareRechercheFurKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'protokoll'(title), 'kohärenz'(1x).
+
+File: ParakonsistenteLogikFurKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 13)
+-> Reason: Found keywords: 'aegis'(1x), 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: RomanEntwicklungKoharenzUndLeitfragen.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 23)
+-> Reason: Found keywords: 'struktur'(1x), 'kohärenz protokoll'(2x), 'roman'(title), 'entwicklung'(title).
+
+File: DramaturgicalPrecisionDeconstructingTheIrreversibleConflictInKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 14)
+-> Reason: Found keywords: 'protokoll'(2x), 'protokoll'(title), 'kohärenz'(2x).
+
+File: AegisPhilosophieUndManifestEntwicklung.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 14)
+-> Reason: Found keywords: 'aegis'(4x), 'aegis'(title).
+
+File: NarrativeVertiefungKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 13)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'ki'(1x), 'kohärenz'(1x).
+
+File: AegisAnalyseUndPromptOptimierung.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title).
+
+File: MonstergruppeAlsDenkmodellDerKomplexitat.md
+-> Assigned to: '🔢 Mathematik (mathematics)' (Score: 11)
+-> Reason: Found keywords: 'monstergruppe'(1x), 'monstergruppe'(title).
+
+File: ZeitGrenzenWahrnehmungUndTheorien.md
+-> Assigned to: '⚛️ Physik (physics: DKT, Landauer, Gödel etc.)' (Score: 10)
+-> Reason: Found keywords: 'theorie'(title).
+
+File: MonstergruppeBabymonstergruppeFragmentierungErzahlung.md
+-> Assigned to: '🔢 Mathematik (mathematics)' (Score: 21)
+-> Reason: Found keywords: 'zahl'(title), 'monstergruppe'(1x), 'monstergruppe'(title).
+
+File: NarrativExistenziellerKoharenzNztProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'protokoll'(title), 'kohärenz'(1x).
+
+File: HolographischesPrinzipFurKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: DialetheismusImKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 13)
+-> Reason: Found keywords: 'aegis'(1x), 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: DualKernelAiAndNarrativeCollapse.md
+-> Assigned to: '🎯 Themen (theme: Kernthemen, Dualitäten)' (Score: 12)
+-> Reason: Found keywords: 'dual'(2x), 'dual'(title).
+
+File: ForschungsprojektKoharenzProtokollAnalyse.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'protokoll'(title), 'kohärenz'(1x).
+
+File: MonstergruppeNarrativeClusterUndMetaphern.md
+-> Assigned to: '🔢 Mathematik (mathematics)' (Score: 11)
+-> Reason: Found keywords: 'symmetrie'(1x), 'monstergruppe'(title).
+
+File: KoharenzProtokollKapitelstrukturMitKonzepten39Kapitel.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 36)
+-> Reason: Found keywords: 'kapitel'(2x), 'kapitel'(title), 'kapitelstruktur'(1x), 'kapitelstruktur'(title), 'kapitel'(2x).
+
+File: BridgingNarrativeTheoryAndAiAuthorship.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 10)
+-> Reason: Found keywords: 'ai'(title).
+
+File: TheCoherenceProtocolANarrativeDesignWorldArchitectureDocument.md
+-> Assigned to: '🌍 Welten (world: KW1-4, Zonen, Orte)' (Score: 12)
+-> Reason: Found keywords: 'world'(1x), 'world'(title), 'simulation'(1x).
+
+File: SymmetrienClusterungUberWissensgebieteHinweg.md
+-> Assigned to: '🔢 Mathematik (mathematics)' (Score: 11)
+-> Reason: Found keywords: 'symmetrie'(1x), 'symmetrie'(title).
+
+File: RomanKonzeptDualitatKoharenzSpannung.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 13)
+-> Reason: Found keywords: 'plot'(1x), 'kohärenz protokoll'(2x), 'roman'(title).
+
+File: KoharenzProtokollMetaForeshadowingBeobachterLogik.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 11)
+-> Reason: Found keywords: 'foreshadowing'(1x), 'foreshadowing'(title).
+
+File: TheKoharenzProtokollADefinitiveGuideToNarrativeArchitecture.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: AegisGenesisKrise20prosaAuftrag20formulieren.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title).
+
+File: StorytellingCommandmentsExplained.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 11)
+-> Reason: Found keywords: 'struktur'(1x), 'story'(title).
+
+File: AegisPhilosophischeUndSystemtheoretischeAnalyse.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 22)
+-> Reason: Found keywords: 'aegis'(2x), 'aegis'(title), 'system'(title).
+
+File: PlotkonzeptKoharenzProtokollHeldinnenreiseStruktur.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 22)
+-> Reason: Found keywords: 'plot'(title), 'struktur'(1x), 'struktur'(title), 'kohärenz protokoll'(1x).
+
+File: PhysikGrenzenUndRatselDesUniversums.md
+-> Assigned to: '⚛️ Physik (physics: DKT, Landauer, Gödel etc.)' (Score: 12)
+-> Reason: Found keywords: 'physik'(2x), 'physik'(title).
+
+File: EmergenzAutonomerSystemeAegisForschung.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 21)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title), 'system'(title).
+
+File: Romanstruktur3Teile39Kapitel1Anfang.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 32)
+-> Reason: Found keywords: 'kapitel'(1x), 'kapitel'(title), 'kapitel'(1x), 'kapitel'(title), 'teil'(title).
+
+File: ErkenntnistheorieFurNarrativeProjektgestaltung.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 23)
+-> Reason: Found keywords: 'erkenntnis'(title), 'epistemologie'(1x), 'erkenntnistheorie'(2x), 'erkenntnistheorie'(title).
+
+File: RomanKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 10)
+-> Reason: Found keywords: 'protokoll'(title).
+
+File: RomanFundamentTheoretischeRecherche.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 10)
+-> Reason: Found keywords: 'roman'(title).
+
+File: TranszendenzLogischerSystemeEntropie.md
+-> Assigned to: '⚛️ Physik (physics: DKT, Landauer, Gödel etc.)' (Score: 11)
+-> Reason: Found keywords: 'entropie'(1x), 'entropie'(title).
+
+File: PVsNpUndKoharenz.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 2)
+-> Reason: Found keywords: 'aegis'(1x), 'kohärenz'(1x).
+
+File: EinleitungGenesisDerExistenz.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 10)
+-> Reason: Found keywords: 'existenz'(title).
+
+File: RomanKonzeptentwicklungKoharenzProtokoll.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 22)
+-> Reason: Found keywords: 'blueprint'(1x), 'kohärenz protokoll'(1x), 'roman'(title), 'entwicklung'(title).
+
+File: TheTrueCoherenceProtocolArchitectingKaelsJourneyFromTsdpFragmentationToFunctionalMultiplicity.md
+-> Assigned to: '🧠 Alter-System (alter-system: TSDP, IFS, ANP/EP)' (Score: 22)
+-> Reason: Found keywords: 'tsdp'(1x), 'tsdp'(title), 'ep'(title), 'multiplizität'(1x).
+
+File: KernweltenFurKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 14)
+-> Reason: Found keywords: 'protokoll'(2x), 'protokoll'(title), 'kohärenz'(2x).
+
+File: RomanSyntheseMitDualKernelTheorie.md
+-> Assigned to: '⚛️ Physik (physics: DKT, Landauer, Gödel etc.)' (Score: 13)
+-> Reason: Found keywords: 'dkt'(1x), 'theorie'(2x), 'theorie'(title).
+
+File: RomanBlueprintSeelenKoharenzProtokoll.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 24)
+-> Reason: Found keywords: 'blueprint'(2x), 'blueprint'(title), 'romanprojekt'(1x), 'roman'(1x), 'roman'(title).
+
+File: RomanKoharenzProtokoll2.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 10)
+-> Reason: Found keywords: 'protokoll'(title).
+
+File: OrteKonzeptFurKoharenzProtokoll.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 14)
+-> Reason: Found keywords: 'protokoll'(2x), 'protokoll'(title), 'kohärenz'(2x).
+
+File: TheFoundationProtocolAMetaphysicalThesisOnTheReAnchoringOfReality.md
+-> Assigned to: '📁 Sonstiges (Unkategorisiert)' (Score: 0)
+-> Reason: No specific keywords found.
+
+File: KoharenzProtokollPlotEntwicklungUndWahrheitsdualitat.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 22)
+-> Reason: Found keywords: 'plot'(title), 'romanprojekt'(1x), 'kohärenz protokoll'(1x), 'entwicklung'(title).
+
+File: LogiksystemAegisEntwicklungsszenarien.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 21)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title), 'system'(title).
+
+File: TheCoherenceProtocolADefinitiveGuideToTheNarrativeArchitecture.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 11)
+-> Reason: Found keywords: 'narrativ'(title), 'kohärenz protokoll'(1x).
+
+File: WahrheitstheorienKoharenzVsKorrespondenz.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 12)
+-> Reason: Found keywords: 'wahrheit'(1x), 'wahrheit'(title), 'epistemologie'(1x).
+
+File: GuardiansUndKernWeltenKonzept.md
+-> Assigned to: '🌀 Fundament (fundament: Sonderstatus)' (Score: 23)
+-> Reason: Found keywords: 'grundlage'(1x), 'kern'(2x), 'kern'(title), 'konzept'(title).
+
+File: SpannungsfelderUndAegisMetaFrameworkAnalyse.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title).
+
+File: KaelsDissociativeArchitectureAnalysis.md
+-> Assigned to: '🎭 Figuren (character)' (Score: 11)
+-> Reason: Found keywords: 'kael'(1x), 'kael'(title).
+
+File: RomanUrvertrauenLiebeTranszendenz.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 10)
+-> Reason: Found keywords: 'roman'(title).
+
+File: KopieVonNarrativeLosungenFurRomanprojekt.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 30)
+-> Reason: Found keywords: 'narrativ'(title), 'romanprojekt'(title), 'roman'(title).
+
+File: KoharenzProtokollKonzept.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: KoharenzProtokollKonzeptionelleAusarbeitung.md
+-> Assigned to: '🧠 Alter-System (alter-system: TSDP, IFS, ANP/EP)' (Score: 10)
+-> Reason: Found keywords: 'ep'(title).
+
+File: Top13ForschungsfragenZurRealitat.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 1)
+-> Reason: Found keywords: 'struktur'(1x).
+
+File: ExistenzKosmosSeinUndBewusstsein.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 34)
+-> Reason: Found keywords: 'sein'(1x), 'sein'(title), 'existenz'(2x), 'existenz'(title), 'bewusstsein'(1x).
+
+File: ParakonsistenzAegisUndNichtExistenz.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 13)
+-> Reason: Found keywords: 'philosophie'(1x), 'existenz'(2x), 'existenz'(title).
+
+File: AnIntroductionToTheConceptsOfCoherenceProtocol.md
+-> Assigned to: '🧠 Alter-System (alter-system: TSDP, IFS, ANP/EP)' (Score: 10)
+-> Reason: Found keywords: 'ep'(title).
+
+File: RomanLokalitatenKonzeptUndAusarbeitung.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 14)
+-> Reason: Found keywords: 'kohärenz protokoll'(2x), 'roman'(1x), 'roman'(title), 'entwicklung'(1x).
+
+File: PlotKonzepteKoharenzProtokollGenerierung.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: AegisEmergenzAusDerLeere.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 11)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title).
+
+File: GrenzenDerExistenzEineUmfassendeAnalyse.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 12)
+-> Reason: Found keywords: 'existenz'(2x), 'existenz'(title).
+
+File: RomanKapitelAusformulierungKoharenzProtokoll.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 24)
+-> Reason: Found keywords: 'kapitel'(1x), 'kapitel'(title), 'kapitel'(1x), 'kapitel'(title), 'teil'(2x).
+
+File: Blueprint.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 14)
+-> Reason: Found keywords: 'plot'(1x), 'blueprint'(2x), 'blueprint'(title), 'kohärenz protokoll'(1x).
+
+File: AegisPhilosophieUndSystemtheorie.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 21)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title), 'system'(title).
+
+File: AngereichertesPlotkonzeptKapitelthemenKoharenzProtokoll.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 20)
+-> Reason: Found keywords: 'kapitel'(title), 'kapitel'(title).
+
+File: KoharenzProtokollKonzeptionelleThemenStruktur.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 12)
+-> Reason: Found keywords: 'protokoll'(1x), 'protokoll'(title), 'kohärenz'(1x).
+
+File: KoharenzProtokoll39KapitelMatrix.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 27)
+-> Reason: Found keywords: 'kapitel'(3x), 'kapitel'(title), 'kapitel'(3x), 'kapitel'(title), 'teil'(1x).
+
+File: DramaticaTheoryOverviewAndResources.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 12)
+-> Reason: Found keywords: 'geschichte'(1x), 'dramatica'(1x), 'dramatica'(title).
+
+File: AegisProtokolleKritischeEvaluationNeukonzeption.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 32)
+-> Reason: Found keywords: 'aegis'(1x), 'aegis'(title), 'protokoll'(1x), 'protokoll'(title), 'protokolle'(title).
+
+File: RomanstrukturUndPhilosophischeEinleitung.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 22)
+-> Reason: Found keywords: 'struktur'(title), 'kohärenz protokoll'(2x), 'roman'(title).
+
+File: 40ChapterPlotModule.md
+-> Assigned to: '📚 Kapitel (sequenziell: 39 Kapitel)' (Score: 30)
+-> Reason: Found keywords: 'chapter'(title), 'chapterplot'(title), '40chapter'(title).
+
+File: UmfassendesLokalitatenKonzeptFurRoman.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 13)
+-> Reason: Found keywords: 'kohärenz protokoll'(2x), 'roman'(1x), 'roman'(title).
+
+File: PhilosophieGrenzenUndZukunft.md
+-> Assigned to: '💭 Philosophie (philosophy)' (Score: 12)
+-> Reason: Found keywords: 'philosophie'(2x), 'philosophie'(title).
+
+File: PlotBlueprintMethodikKoharenzProtokoll.md
+-> Assigned to: '📜 Narrativ (narrative: Plot, Dramaturgie, Foreshadowing)' (Score: 22)
+-> Reason: Found keywords: 'plot'(1x), 'plot'(title), 'blueprint'(title), 'kohärenz protokoll'(1x).
+
+File: ProjektKoharenzProtokollTiefenanalyse.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 19)
+-> Reason: Found keywords: 'protokoll'(2x), 'protokoll'(title), 'system'(1x), 'kohärenz'(4x), 'protokolle'(2x).
+
+File: ParadoxienDerKoharenzProtokollEntwicklung.md
+-> Assigned to: '🤖 AEGIS (aegis: Protokolle, Guardians, Core)' (Score: 27)
+-> Reason: Found keywords: 'protokoll'(3x), 'protokoll'(title), 'kohärenz'(4x), 'protokolle'(title).
