@@ -42,6 +42,36 @@ source .venv/bin/activate
 
 You will know the environment is activated when your terminal prompt is prefixed with `(.venv)`.
 
+## Available Tools
+
+After setup, the following tools are available in `tools/`:
+
+### Extraction Pipeline
+| Tool | Purpose |
+|------|---------|
+| `source_scanner.py` | Scan markdown files for entity mentions |
+| `xref_finder.py` | Cross-reference and conflict detection |
+| `conflict_diff.py` | Side-by-side diff viewer for conflicts |
+| `entity_generator.py` | Generate entity markdown files |
+
+### Validation
+| Tool | Purpose |
+|------|---------|
+| `frontmatter_validator.py` | Validate YAML frontmatter schema |
+| `wikilink_checker.py` | Check wikilink integrity |
+| `consistency_checker.py` | Narrative consistency checks |
+
+### Analysis & Reporting
+| Tool | Purpose |
+|------|---------|
+| `entity_stats.py` | Generate extraction statistics |
+| `relationship_graph.py` | Mermaid entity relationship graph |
+| `chapter_mapper.py` | Map entities to chapter appearances |
+| `glossary_generator.py` | Bilingual DE-EN term glossary |
+| `canon_resolver.py` | Semi-automated canon status resolution |
+
+See [Plan.md](Plan.md) for detailed tool specifications and the full extraction workflow.
+
 ## Troubleshooting
 
 - **Python 3 not found**: If the script fails because it cannot find Python 3, make sure Python 3.10+ is installed and added to your system's PATH. You can check your version by running `python3 --version`.

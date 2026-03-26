@@ -14,7 +14,7 @@ Das Projekt verbindet **tiefe psychologische Traumabewältigung** mit **harter S
 
 ## 🧭 Kernthemen & Diskutierte Konzepte
 
-Basierend auf der *Sektions-tiefen Analyse* aller 92 zugrundeliegenden Designdokumente lassen sich die diskutierten Themen in folgende fundamentale Bereiche gliedern:
+Basierend auf der *Sektions-tiefen Analyse* aller 94 zugrundeliegenden Designdokumente lassen sich die diskutierten Themen in folgende fundamentale Bereiche gliedern:
 
 ### 🎭 Figuren (character)
 **Fokus:** Dokumente und Analysen zu den Charakteren, deren Entwicklung, Archetypen und psychologischer Tiefe.

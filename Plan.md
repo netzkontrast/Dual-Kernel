@@ -59,14 +59,15 @@ A specific YAML schema is required containing fields like `title`, `id`, `domain
 ---
 
 ## 8. Quality Checks
-- All 6 tools exist and are executable.
+- All 13 tool scripts exist and are executable.
 - `tools/output/source-inventory.json` exists.
 - Every entity file has valid YAML frontmatter.
-- Validators report 0 errors/broken links.
-- `conflict-registry.json` and `entity-registry.json` are valid JSON.
+- `frontmatter_validator.py` reports 0 errors.
+- `wikilink_checker.py` reports 0 broken links.
+- `consistency_checker.py` reports 0 errors.
 - No `decanonized` status without explicit source proof.
 - No files contain invented content.
-- Entity Stats Report exists.
+- Entity Stats Report exists in `knowledge-graph/_index/`.
 
 ---
 # Knowledge Graph Extraction Plan
@@ -149,25 +150,53 @@ A common utility module shared across all tools. It includes:
 ### Phase 4: Index & Report
 
 7. **`entity_stats.py`**
-   - **Purpose**: Generates final statistical reports and JSON indexes.
-   - **Process**: Reads all frontmatters to aggregate data.
-   - **Outputs**: `_index/entity-registry.json`, `_index/conflict-registry.json`, and a formatted `_index/extraction-report.md` detailing entity counts, conflicts, and file coverage.
+   - **Purpose**: Generates final statistical reports.
+   - **Process**: Reads inventory and conflict data to aggregate statistics.
+   - **Outputs**: `_index/extraction-report.md` detailing entity counts, conflicts, and file coverage.
+
+### Phase 5: Analysis & Visualization
+
+8. **`relationship_graph.py`**
+   - **Purpose**: Generates entity relationship visualizations as Mermaid diagrams or HTML.
+   - **Options**: `--format mermaid|html`, `--domain-filter`, `--output`
+   - **Outputs**: `_index/relationship-graph.md` with domain-colored subgraphs, conflict highlighting, and hub entity analysis.
+
+9. **`chapter_mapper.py`**
+   - **Purpose**: Maps entities to their chapter appearances using the 39-chapter matrix.
+   - **Options**: `--update` (writes chapter data back to entity files), `--chapter-file`, `--output`
+   - **Outputs**: `_index/chapter-entity-matrix.md` with narrative arc visualization.
+
+10. **`consistency_checker.py`**
+    - **Purpose**: Validates narrative consistency across the knowledge graph.
+    - **Checks**: Character stability, timeline consistency, location link symmetry, physics consistency, relationship symmetry, canon-conflict alignment, domain placement.
+    - **Options**: `--strict`, `--category`, `--output`
+
+11. **`glossary_generator.py`**
+    - **Purpose**: Generates a bilingual German-English glossary of key terms.
+    - **Options**: `--discover` (auto-detect terms from knowledge graph), `--output`
+    - **Outputs**: `_index/glossary.md` with 105+ categorized term translations.
+
+12. **`canon_resolver.py`**
+    - **Purpose**: Semi-automated canon status resolution based on source evidence.
+    - **Options**: `--apply`, `--min-confidence`, `--status-filter`, `--output`
+    - **Outputs**: Suggested status changes with confidence scores; optionally applies them.
 
 ## 4. Testing Strategy
 
-- **Fixture**: A copy of `Markdown-docs/EinleitungGenesisDerExistenz.md` acts as the test source (`tools/fixtures/test-source.md`).
-- **Test Script (`test_with_fixture.py`)**: Runs all tools against the fixture to verify expected behavior (e.g., detecting known entities like AEGIS, validating generated frontmatter) before running on the full dataset.
+- **Test Script**: `test_mock.py` at the project root provides basic validation.
+- **Validation Suite**: Run `frontmatter_validator.py`, `wikilink_checker.py`, and `consistency_checker.py` after any entity changes to catch schema and consistency issues.
 
 ## 5. Execution Workflow
 
 1. Run `./setup.sh` and activate the virtual environment.
-2. Run `tools/test_with_fixture.py` to ensure tool correctness.
-3. Execute `tools/source_scanner.py` to build the inventory.
-4. Execute `tools/xref_finder.py` to identify conflicts.
-5. Run `tools/conflict_diff.py --save` for critical entities (e.g., Kael, Michael, AEGIS, Dual Kernel, DKT, Kohärenz, Kernwelt, KW1, Juna, Fundament, Guardian, Kapitel).
-6. Execute `tools/entity_generator.py` to build the knowledge graph structure.
-7. Validate results with `tools/frontmatter_validator.py` and `tools/wikilink_checker.py`.
-8. Generate final reports with `tools/entity_stats.py`.
+2. Execute `tools/source_scanner.py` to build the inventory.
+3. Execute `tools/xref_finder.py` to identify conflicts.
+4. Run `tools/conflict_diff.py --save` for critical entities (e.g., Kael, AEGIS, DKT, Kohärenz, Juna).
+5. Execute `tools/entity_generator.py` to build the knowledge graph structure.
+6. Validate with `tools/frontmatter_validator.py`, `tools/wikilink_checker.py`, and `tools/consistency_checker.py`.
+7. Generate reports: `tools/entity_stats.py`, `tools/relationship_graph.py`, `tools/chapter_mapper.py`.
+8. Generate glossary: `tools/glossary_generator.py --discover`.
+9. Review canon status: `tools/canon_resolver.py` (use `--apply` to update entity files).
 
 ## 6. Notable Entity Handling
 
@@ -177,14 +206,3 @@ A common utility module shared across all tools. It includes:
 - **AEGIS Acronyms**: Context checking is required as they might not all be operative protocols (e.g., PKP might be "Plot-Kern-Punkte").
 - **PAL**: "Phase Alignment Lock", needs verification against all mentions for definition consistency.
 
----
-
-## What Needs to be Done Next
-
-The above plan details exactly what was initially asked of me. Here's a summary of the next steps to actually implement it:
-
-1.  **Create the actual tool scripts**: The python files listed above (`common.py`, `source_scanner.py`, `xref_finder.py`, `conflict_diff.py`, `entity_generator.py`, `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py`, `test_with_fixture.py`) need to be populated with their respective logic as outlined in the specifications.
-2.  **Ensure requirements and setup**: `setup.sh` and `requirements.txt` have been created, but `.venv` needs to be activated to run the scripts.
-3.  **Run the test suite**: Execute `python tools/test_with_fixture.py` to make sure the environment and basic parsing work correctly.
-4.  **Execute the workflow**: Run the scripts in the specified order (Phase 1 -> Phase 2 -> Phase 3 -> Phase 4) to generate the knowledge graph.
-5.  **Manual Review**: After automatic generation, manually review the complex entities (like AEGIS, Kael, DKT) as the automated summaries might need refinement.

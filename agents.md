@@ -17,7 +17,9 @@ This document defines agent roles, workflows, and recommended improvements for w
 [Markdown-docs/] → Scanner → XRef → Conflicts → Generator → Validator → Stats
 ```
 
-**Tools:** `source_scanner.py`, `xref_finder.py`, `conflict_diff.py`, `entity_generator.py`, `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py`
+**Core Tools:** `source_scanner.py`, `xref_finder.py`, `conflict_diff.py`, `entity_generator.py`, `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py`
+
+**Analysis Tools:** `relationship_graph.py`, `chapter_mapper.py`, `consistency_checker.py`, `glossary_generator.py`, `canon_resolver.py`
 
 **Status:** Functional. 15 entities extracted, 12 with disputed canon status. Pipeline covers 1 test file; full corpus extraction pending.
 
@@ -123,19 +125,29 @@ This document defines agent roles, workflows, and recommended improvements for w
 
 ## Agent Interaction Patterns
 
-### Sequential Pipeline (Current)
+### Sequential Pipeline (Extraction)
 ```
-Scanner → XRef → Generator → Validator → Stats
+Scanner → XRef → Generator
 ```
 Each step depends on the previous. Run in order.
 
-### Parallel Review Pattern (Recommended)
+### Parallel Validation Pattern
 ```
                     ┌→ frontmatter_validator
 entity_generator →  ├→ wikilink_checker
-                    └→ entity_stats
+                    └→ consistency_checker
 ```
 Validation tools can run in parallel after generation.
+
+### Parallel Analysis Pattern
+```
+                    ┌→ entity_stats
+                    ├→ relationship_graph
+validation done →   ├→ chapter_mapper
+                    ├→ glossary_generator
+                    └→ canon_resolver
+```
+Analysis and reporting tools can run in parallel after validation.
 
 ### Watch Pattern (Recommended for Development)
 ```
@@ -179,7 +191,7 @@ Use file watchers to trigger validation on save. Useful during manual entity edi
 When working on this repository:
 
 1. **Always read `CLAUDE.md` first** -- it contains critical rules about content invention, schema, and German language preservation
-2. **Run validators after changes** -- never commit entity files without passing `frontmatter_validator.py`
+2. **Run validators after changes** -- never commit entity files without passing `frontmatter_validator.py`, `wikilink_checker.py`, and `consistency_checker.py`
 3. **Trace everything to sources** -- every claim in the knowledge graph must reference specific files and line numbers in `Markdown-docs/`
 4. **Respect the domain taxonomy** -- use only valid domains from `DomainEnum` in `tools/common.py`
-5. **Document your work** -- update `Process.log` with extraction steps and decisions
+5. **Regenerate reports** -- run `relationship_graph.py`, `chapter_mapper.py`, and `entity_stats.py` after entity changes
