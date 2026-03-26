@@ -1,0 +1,4 @@
+spacy
+PyYAML
+rich
+click
