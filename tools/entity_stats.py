@@ -1,37 +1,31 @@
-import json
 import os
 from datetime import datetime
-from rich.console import Console
+from common import console, load_inventory, load_conflicts, KG_DIR
 
-console = Console()
 
 def generate_stats():
-    with open('tools/output/source-inventory.json', 'r', encoding='utf-8') as f:
-        inventory = json.load(f)
+    inventory = load_inventory()
+    conflicts = load_conflicts()
 
-    try:
-        with open('tools/output/cross-references.json', 'r', encoding='utf-8') as f:
-            conflicts = json.load(f)
-    except FileNotFoundError:
-        conflicts = {}
+    entity_details = inventory['entity_details']
+    total_entities = len(entity_details)
+    total_mentions = sum(e['total_mentions'] for e in entity_details.values())
+    files_scanned = inventory.get('files_scanned', 1)
 
-    total_entities = inventory['unique_entities_found']
-    total_mentions = inventory['total_mentions']
-
-    known_count = sum(1 for e in inventory['entity_details'].values() if e.get('is_known', False))
+    known_count = sum(1 for e in entity_details.values() if e.get('is_known', False))
     unknown_count = total_entities - known_count
 
     conflict_count = len(conflicts)
 
     domains = {}
-    for data in inventory['entity_details'].values():
+    for data in entity_details.values():
         domain = data.get('estimated_domain', 'fundament')
         domains[domain] = domains.get(domain, 0) + 1
 
     md_content = f"""# Knowledge Graph Extraction Report
 
 **Date:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-**Files Scanned:** 1
+**Files Scanned:** {files_scanned}
 **Total Entities:** {total_entities}
 **Total Mentions:** {total_mentions}
 
@@ -47,8 +41,9 @@ def generate_stats():
     for domain, count in sorted(domains.items(), key=lambda x: x[1], reverse=True):
         md_content += f"- **{domain}**: {count}\n"
 
-    os.makedirs('knowledge-graph/_index', exist_ok=True)
-    report_path = 'knowledge-graph/_index/extraction-report.md'
+    index_dir = os.path.join(KG_DIR, '_index')
+    os.makedirs(index_dir, exist_ok=True)
+    report_path = os.path.join(index_dir, 'extraction-report.md')
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(md_content)
 

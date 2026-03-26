@@ -1,40 +1,31 @@
 import os
 import re
 import glob
-from collections import defaultdict
-from rich.console import Console
+from common import console, slugify, KG_DIR
 
-console = Console()
 
 def check_links():
-    files = glob.glob('knowledge-graph/**/*.md', recursive=True)
-    all_entities = [os.path.basename(f)[:-3] for f in files if not f.endswith('README.md')]
+    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
+    all_entities = {os.path.basename(f)[:-3] for f in files if not f.endswith('README.md')}
 
     link_pattern = re.compile(r'\[\[(.*?)\]\]')
 
     broken_links = []
-    orphans = []
-
     linked_to = set()
 
     for file in files:
         with open(file, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        links = link_pattern.findall(content)
-
-        for link in links:
-            clean_link = link.split('|')[0] # handle aliases if any
-            target_id = clean_link.replace(' ', '-').lower()
+        for link in link_pattern.findall(content):
+            target_id = slugify(link.partition('|')[0])
 
             if target_id not in all_entities and target_id != "readme":
                 broken_links.append((file, link))
             else:
                 linked_to.add(target_id)
 
-    for entity in all_entities:
-        if entity not in linked_to:
-            orphans.append(entity)
+    orphans = [e for e in sorted(all_entities) if e not in linked_to]
 
     if broken_links:
         console.print("[bold red]Broken Links Found![/bold red]")
