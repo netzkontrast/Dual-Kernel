@@ -53,7 +53,7 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Expected yield: 80+ known entities with hundreds of mentions
 - Will require significant conflict resolution for entities like Kael/Michael, AEGIS protocols, and DKT definitions
 
-### B. Semantic Conflict Resolution Agent (High Priority)
+### B. Semantic Conflict Resolution Agent (High Priority) — Partially Implemented ✅
 
 **Problem:** Current conflict detection is surface-level (regex + keyword matching). Many conflicts are semantic -- the same concept described differently across documents.
 
@@ -62,7 +62,9 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Implement a "conflict resolution workspace" that presents grouped conflicts for batch review
 - Auto-suggest `canon_status` based on document recency and consensus across sources
 
-### C. Relationship Graph Visualization (Medium Priority)
+**Implementation:** `tools/canon_resolver.py` — Auto-suggests canon status based on source evidence scoring and conflict severity analysis. Supports `--apply` with configurable `--min-confidence` threshold. Embedding-based similarity remains a future enhancement.
+
+### C. Relationship Graph Visualization (Medium Priority) ✅ IMPLEMENTED
 
 **Problem:** Entity relationships exist as wikilinks in YAML but have no visual representation.
 
@@ -71,7 +73,9 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Show domain clustering, conflict hotspots, and connection density
 - Integrate as a GitHub Pages site or Obsidian canvas
 
-### D. Chapter-Entity Mapping Agent (Medium Priority)
+**Implementation:** `tools/relationship_graph.py` — Generates Mermaid graph with domain subgraphs, conflict highlighting, hub entity analysis. Supports `--format mermaid|html` and `--domain-filter`.
+
+### D. Chapter-Entity Mapping Agent (Medium Priority) ✅ IMPLEMENTED
 
 **Problem:** The `first_appearance_chapter` and `last_referenced_chapter` fields in YAML frontmatter are mostly empty.
 
@@ -80,7 +84,9 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Generate a chapter-entity matrix showing which entities appear in which chapters
 - Enable narrative arc analysis per entity
 
-### E. Narrative Consistency Checker (Medium Priority)
+**Implementation:** `tools/chapter_mapper.py` — Parses `KoharenzProtokoll39KapitelMatrix.md`, maps entities to chapters, generates chapter-entity matrix with narrative arc visualization. Use `--update` to write chapter data back to entity files.
+
+### E. Narrative Consistency Checker (Medium Priority) ✅ IMPLEMENTED
 
 **Problem:** With 94 documents and 39-40 chapters, consistency errors are inevitable (timeline contradictions, character attribute conflicts, location mismatches).
 
@@ -91,6 +97,8 @@ This document defines agent roles, workflows, and recommended improvements for w
   - Location descriptions are consistent
   - Physics rules (DKT, Landauer) are applied uniformly
 
+**Implementation:** `tools/consistency_checker.py` — 7 rule-based checks: character stability, timeline, location links, physics consistency, relationship symmetry, canon-conflict alignment, domain placement. Supports `--strict`, `--category`, and `--output`.
+
 ### F. Interactive Query Agent (Low Priority)
 
 **Problem:** Finding information across 94 documents requires manual searching.
@@ -100,7 +108,7 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Allow natural language queries like "What is the relationship between Kael and Juna?" or "How does the Landauer Principle apply in KW3?"
 - Index both `Markdown-docs/` and `knowledge-graph/` for comprehensive answers
 
-### G. Multi-Language Documentation Agent (Low Priority)
+### G. Multi-Language Documentation Agent (Low Priority) — Partially Implemented ✅
 
 **Problem:** Research documents are in German, tooling docs are in English. No systematic translation layer.
 
@@ -108,6 +116,8 @@ This document defines agent roles, workflows, and recommended improvements for w
 - Auto-generate English summaries for each German research document
 - Maintain a bilingual glossary of key terms (e.g., Riss = rift, Kernwelt = core world)
 - Keep the glossary in `knowledge-graph/_index/glossary.md`
+
+**Implementation:** `tools/glossary_generator.py` — Generates a categorized bilingual glossary with 105+ curated term translations. Supports `--discover` to auto-detect additional terms from the knowledge graph. English summaries for research docs remain a future task.
 
 ---
 
@@ -135,15 +145,15 @@ Use file watchers to trigger validation on save. Useful during manual entity edi
 
 ---
 
-## Proposed New Tools
+## Implemented Tools
 
-| Tool | Purpose | Input | Output |
-|------|---------|-------|--------|
-| `relationship_graph.py` | Generate entity relationship visualization | `knowledge-graph/` | SVG/HTML graph |
-| `chapter_mapper.py` | Map entities to chapter appearances | `knowledge-graph/` + chapter docs | Chapter-entity matrix |
-| `consistency_checker.py` | Validate narrative consistency rules | `knowledge-graph/` + `Markdown-docs/` | Consistency report |
-| `glossary_generator.py` | Build bilingual term glossary | `knowledge-graph/` + `Markdown-docs/` | `_index/glossary.md` |
-| `canon_resolver.py` | Semi-automated canon status resolution | Conflict data + sources | Updated entity files |
+| Tool | Purpose | Input | Output | Status |
+|------|---------|-------|--------|--------|
+| `relationship_graph.py` | Generate entity relationship visualization | `knowledge-graph/` | Mermaid MD or HTML graph | ✅ Done |
+| `chapter_mapper.py` | Map entities to chapter appearances | `knowledge-graph/` + chapter docs | Chapter-entity matrix | ✅ Done |
+| `consistency_checker.py` | Validate narrative consistency rules | `knowledge-graph/` + `Markdown-docs/` | Consistency report | ✅ Done |
+| `glossary_generator.py` | Build bilingual term glossary | `knowledge-graph/` + `Markdown-docs/` | `_index/glossary.md` | ✅ Done |
+| `canon_resolver.py` | Semi-automated canon status resolution | Conflict data + sources | Updated entity files | ✅ Done |
 
 ---
 
