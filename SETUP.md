@@ -1,5 +1,7 @@
 # Knowledge Graph Extraction Tool Setup Guide
 
+> Back to [README](README.md) | See also: [Plan.md](Plan.md) | [project.md](project.md)
+
 This document provides a comprehensive guide to setting up the environment required for the Knowledge Graph Extraction tools.
 
 ## Prerequisites

@@ -1,6 +1,8 @@
-# 📚 Kohärenz Protokoll - Gesamtprojektübersicht
+# Kohärenz Protokoll - Gesamtprojektübersicht
 
-## 🌟 Projekt-Zusammenfassung
+> Zurück zur [README](README.md) | Siehe auch: [Plan.md](Plan.md) | [SETUP.md](SETUP.md)
+
+## Projekt-Zusammenfassung
 
 Das **"Kohärenz Protokoll"** ist ein tiefgründiges, interdisziplinäres und hochkomplexes narratives Projekt, das die Grenzen von Identität, Realität, Philosophie und Systemtheorie erforscht.
 
