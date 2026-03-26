@@ -1,3 +1,68 @@
+# Original Request: Tool Specifications
+
+Create all tools in `tools/` BEFORE starting the extraction. Actively use them during work.
+
+## 5.1 `source_scanner.py`
+**Purpose**: Creates an inventory of all source files and entity candidates within them.
+**Input**: Path to `Markdown-docs/`
+**Output**: `tools/output/source-inventory.json`
+**Actions**: Read every `.md` file, extract headings with line numbers, identify entity candidates via bold text, capitalized names, recurring technical terms, and known keywords (Kael, AEGIS, Juna, DKT, Kernwelt, etc.). Output includes filename, line numbers, surrounding context (±2 lines), and estimated domain.
+
+## 5.2 `xref_finder.py`
+**Purpose**: Finds entities in multiple files and identifies potential conflicts via diverging descriptions.
+**Input**: `tools/output/source-inventory.json`
+**Output**: `tools/output/cross-references.json`
+**Actions**: For each entity in >1 file, collect context passages, search for defining sentences, compare definitions for surface contradictions (numbers, names, properties). Marks conflicts with Confidence-Score: HIGH, MEDIUM, LOW.
+
+## 5.3 `conflict_diff.py`
+**Purpose**: Shows passages from all sources side-by-side as a diff-view for manual inspection for a specific entity.
+**Input**: Entity name + Path to `Markdown-docs/`
+**Output**: Formatted console output + optional `tools/output/diffs/ENTITY.md`
+
+## 5.4 `frontmatter_validator.py`
+**Purpose**: Checks all generated entity files for valid YAML frontmatter and schema conformity.
+**Input**: Path to `knowledge-graph/`
+**Output**: Validation report on the console
+**Checks**: YAML validity, required fields (`title`, `id`, `domain`, `canon_status`), valid values, `sources` array, `related` wikilinks, `tags`.
+
+## 5.5 `wikilink_checker.py`
+**Purpose**: Checks the integrity of all wikilinks in the Knowledge Graph.
+**Input**: Path to `knowledge-graph/`
+**Output**: Report on the console
+**Checks**: Broken links, orphaned files, bidirectionality (warning), duplicate titles.
+
+## 5.6 `entity_stats.py`
+**Purpose**: Generates a statistics report after extraction completion.
+**Input**: Path to `knowledge-graph/` + `tools/output/`
+**Output**: `knowledge-graph/_index/extraction-report.md` + console
+
+---
+
+## 6. YAML-Frontmatter-Schema
+A specific YAML schema is required containing fields like `title`, `id`, `domain` (character, world, physics, etc.), `canon_status` (confirmed, disputed, uncertain, etc.), `sources` (with `file`, `lines`, `relevance`), and `conflicts`.
+
+---
+
+## 7. Workflow
+- **Phase 0**: Build tools, create `tools/README.md`, test scanner/xref.
+- **Phase 1**: Run scanner, run xref_finder, run conflict_diff for frequent entities.
+- **Phase 2**: Create directory structure under `knowledge-graph/`, create entity files with specific markdown sections (Summary, Sources, Conflicts, Relationships).
+- **Phase 3**: Run frontmatter_validator, wikilink_checker, create MOC READMEs, create hub README.
+- **Phase 4**: Create JSON registry indices, run entity_stats, check the extraction report.
+
+---
+
+## 8. Quality Checks
+- All 6 tools exist and are executable.
+- `tools/output/source-inventory.json` exists.
+- Every entity file has valid YAML frontmatter.
+- Validators report 0 errors/broken links.
+- `conflict-registry.json` and `entity-registry.json` are valid JSON.
+- No `decanonized` status without explicit source proof.
+- No files contain invented content.
+- Entity Stats Report exists.
+
+---
 # Knowledge Graph Extraction Plan
 
 This document details the comprehensive strategy and workflow for extracting entities from the `Markdown-docs/` directory and constructing a structured knowledge graph in the `knowledge-graph/` directory.
