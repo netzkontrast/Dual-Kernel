@@ -1,0 +1,9 @@
+{
+  "skills": {
+    "kohaerenz-explorer": {
+      "description": "Interactive explorer for the Kohärenz Protokoll knowledge base. Search entities, browse domains, check conflicts, validate schema, and navigate the project.",
+      "path": "skills/kohaerenz-explorer.md",
+      "user_invocable": true
+    }
+  }
+}

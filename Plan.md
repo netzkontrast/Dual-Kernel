@@ -1,3 +1,9 @@
+# Knowledge Graph Extraction Plan
+
+> Back to [README](README.md) | See also: [SETUP.md](SETUP.md) | [project.md](project.md)
+
+---
+
 # Original Request: Tool Specifications
 
 Create all tools in `tools/` BEFORE starting the extraction. Actively use them during work.
