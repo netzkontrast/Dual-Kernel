@@ -1,71 +1,80 @@
-import json
 import os
 import re
-from rich.console import Console
+from common import (
+    console, load_inventory, load_conflicts, slugify,
+    KG_DIR, KNOWN_ENTITIES_REGEX, DomainEnum
+)
 
-console = Console()
 
 def generate_entities():
-    with open('tools/output/source-inventory.json', 'r', encoding='utf-8') as f:
-        inventory = json.load(f)
+    inventory = load_inventory()
+    conflicts = load_conflicts()
 
-    try:
-        with open('tools/output/cross-references.json', 'r', encoding='utf-8') as f:
-            conflicts = json.load(f)
-    except FileNotFoundError:
-        conflicts = {}
+    os.makedirs(KG_DIR, exist_ok=True)
 
-    output_dir = "knowledge-graph"
-    os.makedirs(output_dir, exist_ok=True)
-
-    # Store links for MOCs
     moc_data = {}
+    all_entity_names = list(inventory['entity_details'].keys())
+
+    # Pre-compile a single regex for co-occurrence detection
+    if all_entity_names:
+        entity_pattern = re.compile(
+            r'\b(' + '|'.join(re.escape(n) for n in sorted(all_entity_names, key=len, reverse=True)) + r')\b'
+        )
+    else:
+        entity_pattern = None
+
+    created_dirs = set()
 
     for entity_name, data in inventory['entity_details'].items():
-        domain = data.get('estimated_domain', 'fundament')
-        domain_dir = os.path.join(output_dir, domain)
-        os.makedirs(domain_dir, exist_ok=True)
+        domain = data.get('estimated_domain', DomainEnum.FUNDAMENT.value)
+        domain_dir = os.path.join(KG_DIR, domain)
+
+        if domain_dir not in created_dirs:
+            os.makedirs(domain_dir, exist_ok=True)
+            created_dirs.add(domain_dir)
 
         if domain not in moc_data:
             moc_data[domain] = []
 
-        file_id = entity_name.replace(' ', '-').lower()
+        file_id = slugify(entity_name)
         filepath = os.path.join(domain_dir, f"{file_id}.md")
 
-        # Determine Canon Status
         canon_status = "provisional"
-        is_known = inventory.get('is_known', False)
+        is_known = data.get('is_known', False)
         if entity_name in conflicts:
             canon_status = "disputed"
         elif is_known:
             canon_status = "confirmed"
 
-        # Find related entities (simple co-occurrence in mentions)
+        # Find related entities via single regex scan over all mention contexts
         related = set()
         for filename, file_data in data['files'].items():
             for mention in file_data['mentions']:
-                for other_entity in inventory['entity_details']:
-                    if other_entity != entity_name and other_entity in mention['context']:
-                        related.add(f"[[{other_entity}]]")
+                if entity_pattern:
+                    for match in entity_pattern.finditer(mention['context']):
+                        found = match.group(0)
+                        if found != entity_name:
+                            related.add(f"[[{found}]]")
 
-        # Build Source entry
         sources = []
         for filename, file_data in data['files'].items():
             lines = [m['line'] for m in file_data['mentions']]
             source_entry = f"""  - file: "{filename}"\n    lines: "{min(lines)}-{max(lines)}"\n    relevance: "primary" """
             sources.append(source_entry)
 
-        # Build Conflicts entry
-        conflicts_yaml = "[]"
+        conflicts_parts = []
         if entity_name in conflicts:
-            conflicts_yaml = "\n"
+            conflicts_parts.append("\n")
             for conflict in conflicts[entity_name]:
-                conflicts_yaml += f"  - id: \"{conflict['id']}\"\n"
-                conflicts_yaml += f"    description: \"{conflict['description']}\"\n"
-                conflicts_yaml += "    variants:\n"
+                conflicts_parts.append(f"  - id: \"{conflict['id']}\"\n")
+                conflicts_parts.append(f"    description: \"{conflict['description']}\"\n")
+                conflicts_parts.append("    variants:\n")
                 for variant in conflict['variants']:
-                    conflicts_yaml += f"      - claim: \"{variant['claim']}\"\n"
-                    conflicts_yaml += f"        source: \"{variant['source']}\"\n"
+                    conflicts_parts.append(f"      - claim: \"{variant['claim']}\"\n")
+                    conflicts_parts.append(f"        source: \"{variant['source']}\"\n")
+            conflicts_yaml = "".join(conflicts_parts)
+        else:
+            conflicts_yaml = "[]"
 
         yaml = f"""---
 title: "{entity_name}"
@@ -93,9 +102,8 @@ _Automatisch generierter Eintrag aus der Test-Pipeline._
         moc_data[domain].append(f"[[{entity_name}]]")
         console.print(f"[bold blue]Generated:[/bold blue] {filepath}")
 
-    # Generate MOCs (README.md in each domain folder)
     for domain, links in moc_data.items():
-        readme_path = os.path.join(output_dir, domain, "README.md")
+        readme_path = os.path.join(KG_DIR, domain, "README.md")
         with open(readme_path, 'w', encoding='utf-8') as f:
             f.write(f"# Map of Content: {domain.capitalize()}\n\n")
             f.write("Automatisch generierte Übersicht aller Entitäten in dieser Domäne:\n\n")

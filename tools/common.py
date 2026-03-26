@@ -1,7 +1,19 @@
+import json
+import os
+import re
 from datetime import datetime
 from typing import Optional, List, Dict
 from enum import Enum
 from pydantic import BaseModel, Field
+from rich.console import Console
+
+console = Console()
+
+OUTPUT_DIR = 'tools/output'
+INVENTORY_PATH = os.path.join(OUTPUT_DIR, 'source-inventory.json')
+CONFLICTS_PATH = os.path.join(OUTPUT_DIR, 'cross-references.json')
+KG_DIR = 'knowledge-graph'
+
 
 class DomainEnum(str, Enum):
     CHARACTER = "character"
@@ -17,6 +29,9 @@ class DomainEnum(str, Enum):
     JUNA = "juna"
     FUNDAMENT = "fundament"
     MATHEMATICS = "mathematics"
+
+VALID_DOMAINS = frozenset(e.value for e in DomainEnum)
+VALID_CANON_STATUSES = frozenset(["confirmed", "provisional", "disputed", "uncertain", "decanonized"])
 
 class ScannedFile(BaseModel):
     file_id: str = Field(..., description="Dateiname")
@@ -53,7 +68,7 @@ class SourceInventoryExport(BaseModel):
     total_mentions: int
     entity_details: Dict[str, EntityExport]
 
-KNOWN_ENTITIES = [
+KNOWN_ENTITIES_LIST = [
     "Kael", "Michael", "Michaels", "Lex", "Alex", "Rhys", "Selene", "Nyx", "Kiko", "Lia",
     "Isabelle", "Moros", "Argus", "Nox", "Echo", "Limina", "Praetor", "Nova", "Silas",
     "Oblivion", "Flicker", "Eos", "Elara", "Sentinel", "Juna", "Komponente 734", "AEGIS",
@@ -84,6 +99,14 @@ KNOWN_ENTITIES = [
     "chorisch", "We-Voice", "Wir-Stimme", "Staccato", "Fundament", "Strange Attractor",
     "Gardener", "Gardeners Axiom", "Wächter-Dilemma", "Panopticon"
 ]
+
+KNOWN_ENTITIES = frozenset(KNOWN_ENTITIES_LIST)
+
+# Pre-compiled regex for known entity matching (longest-first for greedy match)
+_known_sorted = sorted(KNOWN_ENTITIES_LIST, key=len, reverse=True)
+KNOWN_ENTITIES_REGEX = re.compile(
+    r'\b(' + '|'.join(map(re.escape, _known_sorted)) + r')\b'
+)
 
 DOMAIN_MAPPING = {
     "Kael": DomainEnum.CHARACTER,
@@ -116,3 +139,24 @@ def guess_domain(entity_name: str, spacy_tag: Optional[str] = None) -> DomainEnu
         return DomainEnum.AEGIS
 
     return DomainEnum.FUNDAMENT
+
+
+def slugify(name: str) -> str:
+    return name.replace(' ', '-').lower()
+
+
+def load_inventory(path: str = INVENTORY_PATH) -> dict:
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+def load_conflicts(path: str = CONFLICTS_PATH) -> dict:
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+
+def ensure_output_dir():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)

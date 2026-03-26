@@ -1,16 +1,15 @@
 import json
-import click
 import os
-from rich.console import Console
+import click
 from rich.panel import Panel
 from rich.text import Text
+from common import console, slugify, CONFLICTS_PATH
 
-console = Console()
 
 @click.command()
 @click.option('--save', is_flag=True, help='Save diffs as Markdown files')
 def diff(save):
-    with open('tools/output/cross-references.json', 'r', encoding='utf-8') as f:
+    with open(CONFLICTS_PATH, 'r', encoding='utf-8') as f:
         conflicts = json.load(f)
 
     if not conflicts:
@@ -40,7 +39,7 @@ def diff(save):
             md_content += "\n"
 
         if save:
-            filename = f"tools/output/diffs/{entity.replace(' ', '-').lower()}-conflict.md"
+            filename = f"tools/output/diffs/{slugify(entity)}-conflict.md"
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(md_content)
             console.print(f"[bold green]Saved diff to:[/bold green] {filename}")

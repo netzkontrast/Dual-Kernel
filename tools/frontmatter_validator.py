@@ -1,16 +1,11 @@
-import os
-import yaml
 import glob
-from rich.console import Console
+import yaml
+from common import console, VALID_DOMAINS, VALID_CANON_STATUSES, KG_DIR
 
-console = Console()
 
 def validate_frontmatter():
-    files = glob.glob('knowledge-graph/**/*.md', recursive=True)
+    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
     files = [f for f in files if not f.endswith('README.md')]
-
-    valid_domains = ["character", "alter-system", "world", "physics", "aegis", "narrative", "style", "philosophy", "theme", "mechanic", "juna", "fundament", "mathematics"]
-    valid_canon_statuses = ["confirmed", "provisional", "disputed", "uncertain", "decanonized"]
 
     invalid_files = []
 
@@ -34,16 +29,15 @@ def validate_frontmatter():
             invalid_files.append((file, f"Invalid YAML: {e}"))
             continue
 
-        # Basic schema validation
         required_keys = ['title', 'id', 'domain', 'canon_status', 'sources']
         for key in required_keys:
             if key not in data:
                 invalid_files.append((file, f"Missing required key: {key}"))
 
-        if data.get('domain') not in valid_domains:
+        if data.get('domain') not in VALID_DOMAINS:
             invalid_files.append((file, f"Invalid domain: {data.get('domain')}"))
 
-        if data.get('canon_status') not in valid_canon_statuses:
+        if data.get('canon_status') not in VALID_CANON_STATUSES:
             invalid_files.append((file, f"Invalid canon_status: {data.get('canon_status')}"))
 
     if invalid_files:
