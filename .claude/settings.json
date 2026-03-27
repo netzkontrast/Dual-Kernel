@@ -2,7 +2,7 @@
   "skills": {
     "kohaerenz-explorer": {
       "description": "Interactive explorer for the Kohärenz Protokoll knowledge base. Search entities, browse domains, check conflicts, validate schema, and navigate the project.",
-      "path": "skills/kohaerenz-explorer.md",
+      "path": "skills/kohaerenz-explorer/SKILL.md",
       "user_invocable": true
     },
     "agent-rules": {
@@ -23,11 +23,6 @@
     "git-pushing": {
       "description": "Stage all changes, create a conventional commit, and push to the remote branch.",
       "path": "skills/git-pushing/SKILL.md",
-      "user_invocable": true
-    },
-    "kaizen": {
-      "description": "Guide for continuous improvement, error proofing, and standardization.",
-      "path": "skills/kaizen/SKILL.md",
       "user_invocable": true
     },
     "systematic-debugging": {

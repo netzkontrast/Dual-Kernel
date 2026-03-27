@@ -1,3 +1,14 @@
+---
+name: kohaerenz-explorer
+description: Interactive explorer for the Kohärenz Protokoll knowledge base. Search entities, browse domains, check conflicts, validate schema, and navigate the project. Use when the user wants to explore entities, look up terms, check canon status, map relationships, or browse chapters.
+triggers:
+  - kohaerenz-explorer
+  - knowledge base
+  - entity lookup
+  - canon status
+  - explore knowledge graph
+---
+
 # Kohärenz Explorer
 
 Interactive skill for exploring and managing the Kohärenz Protokoll knowledge base.
