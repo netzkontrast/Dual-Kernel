@@ -4,6 +4,11 @@
       "description": "Interactive explorer for the Kohärenz Protokoll knowledge base. Search entities, browse domains, check conflicts, validate schema, and navigate the project.",
       "path": "skills/kohaerenz-explorer.md",
       "user_invocable": true
+    },
+    "agent-rules": {
+      "description": "Maintain and generate AGENTS.md files following the agents.md convention. Provides utilities for extracting project structure, dependencies, CI rules, and ADRs.",
+      "path": "skills/agent-rules",
+      "user_invocable": true
     }
   },
   "hooks": {
