@@ -41,6 +41,16 @@ Run the viability check in `@domain-driven-design` before using this skill. Stra
 - Glossary with canonical terms and anti-terms
 - Boundary decisions with rationale
 
+## Subagents
+
+| Task | Agent type | What to ask |
+|------|------------|-------------|
+| Discover domain concepts in existing code | `Explore` | "Find all business entities, services, and domain rules in `[path]`. Group by functional capability." |
+| Draft subdomain classification | `Plan` | "Given these capabilities: `[list]`, classify each as core/supporting/generic with rationale and team ownership suggestions." |
+| Find duplicate or colliding terminology | `Explore` | "Search `[path]` for the same concept named differently across modules (e.g., 'User' vs 'Account' vs 'Customer')." |
+
+Run the `Explore` scan before the workshop — it gives you concrete evidence for subdomain decisions.
+
 ## Templates
 
 ### Subdomain classification

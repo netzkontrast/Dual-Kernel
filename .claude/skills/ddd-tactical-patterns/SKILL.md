@@ -62,6 +62,17 @@ and `@ddd-context-mapping` first, then return here to implement within each cont
 - Version event schema before breaking changes
 - Raise events inside aggregate methods, dispatch at the boundary
 
+## Subagents
+
+| Task | Agent type | What to ask |
+|------|------------|-------------|
+| Find anemic model candidates | `Explore` | "Find classes/structs in `[path]` that have no methods beyond getters and setters. These are anemic model candidates needing behavior." |
+| Identify invariant violations | `Explore` | "Find business rules enforced outside of domain objects (in controllers, services, or DB triggers) in `[path]`. List each with file and line." |
+| Design aggregate boundaries | `Plan` | "Given these business rules and invariants: `[list]`, propose aggregate root boundaries, what they protect, and what references by ID only." |
+| Find missing domain events | `Explore` | "Find state changes in `[path]` (status updates, approval flows, lifecycle transitions) that have no corresponding event emitted." |
+
+The `Explore` scans give you the evidence needed to justify aggregate design decisions.
+
 ## Examples
 
 ```typescript

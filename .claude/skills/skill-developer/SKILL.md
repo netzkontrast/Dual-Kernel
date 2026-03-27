@@ -109,6 +109,48 @@ Defines:
 
 ---
 
+## Skill Types: 3. Subagent Skills
+
+**Purpose:** Embed codebase intelligence directly into skill instructions using the `Agent` tool.
+
+Skills can tell Claude *when and how* to spawn subagents for heavy analysis, freeing the main context window from large search results.
+
+### Available subagent types
+
+| Type | Best for |
+|------|----------|
+| `Explore` | Codebase scanning, pattern finding, dependency discovery — fast, read-only |
+| `Plan` | Architecture decisions, design proposals, structured analysis |
+| `general-purpose` | Multi-step research, external lookups, complex synthesis |
+
+### When to use subagents in a skill
+
+- The task requires searching a large or unknown codebase before giving advice
+- Analysis is independent and can run in background while the user continues
+- You want to protect the main context from large grep/read results
+
+### Subagent table pattern (use this in SKILL.md)
+
+```markdown
+## Subagents
+
+| Task | Agent type | What to ask |
+|------|------------|-------------|
+| Find existing X in codebase | `Explore` | "Find all X in `[path]`. Summarize by category." |
+| Design Y structure | `Plan` | "Given these constraints: `[list]`, design Y with rationale." |
+| Research Z | `general-purpose` | "Explain Z and when to prefer it over [alternative]." |
+
+Run independent scans in parallel for speed.
+```
+
+### Background vs foreground
+
+- Use `run_in_background: true` when the scan result isn't needed immediately
+- Use foreground (default) when the result gates the next decision
+- Never spawn a subagent for something a Grep or Read call can answer directly
+
+---
+
 ## Quick Start: Creating a New Skill
 
 ### Step 1: Create Skill File

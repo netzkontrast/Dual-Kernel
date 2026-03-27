@@ -47,6 +47,16 @@ Bounded contexts must be defined via `@ddd-strategic-design` before mapping thei
 | **Open Host Service** | Upstream publishes a stable protocol for many consumers | Upstream |
 | **Published Language** | Shared schema/format decoupled from either context model | Neutral |
 
+## Subagents
+
+| Task | Agent type | What to ask |
+|------|------------|-------------|
+| Find all cross-context dependencies | `Explore` | "Find all API calls, event subscriptions, shared database tables, and shared models between services in `[path]`. List direction of dependency." |
+| Identify hidden couplings | `Explore` | "Search `[path]` for direct ORM model imports, shared constants, or inline HTTP calls that cross service boundaries." |
+| Design the context map | `Plan` | "Given these service dependencies: `[list]`, assign a relationship pattern to each pair (Partnership, Customer-Supplier, Conformist, ACL, Open Host Service) with rationale." |
+
+Run the two `Explore` scans in parallel before starting the mapping session.
+
 ## Mapping template
 
 | Upstream context | Downstream context | Pattern | Contract owner | ACL needed |

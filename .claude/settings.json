@@ -176,22 +176,22 @@
       "user_invocable": true
     },
     "domain-driven-design": {
-      "description": "Route DDD work from strategic modeling to implementation.",
+      "description": "DDD router: viability check, workflow sequence, and routing to strategic/tactical/evented skills. Start here for any DDD work.",
       "path": "skills/domain-driven-design/SKILL.md",
       "user_invocable": true
     },
     "ddd-strategic-design": {
-      "description": "Subdomains, bounded contexts, and ubiquitous language.",
+      "description": "Classify subdomains (core/supporting/generic), define bounded contexts, build ubiquitous language glossary. Produces the strategic artifacts before tactical design.",
       "path": "skills/ddd-strategic-design/SKILL.md",
       "user_invocable": true
     },
     "ddd-context-mapping": {
-      "description": "Cross-context integration and anti-corruption boundaries.",
+      "description": "Define integration patterns between bounded contexts: Partnership, Customer-Supplier, Conformist, ACL, Open Host Service. Prevents domain model leakage across service boundaries.",
       "path": "skills/ddd-context-mapping/SKILL.md",
       "user_invocable": true
     },
     "ddd-tactical-patterns": {
-      "description": "Aggregates, value objects, repositories, and domain events.",
+      "description": "Implement aggregates, value objects, repositories, and domain events in code. Refactor anemic models into behavior-rich domain objects with enforced invariants.",
       "path": "skills/ddd-tactical-patterns/SKILL.md",
       "user_invocable": true
     },

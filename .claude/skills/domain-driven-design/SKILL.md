@@ -95,6 +95,18 @@ DDD work follows this order — do not skip ahead:
 - Saga compensation matrix
 - Projection rebuild strategy
 
+## Subagents
+
+Delegate discovery and planning work to agents rather than doing it manually:
+
+| Task | Agent type | What to ask |
+|------|------------|-------------|
+| Scan codebase for existing domain boundaries | `Explore` | "Find all module groupings, service boundaries, and domain concepts in `[path]`. List by capability area." |
+| Assess architecture for DDD viability | `Plan` | "Evaluate this codebase for DDD adoption: identify complexity signals, team boundary indicators, and integration instability." |
+| Research unfamiliar DDD patterns | `general-purpose` | "Explain [pattern] with a concrete example. When should it be preferred over [alternative]?" |
+
+Launch in background when the codebase scan is large — results inform the routing decision.
+
 ## Output requirements
 
 Always return:
