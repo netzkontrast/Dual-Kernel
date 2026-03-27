@@ -288,6 +288,13 @@
         "command": "./.claude/hooks/session-start.sh"
       }
     ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "python3 /home/user/Dual-Kernel/.claude/hooks/prompt-architect-hook.py",
+        "statusMessage": "Analyzing prompt structure..."
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
