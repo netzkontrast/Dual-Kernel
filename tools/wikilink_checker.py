@@ -1,14 +1,10 @@
 import os
-import re
-import glob
-from common import console, slugify, KG_DIR
+from common import console, slugify, WIKILINK_REGEX, list_entity_files
 
 
 def check_links():
-    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
-    all_entities = {os.path.basename(f)[:-3] for f in files if not f.endswith('README.md')}
-
-    link_pattern = re.compile(r'\[\[(.*?)\]\]')
+    files = list_entity_files()
+    all_entities = {os.path.basename(f)[:-3] for f in files}
 
     broken_links = []
     linked_to = set()
@@ -17,7 +13,7 @@ def check_links():
         with open(file, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        for link in link_pattern.findall(content):
+        for link in WIKILINK_REGEX.findall(content):
             target_id = slugify(link.partition('|')[0])
 
             if target_id not in all_entities and target_id != "readme":
