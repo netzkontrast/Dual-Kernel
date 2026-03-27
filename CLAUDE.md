@@ -1,4 +1,8 @@
-# CLAUDE.md - Project Conventions & Agent Guidelines
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+---
 
 ## Project Identity
 
@@ -11,12 +15,57 @@ This is **Kohärenz Protokoll** (Coherence Protocol), a narrative fiction projec
 - `tools/` -- Python extraction & analysis pipeline (13 scripts). All tools use Click CLI, Pydantic v2 models, and share `common.py`.
 - `docs/` -- PDF backups of the markdown documents. Do not modify.
 - Root docs: `README.md`, `project.md`, `Plan.md`, `SETUP.md` -- project documentation.
+- `.claude/` -- Claude Code configuration: hooks, skills, settings
+- `requirements.txt` -- Python dependencies: spacy, PyYAML, rich, click
+
+## Development Workflow
+
+### Initial Setup
+```bash
+# One-time setup (creates .venv and installs dependencies)
+./setup.sh
+```
+
+### Running the Pipeline
+```bash
+# Always activate virtual environment first
+source .venv/bin/activate
+
+# Phase 1: Extract entities from Markdown-docs/
+python tools/source_scanner.py --file Markdown-docs/<filename>.md
+python tools/xref_finder.py
+python tools/conflict_diff.py  # Interactive: review conflicts and save resolutions
+
+# Phase 2: Generate and validate entities
+python tools/entity_generator.py
+python tools/frontmatter_validator.py knowledge-graph/
+python tools/wikilink_checker.py knowledge-graph/
+python tools/consistency_checker.py knowledge-graph/
+
+# Phase 3: Analyze and report
+python tools/entity_stats.py
+python tools/relationship_graph.py
+python tools/chapter_mapper.py
+python tools/glossary_generator.py --discover
+python tools/canon_resolver.py
+```
+
+**Tip:** To run individual tools without the full pipeline, execute any command directly (e.g., `python tools/frontmatter_validator.py knowledge-graph/` to validate only).
+
+### Claude Code on the Web
+When using Claude Code on the web (claude.ai/code), the SessionStart hook automatically:
+1. Creates `.venv` virtual environment
+2. Installs dependencies from `requirements.txt`
+3. Downloads German NLP model (`de_core_news_lg`)
+4. Sets `PYTHONPATH` and `VIRTUAL_ENV` variables
+
+**No manual setup needed in Claude Code on the web.** Just start running tools immediately.
 
 ## Critical Rules
 
 1. **Never invent narrative content.** All entity data must trace back to `Markdown-docs/` sources.
 2. **Preserve YAML frontmatter schema.** Entity files require: `title`, `id`, `domain`, `canon_status`, `sources`, `related`, `tags`. See `Plan.md` section 6 for the full schema.
-3. **Respect canon_status hierarchy:** `confirmed` > `disputed` > `uncertain` > `decanonized`. Never set `decanonized` without explicit source proof.
+3. **Respect canon_status hierarchy:** `confirmed` > `provisional` > `disputed` > `uncertain` > `decanonized`. Never set `decanonized` without explicit source proof.
 4. **German content stays German.** Do not translate narrative documents or entity content. Tooling and meta-documentation can be English.
 5. **Markdown-docs/ are read-only** unless explicitly asked to modify them.
 
@@ -58,37 +107,141 @@ Core entities that appear across the project:
 | Kollaps-Kernel (K0) | physics | Collapse kernel |
 | Monster group | mathematics | Topological framework |
 
+## Shared Architecture (tools/common.py)
+
+All tools share a common module that provides Pydantic v2 models (`Entity`, `Mention`, `DomainEnum`), constants (`KNOWN_ENTITIES`, `DOMAIN_MAPPING`), helper functions (`guess_domain`, `slugify`, `load_inventory`), and output path constants. The NLP pipeline uses spaCy `de_core_news_lg` for German NER with two-pass entity detection: regex matching first (for known entities), then spaCy NER for unknown entities. Longest-first greedy matching handles overlapping entities (e.g., "Komponente 734" before "Komponente").
+
+See `tools/common.py` for the complete function and constant reference.
+
 ## ETL Pipeline Workflow
 
-When running the extraction pipeline:
+Data flow through the pipeline:
+
+```
+Phase 1: Extract
+  Markdown-docs/*.md
+    ↓ source_scanner.py
+  tools/output/source-inventory.json (entity mentions)
+    ↓ xref_finder.py
+  tools/output/cross-references.json (conflicts)
+    ↓ conflict_diff.py (interactive)
+  tools/output/conflicts-resolved.json (manual resolutions)
+    ↓ entity_generator.py
+  knowledge-graph/<domain>/*.md (entity files with YAML frontmatter)
+
+Phase 2: Validate (parallel)
+  frontmatter_validator.py  → validates YAML schema
+  wikilink_checker.py       → checks [[entity]] link validity
+  consistency_checker.py    → checks narrative rules
+
+Phase 3: Analyze (parallel, after validation passes)
+  entity_stats.py           → tools/output/extraction-report.md
+  relationship_graph.py     → knowledge-graph/_index/relationship-graph.md
+  chapter_mapper.py         → knowledge-graph/_index/chapter-entity-matrix.md
+  glossary_generator.py     → knowledge-graph/_index/glossary.md
+  canon_resolver.py         → suggests/applies canon status changes
+```
 
 ### Phase 1: Extract
-1. `source_scanner.py` -- scan `Markdown-docs/` for entity mentions
-2. `xref_finder.py` -- find cross-references and conflicts
-3. `conflict_diff.py` -- manual conflict review
-4. `entity_generator.py` -- generate knowledge graph files
+1. **`source_scanner.py --file <path>`** — Scan markdown files for entity mentions
+   - Input: Single markdown file from `Markdown-docs/`
+   - Output: `tools/output/source-inventory.json` (per-entity mention catalog)
+   - Detects: KNOWN_ENTITIES (regex) + unknown entities (spaCy NER)
+
+2. **`xref_finder.py`** — Find cross-references and detect conflicts
+   - Input: `tools/output/source-inventory.json`
+   - Output: `tools/output/cross-references.json` (conflicting definitions)
+   - Detects: Same entity with different attributes across sources
+
+3. **`conflict_diff.py`** — Interactive conflict reviewer
+   - Input: `tools/output/cross-references.json`
+   - Output: `tools/output/conflicts-resolved.json` (manual decisions)
+   - Workflow: Shows diffs, prompts for resolution decision per conflict
+
+4. **`entity_generator.py`** — Generate entity markdown files
+   - Input: source-inventory.json + conflicts-resolved.json
+   - Output: `knowledge-graph/<domain>/<kebab-case-id>.md` with YAML frontmatter
+   - Schema: Uses DomainEnum + canon_status hierarchy
 
 ### Phase 2: Validate (can run in parallel)
-5. `frontmatter_validator.py` -- validate YAML schema
-6. `wikilink_checker.py` -- check link integrity
-7. `consistency_checker.py` -- narrative consistency checks (character stability, timeline, physics, relationships)
+5. **`frontmatter_validator.py`** — Validate YAML schema
+   - Checks: All required fields, valid domains, valid canon_status values
+   - Fails if: Missing title, id, domain, canon_status, sources, related, or tags
 
-### Phase 3: Analyze & Report (can run in parallel)
-8. `entity_stats.py` -- generate extraction statistics
-9. `relationship_graph.py` -- generate Mermaid entity relationship graph
-10. `chapter_mapper.py` -- map entities to chapter appearances
-11. `glossary_generator.py` -- build bilingual DE-EN term glossary
-12. `canon_resolver.py` -- suggest/apply canon status resolutions
+6. **`wikilink_checker.py`** — Check link integrity
+   - Checks: All `[[related-entity-id]]` links point to existing files
+   - Fails if: Dead wikilinks or orphaned files
 
-Always activate `.venv` before running tools: `source .venv/bin/activate`
+7. **`consistency_checker.py`** — Narrative consistency rules
+   - Checks: Character stability, timeline ordering, location bidirectionality, physics uniformity, relationship symmetry, canon-conflict alignment
 
-## Testing
+### Phase 3: Analyze & Report (can run in parallel after validation passes)
+8. **`entity_stats.py`** — Generate extraction statistics
+9. **`relationship_graph.py`** — Generate Mermaid entity relationship graph
+10. **`chapter_mapper.py`** — Map entities to chapter appearances
+11. **`glossary_generator.py`** -- Build bilingual DE-EN term glossary
+12. **`canon_resolver.py`** -- Suggest/apply canon status resolutions based on evidence
 
-- Use `test_mock.py` at project root for basic validation
-- Run validators after any entity generation to catch schema issues:
-  - `frontmatter_validator.py` for YAML schema
-  - `wikilink_checker.py` for link integrity
-  - `consistency_checker.py` for narrative consistency
+**Exit on first failure in Phase 2.** Do not proceed to Phase 3 or commit changes if validators fail.
+
+## YAML Frontmatter Schema
+
+Every entity file in `knowledge-graph/<domain>/` must have this structure:
+
+```yaml
+---
+title: Entity Display Name
+id: kebab-case-id
+domain: character | alter-system | world | physics | aegis | narrative | style | philosophy | theme | mechanic | juna | fundament | mathematics
+canon_status: confirmed | provisional | disputed | uncertain | decanonized
+sources:
+  - Markdown-docs/file.md:42
+  - Markdown-docs/other.md:10-15
+related:
+  - related-entity-id
+  - another-entity-id
+tags:
+  - narrative-relevant
+  - physics-theory
+---
+# Content begins here in markdown
+```
+
+**Canon Status Hierarchy:** `confirmed` > `provisional` > `disputed` > `uncertain` > `decanonized`
+
+**Rules:**
+- `id` must match filename (e.g., `kohärenz-kernel.md`)
+- `domain` must be valid DomainEnum value (from `tools/common.py`)
+- `sources` must reference actual lines in `Markdown-docs/` files
+- `related` links use entity ids (without .md extension)
+- Never set `decanonized` without explicit source proof
+
+## Testing & Validation
+
+### Validators (must pass before commit)
+```bash
+# Test YAML schema compliance
+python tools/frontmatter_validator.py knowledge-graph/
+
+# Test wikilink integrity (all [[references]] must be valid)
+python tools/wikilink_checker.py knowledge-graph/
+
+# Test narrative consistency rules
+python tools/consistency_checker.py knowledge-graph/
+```
+
+### Test Data
+- Use `tools/fixtures/test-source.md` as test input
+- Contains known entities (Kael, AEGIS) for quick validation
+- Run: `python tools/source_scanner.py --file tools/fixtures/test-source.md`
+
+### Debugging Entity Generation
+If entity generation produces unexpected output:
+1. Check `tools/output/source-inventory.json` for mention detection
+2. Check `tools/output/cross-references.json` for conflict detection
+3. Review `tools/output/conflicts-resolved.json` for manual resolutions
+4. Verify `DOMAIN_MAPPING` in `common.py` for the entity
+5. Check regex matching in `KNOWN_ENTITIES_REGEX`
 
 ## Git Conventions
 
@@ -96,40 +249,94 @@ Always activate `.venv` before running tools: `source .venv/bin/activate`
 - Commit messages: conventional commits (`feat:`, `fix:`, `docs:`, `refactor:`)
 - Never commit `.venv/`, `tools/output/`, `__pycache__/`, or `*.pyc`
 
+## Claude Code Integration
+
+### Available Skills
+- **`/kohaerenz-explorer`** — Interactive tool for exploring knowledge base
+  - Search entities, browse domains, check conflicts, validate schema, navigate project
+  - Defined in `.claude/skills/kohaerenz-explorer.md`
+
+- **`/agent-rules`** — Maintain and generate AGENTS.md files
+  - Installed from `netresearch/agent-rules-skill`
+  - Use this to maintain `agents.md` following the [agents.md convention](https://agents.md/)
+  - Provides utilities for extracting project structure, dependencies, CI rules
+
+### SessionStart Hook
+- File: `.claude/hooks/session-start.sh`
+- Runs automatically in Claude Code on the web (not local/desktop)
+- Sets up: .venv, dependencies, German NLP model, environment variables
+- No user interaction needed in web sessions
+
 ## Common Tasks
 
 ### Adding a new entity to the knowledge graph
-1. Verify the entity exists in `Markdown-docs/` sources
-2. Determine the correct domain from the taxonomy
-3. Create the entity file in `knowledge-graph/<domain>/`
-4. Include full YAML frontmatter with sources
-5. Run `frontmatter_validator.py` and `wikilink_checker.py`
-6. Update the domain's `README.md` (Map of Content)
+1. Verify the entity exists in `Markdown-docs/` sources with line numbers
+2. Determine the correct domain using `DOMAIN_MAPPING` or `guess_domain()`
+3. Create entity file: `knowledge-graph/<domain>/<kebab-case-id>.md`
+4. Fill YAML frontmatter:
+   ```yaml
+   title: Entity Name
+   id: kebab-case-id
+   domain: <from-taxonomy>
+   canon_status: provisional  # start here, adjust after review
+   sources:
+     - Markdown-docs/file.md:42
+   related: []  # fill after entities exist
+   tags: []
+   ```
+5. Run validators:
+   ```bash
+   python tools/frontmatter_validator.py knowledge-graph/
+   python tools/wikilink_checker.py knowledge-graph/
+   ```
+6. Update domain's `README.md` (Map of Content file listing)
 
-### Running the full pipeline
+### Processing full corpus (all 94 files)
 ```bash
 source .venv/bin/activate
 
-# Extract
-python tools/source_scanner.py --file Markdown-docs/<file>.md
+# Extract from all files
+for file in Markdown-docs/*.md; do
+  python tools/source_scanner.py --file "$file"
+done
+
+# Continue with pipeline
 python tools/xref_finder.py
-python tools/entity_generator.py
+python tools/conflict_diff.py       # Interactive: resolve conflicts
+python tools/entity_generator.py    # Generates knowledge-graph/ files
 
-# Validate
-python tools/frontmatter_validator.py
-python tools/wikilink_checker.py
-python tools/consistency_checker.py
+# Validate before commit
+python tools/frontmatter_validator.py knowledge-graph/
+python tools/wikilink_checker.py knowledge-graph/
+python tools/consistency_checker.py knowledge-graph/
 
-# Analyze & Report
+# Generate reports
 python tools/entity_stats.py
 python tools/relationship_graph.py
 python tools/chapter_mapper.py
 python tools/glossary_generator.py --discover
-python tools/canon_resolver.py
+python tools/canon_resolver.py --apply  # Auto-apply suggested changes
 ```
 
 ### Searching for entity references
 ```bash
 # Find all mentions of an entity across research docs
 grep -rn "AEGIS" Markdown-docs/ | head -20
+
+# Find entities in a specific domain
+ls knowledge-graph/character/
+
+# Find entities with conflicted canon_status
+grep "disputed\|uncertain" knowledge-graph/*/*.md | cut -d: -f1 | sort -u
+```
+
+### Updating entity relationships after generation
+```bash
+# entity_generator.py auto-detects [[entity]] links in frontmatter
+# If manual updates needed:
+# 1. Edit `related:` field in YAML frontmatter
+# 2. Ensure target entity IDs exist in knowledge-graph/
+# 3. Run validators to check link integrity
+
+python tools/wikilink_checker.py knowledge-graph/
 ```

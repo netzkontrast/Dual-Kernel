@@ -5,6 +5,11 @@
       "path": "skills/kohaerenz-explorer.md",
       "user_invocable": true
     },
+    "agent-rules": {
+      "description": "Maintain and generate AGENTS.md files following the agents.md convention. Provides utilities for extracting project structure, dependencies, CI rules, and ADRs.",
+      "path": "skills/agent-rules",
+      "user_invocable": true
+    },
     "concise-planning": {
       "description": "Use when a user asks for a plan for a coding task, to generate a clear, actionable, and atomic checklist.",
       "path": "skills/concise-planning/SKILL.md",
@@ -279,12 +284,8 @@
   "hooks": {
     "SessionStart": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "./.claude/hooks/session-start.sh"
-          }
-        ]
+        "type": "command",
+        "command": "./.claude/hooks/session-start.sh"
       }
     ],
     "PreToolUse": [
