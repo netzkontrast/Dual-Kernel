@@ -141,6 +141,23 @@ def guess_domain(entity_name: str, spacy_tag: Optional[str] = None) -> DomainEnu
     return DomainEnum.FUNDAMENT
 
 
+def get_context(lines: list, index: int, context_size: int = 2) -> str:
+    start = max(0, index - context_size)
+    end = min(len(lines), index + context_size + 1)
+    return "\n".join(lines[start:end])
+
+
+def build_mention(entity_name: str, file_id: str, line_number: int, context: str, seq: int) -> dict:
+    return {
+        "mention_id": f"{entity_name}_{line_number}_{seq}",
+        "entity_name": entity_name,
+        "file_id": file_id,
+        "line_number": line_number,
+        "context_text": context,
+        "is_bold": False,
+    }
+
+
 def slugify(name: str) -> str:
     return name.replace(' ', '-').lower()
 
