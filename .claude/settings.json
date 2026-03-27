@@ -4,6 +4,31 @@
       "description": "Interactive explorer for the Kohärenz Protokoll knowledge base. Search entities, browse domains, check conflicts, validate schema, and navigate the project.",
       "path": "skills/kohaerenz-explorer.md",
       "user_invocable": true
+    },
+    "concise-planning": {
+      "description": "Use when a user asks for a plan for a coding task, to generate a clear, actionable, and atomic checklist.",
+      "path": "skills/concise-planning/SKILL.md",
+      "user_invocable": true
+    },
+    "lint-and-validate": {
+      "description": "MANDATORY: Run appropriate validation tools after EVERY code change. Do not finish a task until the code is error-free.",
+      "path": "skills/lint-and-validate/SKILL.md",
+      "user_invocable": true
+    },
+    "git-pushing": {
+      "description": "Stage all changes, create a conventional commit, and push to the remote branch.",
+      "path": "skills/git-pushing/SKILL.md",
+      "user_invocable": true
+    },
+    "kaizen": {
+      "description": "Guide for continuous improvement, error proofing, and standardization.",
+      "path": "skills/kaizen/SKILL.md",
+      "user_invocable": true
+    },
+    "systematic-debugging": {
+      "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes.",
+      "path": "skills/systematic-debugging/SKILL.md",
+      "user_invocable": true
     }
   }
 }
