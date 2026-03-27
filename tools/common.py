@@ -159,7 +159,7 @@ def build_mention(entity_name: str, file_id: str, line_number: int, context: str
 
 
 def slugify(name: str) -> str:
-    return name.replace(' ', '-').lower()
+    return name.replace(' ', '-').replace('/', '-').lower()
 
 
 def load_inventory(path: str = INVENTORY_PATH) -> dict:
