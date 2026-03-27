@@ -50,20 +50,7 @@ python tools/glossary_generator.py --discover
 python tools/canon_resolver.py
 ```
 
-### Single Tool Testing
-```bash
-# Scan a specific markdown file
-python tools/source_scanner.py --file Markdown-docs/test-kael-konflikt.md
-
-# Validate only
-python tools/frontmatter_validator.py knowledge-graph/
-
-# Check links
-python tools/wikilink_checker.py knowledge-graph/
-
-# Generate stats
-python tools/entity_stats.py
-```
+**Tip:** To run individual tools without the full pipeline, execute any command directly (e.g., `python tools/frontmatter_validator.py knowledge-graph/` to validate only).
 
 ### Claude Code on the Web
 When using Claude Code on the web (claude.ai/code), the SessionStart hook automatically:
@@ -78,7 +65,7 @@ When using Claude Code on the web (claude.ai/code), the SessionStart hook automa
 
 1. **Never invent narrative content.** All entity data must trace back to `Markdown-docs/` sources.
 2. **Preserve YAML frontmatter schema.** Entity files require: `title`, `id`, `domain`, `canon_status`, `sources`, `related`, `tags`. See `Plan.md` section 6 for the full schema.
-3. **Respect canon_status hierarchy:** `confirmed` > `disputed` > `uncertain` > `decanonized`. Never set `decanonized` without explicit source proof.
+3. **Respect canon_status hierarchy:** `confirmed` > `provisional` > `disputed` > `uncertain` > `decanonized`. Never set `decanonized` without explicit source proof.
 4. **German content stays German.** Do not translate narrative documents or entity content. Tooling and meta-documentation can be English.
 5. **Markdown-docs/ are read-only** unless explicitly asked to modify them.
 
@@ -122,36 +109,9 @@ Core entities that appear across the project:
 
 ## Shared Architecture (tools/common.py)
 
-All tools share a common module that provides:
+All tools share a common module that provides Pydantic v2 models (`Entity`, `Mention`, `DomainEnum`), constants (`KNOWN_ENTITIES`, `DOMAIN_MAPPING`), helper functions (`guess_domain`, `slugify`, `load_inventory`), and output path constants. The NLP pipeline uses spaCy `de_core_news_lg` for German NER with two-pass entity detection: regex matching first (for known entities), then spaCy NER for unknown entities. Longest-first greedy matching handles overlapping entities (e.g., "Komponente 734" before "Komponente").
 
-### Data Models (Pydantic v2)
-- `DomainEnum` -- 13 valid domains (character, physics, aegis, etc.)
-- `Entity` -- Canonical entity structure (name, domain, mention count)
-- `Mention` -- Single mention of an entity (file, line, context)
-- `SourceInventoryExport` -- Export format for scanner output (scan_date, files_scanned, entities_found)
-
-### Constants & Mappings
-- `KNOWN_ENTITIES` -- Frozen set of ~100 canonical entity names (case-sensitive)
-- `DOMAIN_MAPPING` -- Entity name → domain heuristics
-- `KNOWN_ENTITIES_REGEX` -- Pre-compiled regex for greedy entity matching (longest-first)
-- `VALID_CANON_STATUSES` -- ["confirmed", "provisional", "disputed", "uncertain", "decanonized"]
-
-### Helper Functions
-- `guess_domain(entity_name, spacy_tag?)` -- Infer domain using DOMAIN_MAPPING or spaCy NER tags
-- `slugify(name)` -- Convert entity name to kebab-case ID
-- `load_inventory(path)` -- Load source-inventory.json output
-- `load_conflicts(path)` -- Load cross-references.json output
-- `ensure_output_dir()` -- Create tools/output/ and subdirectories
-
-### Output Paths
-- `INVENTORY_PATH` = `tools/output/source-inventory.json` -- Entity mention inventory
-- `CONFLICTS_PATH` = `tools/output/cross-references.json` -- Detected conflicts
-- `KG_DIR` = `knowledge-graph/` -- Entity files organized by domain
-
-### Key Decision: NLP Pipeline
-- Uses spaCy `de_core_news_lg` for German NER
-- Two-pass entity detection: (1) regex matching against KNOWN_ENTITIES, (2) spaCy NER for unknown entities
-- Regex uses longest-first greedy matching to handle overlapping entities (e.g., "Komponente 734" before "Komponente")
+See `tools/common.py` for the complete function and constant reference.
 
 ## ETL Pipeline Workflow
 

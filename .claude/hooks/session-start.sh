@@ -42,12 +42,14 @@ pip install -r requirements.txt --quiet
 echo "🔤 Downloading German language model (de_core_news_lg)..."
 python -m spacy download de_core_news_lg --quiet
 
-# Export environment variables for the session
+# Export environment variables for the session (idempotent)
 echo "🔧 Setting up environment variables..."
-{
-  echo "export PYTHONPATH=\".:\$PYTHONPATH\""
-  echo "export VIRTUAL_ENV=\"${VIRTUAL_ENV}\""
-} >> "${CLAUDE_ENV_FILE}"
+if ! grep -q "PYTHONPATH" "${CLAUDE_ENV_FILE}" 2>/dev/null; then
+  echo "export PYTHONPATH=\".:\$PYTHONPATH\"" >> "${CLAUDE_ENV_FILE}"
+fi
+if ! grep -q "VIRTUAL_ENV" "${CLAUDE_ENV_FILE}" 2>/dev/null; then
+  echo "export VIRTUAL_ENV=\"${VIRTUAL_ENV}\"" >> "${CLAUDE_ENV_FILE}"
+fi
 
 echo "✅ Setup complete! Virtual environment ready."
 echo "   Run: source .venv/bin/activate"

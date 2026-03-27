@@ -14,12 +14,8 @@
   "hooks": {
     "SessionStart": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "./.claude/hooks/session-start.sh"
-          }
-        ]
+        "type": "command",
+        "command": "./.claude/hooks/session-start.sh"
       }
     ]
   }
