@@ -109,6 +109,171 @@
       "description": "Document technical decisions with ADRs.",
       "path": "skills/architecture-decision-records/SKILL.md",
       "user_invocable": true
+    },
+    "python-pro": {
+      "description": "Master Python 3.12+ with modern features and best practices.",
+      "path": "skills/python-pro/SKILL.md",
+      "user_invocable": true
+    },
+    "python-patterns": {
+      "description": "Idiomatic Python code patterns and conventions.",
+      "path": "skills/python-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "fastapi-pro": {
+      "description": "High-performance async APIs with FastAPI.",
+      "path": "skills/fastapi-pro/SKILL.md",
+      "user_invocable": true
+    },
+    "fastapi-templates": {
+      "description": "Production-ready FastAPI project templates.",
+      "path": "skills/fastapi-templates/SKILL.md",
+      "user_invocable": true
+    },
+    "django-pro": {
+      "description": "The battery-included framework for full-featured apps.",
+      "path": "skills/django-pro/SKILL.md",
+      "user_invocable": true
+    },
+    "python-testing-patterns": {
+      "description": "Comprehensive testing with pytest and advanced patterns.",
+      "path": "skills/python-testing-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "async-python-patterns": {
+      "description": "Python asyncio mastery and async/await patterns.",
+      "path": "skills/async-python-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "data-engineer": {
+      "description": "Data pipeline architecture and engineering patterns.",
+      "path": "skills/data-engineer/SKILL.md",
+      "user_invocable": true
+    },
+    "airflow-dag-patterns": {
+      "description": "Apache Airflow DAG patterns for orchestration.",
+      "path": "skills/airflow-dag-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "dbt-transformation-patterns": {
+      "description": "Analytics engineering with dbt transformations.",
+      "path": "skills/dbt-transformation-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "vector-database-engineer": {
+      "description": "Vector databases for RAG and semantic search.",
+      "path": "skills/vector-database-engineer/SKILL.md",
+      "user_invocable": true
+    },
+    "embedding-strategies": {
+      "description": "Embedding model selection and strategies.",
+      "path": "skills/embedding-strategies/SKILL.md",
+      "user_invocable": true
+    },
+    "domain-driven-design": {
+      "description": "Route DDD work from strategic modeling to implementation.",
+      "path": "skills/domain-driven-design/SKILL.md",
+      "user_invocable": true
+    },
+    "ddd-strategic-design": {
+      "description": "Subdomains, bounded contexts, and ubiquitous language.",
+      "path": "skills/ddd-strategic-design/SKILL.md",
+      "user_invocable": true
+    },
+    "ddd-context-mapping": {
+      "description": "Cross-context integration and anti-corruption boundaries.",
+      "path": "skills/ddd-context-mapping/SKILL.md",
+      "user_invocable": true
+    },
+    "ddd-tactical-patterns": {
+      "description": "Aggregates, value objects, repositories, and domain events.",
+      "path": "skills/ddd-tactical-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "cqrs-implementation": {
+      "description": "Read/write model separation with CQRS patterns.",
+      "path": "skills/cqrs-implementation/SKILL.md",
+      "user_invocable": true
+    },
+    "event-store-design": {
+      "description": "Event persistence and replay architecture.",
+      "path": "skills/event-store-design/SKILL.md",
+      "user_invocable": true
+    },
+    "saga-orchestration": {
+      "description": "Cross-context long-running transaction coordination.",
+      "path": "skills/saga-orchestration/SKILL.md",
+      "user_invocable": true
+    },
+    "projection-patterns": {
+      "description": "Materialized read models from event streams.",
+      "path": "skills/projection-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "test-driven-development": {
+      "description": "Red-Green-Refactor TDD workflow and discipline.",
+      "path": "skills/test-driven-development/SKILL.md",
+      "user_invocable": true
+    },
+    "e2e-testing-patterns": {
+      "description": "Reliable end-to-end test suites and patterns.",
+      "path": "skills/e2e-testing-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "test-fixing": {
+      "description": "Fix failing tests systematically and methodically.",
+      "path": "skills/test-fixing/SKILL.md",
+      "user_invocable": true
+    },
+    "code-review-checklist": {
+      "description": "Catch bugs and issues during code review.",
+      "path": "skills/code-review-checklist/SKILL.md",
+      "user_invocable": true
+    },
+    "browser-automation": {
+      "description": "End-to-end testing with Playwright and Selenium.",
+      "path": "skills/browser-automation/SKILL.md",
+      "user_invocable": true
+    },
+    "ab-test-setup": {
+      "description": "Validated learning and A/B testing experiments.",
+      "path": "skills/ab-test-setup/SKILL.md",
+      "user_invocable": true
+    },
+    "commit": {
+      "description": "High-quality conventional commits with semantic versioning.",
+      "path": "skills/commit/SKILL.md",
+      "user_invocable": true
+    },
+    "create-pr": {
+      "description": "Create pull requests with review-ready context.",
+      "path": "skills/create-pr/SKILL.md",
+      "user_invocable": true
+    },
+    "requesting-code-review": {
+      "description": "Ask for targeted, high-signal code reviews.",
+      "path": "skills/requesting-code-review/SKILL.md",
+      "user_invocable": true
+    },
+    "receiving-code-review": {
+      "description": "Apply feedback with technical rigor and learning.",
+      "path": "skills/receiving-code-review/SKILL.md",
+      "user_invocable": true
+    },
+    "changelog-automation": {
+      "description": "Keep release notes and changelogs consistent.",
+      "path": "skills/changelog-automation/SKILL.md",
+      "user_invocable": true
+    },
+    "git-advanced-workflows": {
+      "description": "Advanced git: rebase, cherry-pick, bisect, recovery.",
+      "path": "skills/git-advanced-workflows/SKILL.md",
+      "user_invocable": true
+    },
+    "documentation-templates": {
+      "description": "Standardize docs, handoffs, and project documentation.",
+      "path": "skills/documentation-templates/SKILL.md",
+      "user_invocable": true
     }
   }
 }
