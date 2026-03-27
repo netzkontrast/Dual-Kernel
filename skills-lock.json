@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-rules": {
+      "source": "netresearch/agent-rules-skill",
+      "sourceType": "github",
+      "computedHash": "48bcaf8390d3a2f9e0a1930bf3ef7fc3e0a3e853281078747a8567907b44c503"
+    }
+  }
+}
