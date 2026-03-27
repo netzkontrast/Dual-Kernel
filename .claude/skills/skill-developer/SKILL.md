@@ -149,6 +149,23 @@ Run independent scans in parallel for speed.
 - Use foreground (default) when the result gates the next decision
 - Never spawn a subagent for something a Grep or Read call can answer directly
 
+### Subagent Workflow (Step-by-Step)
+
+Use this workflow when creating a skill that requires codebase analysis:
+
+1. **Identify what needs analysis** — list unknowns (existing patterns, file locations, conventions)
+2. **Launch independent agents in parallel** — one message, multiple `Agent` tool calls
+   ```
+   Agent(Explore): "Find all X patterns in tools/. Summarize by file."
+   Agent(Explore): "List all Y files under knowledge-graph/. Count by domain."
+   ```
+3. **Wait for results** — do NOT proceed until foreground agents return
+4. **Synthesize findings** — use agent output to fill SKILL.md content (sources, patterns, examples)
+5. **Write the skill** — with real data from the codebase, not guesses
+6. **Validate** — run validators, check line count stays under 500
+
+**Decision rule:** If you'd need >2 Grep calls to answer a question, use an `Explore` agent instead.
+
 ---
 
 ## Quick Start: Creating a New Skill
