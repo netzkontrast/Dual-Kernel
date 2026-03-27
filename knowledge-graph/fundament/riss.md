@@ -2,30 +2,23 @@
 title: "Riss"
 id: "riss"
 domain: "fundament"
-canon_status: "disputed"
+canon_status: "provisional"
 aliases: []
 tags: []
 related:
-  - "[[Nexus]]"
-  - "[[Riss-Mandat]]"
-  - "[[Kael]]"
-  - "[[Riss-Mandats]]"
-  - "[[Konstrukt-Stadt]]"
-  - "[[Lex]]"
-  - "[[AEGIS]]"
+  - "[[ANPs]]"
+  - "[[Void]]"
+  - "[[Kiko]]"
+  - "[[EP]]"
+  - "[[Moros]]"
+  - "[[AEGIS/ANPs]]"
+  - "[[Nyx]]"
+  - "[[Qualia]]"
 sources:
-  - file: "test-kael-konflikt.md"
-    lines: "4-4"
-    relevance: "primary"
-conflicts:
-  - id: "state-conflict"
-    description: "Unterschiedliche Zustände für Riss"
-    variants:
-      - claim: "stark"
-        source: "test-kael-konflikt.md:~4"
-      - claim: "unbeugsam"
-        source: "test-kael-konflikt.md:~4"
-
+  - file: "KaelsDissociativeArchitectureAnalysis.md"
+    lines: "31-31"
+    relevance: "primary" 
+conflicts: []
 first_appearance_chapter: null
 last_referenced_chapter: null
 ---
