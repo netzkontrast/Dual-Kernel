@@ -13,7 +13,46 @@ For detailed project context, see [`CLAUDE.md`](CLAUDE.md). This file documents 
 | **Content** | 94 German narrative documents + YAML entity files |
 | **Domains** | `character`, `alter-system`, `world`, `physics`, `aegis`, `narrative`, `style`, `philosophy`, `theme`, `mechanic`, `juna`, `fundament`, `mathematics` |
 | **Entry Point** | `.venv/bin/activate` then `python tools/<script>.py` |
-| **Validators** | `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py` |
+| **Validators** | `frontmatter_validator.py`, `wikilink_checker.py`, `consistency_checker.py` |
+
+---
+
+## Agent Roles
+
+### 1. Knowledge Graph Extraction Agent
+
+**Purpose:** Extract structured entity data from unstructured German narrative documents.
+
+**Current Pipeline:**
+```
+[Markdown-docs/] → Scanner → XRef → Conflicts → Generator → Validator → Stats
+```
+
+**Core Tools:** `source_scanner.py`, `xref_finder.py`, `conflict_diff.py`, `entity_generator.py`, `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py`
+
+**Analysis Tools:** `relationship_graph.py`, `chapter_mapper.py`, `consistency_checker.py`, `glossary_generator.py`, `canon_resolver.py`
+
+**Status:** Functional. 15 entities extracted, 12 with disputed canon status. Pipeline covers 1 test file; full corpus extraction pending.
+
+### 2. Documentation Agent
+
+**Purpose:** Maintain project documentation, READMEs, and navigational indexes.
+
+**Responsibilities:**
+- Keep `README.md`, `project.md`, `SETUP.md`, `Plan.md` in sync
+- Regenerate `Markdown-docs/README.md` navigation index when documents change
+- Update `knowledge-graph/*/README.md` (Map of Content) files after entity changes
+
+### 3. Review Agent
+
+**Purpose:** Quality assurance for knowledge graph content.
+
+**Responsibilities:**
+- Run `frontmatter_validator.py` after any entity changes
+- Run `wikilink_checker.py` to detect broken/orphaned links
+- Run `consistency_checker.py` for narrative consistency checks
+- Cross-check `canon_status` against source evidence
+- Flag entities with HIGH conflict scores for manual review
 
 ---
 
@@ -41,6 +80,7 @@ python tools/xref_finder.py
 python tools/entity_generator.py
 python tools/frontmatter_validator.py knowledge-graph/
 python tools/wikilink_checker.py knowledge-graph/
+python tools/consistency_checker.py knowledge-graph/
 python tools/entity_stats.py
 ```
 
@@ -113,7 +153,15 @@ python tools/wikilink_checker.py knowledge-graph/
 **Output:** Broken link report
 **Fails on:** Dead wikilinks, orphaned files
 
-### 7. Generate Statistics
+### 7. Check Consistency
+```bash
+python tools/consistency_checker.py knowledge-graph/
+```
+**Input:** Entity files + source narratives
+**Output:** Consistency violations report
+**Checks:** Character stability, timeline, location links, physics consistency, relationship symmetry, canon alignment
+
+### 8. Generate Statistics
 ```bash
 python tools/entity_stats.py
 ```
@@ -198,29 +246,53 @@ Never set `decanonized` without source proof.
 
 See [`agents.md`](agents.md) section "Recommended Agent Improvements" for details.
 
+**Implementation:** `tools/glossary_generator.py` — Generates a categorized bilingual glossary with 105+ curated term translations. Supports `--discover` to auto-detect additional terms from the knowledge graph. English summaries for research docs remain a future task.
+
 ---
 
 ## Agent Interaction Patterns
 
-### Sequential Pipeline (Current)
+### Sequential Pipeline (Extraction)
 ```
-Scanner → XRef → Generator → Validator → Stats
+Scanner → XRef → Generator
 ```
 Each step depends on the previous.
 
-### Parallel Validation (Recommended)
+### Parallel Validation Pattern
 ```
                     ┌→ frontmatter_validator
 entity_generator →  ├→ wikilink_checker
-                    └→ entity_stats
+                    └→ consistency_checker
 ```
 Run validators in parallel after generation.
+
+### Parallel Analysis Pattern
+```
+                    ┌→ entity_stats
+                    ├→ relationship_graph
+validation done →   ├→ chapter_mapper
+                    ├→ glossary_generator
+                    └→ canon_resolver
+```
+Analysis and reporting tools can run in parallel after validation.
 
 ### Conflict Resolution Pattern
 ```
 xref_finder → conflict_diff (manual) → entity_generator
 ```
 High-conflict entities require human review.
+
+---
+
+## Implemented Tools
+
+| Tool | Purpose | Input | Output | Status |
+|------|---------|-------|--------|--------|
+| `relationship_graph.py` | Generate entity relationship visualization | `knowledge-graph/` | Mermaid MD or HTML graph | ✅ Done |
+| `chapter_mapper.py` | Map entities to chapter appearances | `knowledge-graph/` + chapter docs | Chapter-entity matrix | ✅ Done |
+| `consistency_checker.py` | Validate narrative consistency rules | `knowledge-graph/` + `Markdown-docs/` | Consistency report | ✅ Done |
+| `glossary_generator.py` | Build bilingual term glossary | `knowledge-graph/` + `Markdown-docs/` | `_index/glossary.md` | ✅ Done |
+| `canon_resolver.py` | Semi-automated canon status resolution | Conflict data + sources | Updated entity files | ✅ Done |
 
 ---
 
@@ -260,3 +332,13 @@ High-conflict entities require human review.
 | [`knowledge-graph/`](knowledge-graph/) | Entity files organized by domain |
 | [`Markdown-docs/`](Markdown-docs/) | Source narratives (read-only) |
 | [`tools/fixtures/test-source.md`](tools/fixtures/test-source.md) | Test fixture for validation |
+
+## Key Guidelines
+
+When working on this repository:
+
+1. **Always read `CLAUDE.md` first** -- it contains critical rules about content invention, schema, and German language preservation
+2. **Run validators after changes** -- never commit entity files without passing `frontmatter_validator.py`, `wikilink_checker.py`, and `consistency_checker.py`
+3. **Trace everything to sources** -- every claim in the knowledge graph must reference specific files and line numbers in `Markdown-docs/`
+4. **Respect the domain taxonomy** -- use only valid domains from `DomainEnum` in `tools/common.py`
+5. **Regenerate reports** -- run `relationship_graph.py`, `chapter_mapper.py`, and `entity_stats.py` after entity changes
