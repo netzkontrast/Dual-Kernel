@@ -29,6 +29,36 @@
       "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes.",
       "path": "skills/systematic-debugging/SKILL.md",
       "user_invocable": true
+    },
+    "senior-fullstack": {
+      "description": "Complete fullstack development guide for end-to-end web application development.",
+      "path": "skills/senior-fullstack/SKILL.md",
+      "user_invocable": true
+    },
+    "frontend-developer": {
+      "description": "React 19+ and Next.js 15+ expertise for modern frontend development.",
+      "path": "skills/frontend-developer/SKILL.md",
+      "user_invocable": true
+    },
+    "backend-dev-guidelines": {
+      "description": "Node.js/Express/TypeScript backend patterns and best practices.",
+      "path": "skills/backend-dev-guidelines/SKILL.md",
+      "user_invocable": true
+    },
+    "api-patterns": {
+      "description": "REST vs GraphQL vs tRPC selection and API design patterns.",
+      "path": "skills/api-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "database-design": {
+      "description": "Schema design, ORM selection, and database architecture.",
+      "path": "skills/database-design/SKILL.md",
+      "user_invocable": true
+    },
+    "stripe-integration": {
+      "description": "Payments, subscriptions, and Stripe integration patterns.",
+      "path": "skills/stripe-integration/SKILL.md",
+      "user_invocable": true
     }
   }
 }
