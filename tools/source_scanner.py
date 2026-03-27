@@ -10,25 +10,9 @@ from rich.table import Table
 from common import (
     KNOWN_ENTITIES, KNOWN_ENTITIES_REGEX, guess_domain,
     SourceInventoryExport, EntityExport, FileMentionsExport,
+    get_context, build_mention,
     console, ensure_output_dir, INVENTORY_PATH
 )
-
-
-def get_context(lines, index, context_size=2):
-    start = max(0, index - context_size)
-    end = min(len(lines), index + context_size + 1)
-    return "\n".join(lines[start:end])
-
-
-def build_mention(entity_name, file_id, line_number, context, mention_count):
-    return {
-        "mention_id": f"{entity_name}_{line_number}_{mention_count}",
-        "entity_name": entity_name,
-        "file_id": file_id,
-        "line_number": line_number,
-        "context_text": context,
-        "is_bold": False
-    }
 
 
 @click.command()
