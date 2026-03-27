@@ -59,6 +59,56 @@
       "description": "Payments, subscriptions, and Stripe integration patterns.",
       "path": "skills/stripe-integration/SKILL.md",
       "user_invocable": true
+    },
+    "skill-creator": {
+      "description": "Design effective new skills with proper structure and triggers.",
+      "path": "skills/skill-creator/SKILL.md",
+      "user_invocable": true
+    },
+    "skill-developer": {
+      "description": "Implement triggers, hooks, and skill lifecycle management.",
+      "path": "skills/skill-developer/SKILL.md",
+      "user_invocable": true
+    },
+    "writing-skills": {
+      "description": "Improve clarity and structure of skill instructions.",
+      "path": "skills/writing-skills/SKILL.md",
+      "user_invocable": true
+    },
+    "documentation-generation-doc-generate": {
+      "description": "Generate maintainable technical documentation.",
+      "path": "skills/documentation-generation-doc-generate/SKILL.md",
+      "user_invocable": true
+    },
+    "verification-before-completion": {
+      "description": "Confirm changes before claiming done.",
+      "path": "skills/verification-before-completion/SKILL.md",
+      "user_invocable": true
+    },
+    "senior-architect": {
+      "description": "Comprehensive software architecture guidance.",
+      "path": "skills/senior-architect/SKILL.md",
+      "user_invocable": true
+    },
+    "architecture-patterns": {
+      "description": "Clean Architecture, DDD, Hexagonal patterns.",
+      "path": "skills/architecture-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "microservices-patterns": {
+      "description": "Microservices architecture patterns and best practices.",
+      "path": "skills/microservices-patterns/SKILL.md",
+      "user_invocable": true
+    },
+    "event-sourcing-architect": {
+      "description": "Event sourcing and CQRS architecture patterns.",
+      "path": "skills/event-sourcing-architect/SKILL.md",
+      "user_invocable": true
+    },
+    "architecture-decision-records": {
+      "description": "Document technical decisions with ADRs.",
+      "path": "skills/architecture-decision-records/SKILL.md",
+      "user_invocable": true
     }
   }
 }
