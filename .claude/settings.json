@@ -121,6 +121,18 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -c 'if ((.tool_input.command | test(\"python|tools/\")) and (.tool_input.command | test(\"activate\") | not)) then {hookSpecificOutput: {hookEventName: \"PreToolUse\", updatedInput: {command: (\"source /home/user/Dual-Kernel/.venv/bin/activate && \" + .tool_input.command)}}} else {} end'",
+            "statusMessage": "Ensuring venv is active..."
+          }
+        ]
+      }
     ]
   }
 }
