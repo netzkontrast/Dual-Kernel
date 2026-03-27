@@ -160,3 +160,48 @@ def load_conflicts(path: str = CONFLICTS_PATH) -> dict:
 
 def ensure_output_dir():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+
+# Pre-compiled regex for wikilink matching: [[Target]] or [[Target|Alias]]
+WIKILINK_REGEX = re.compile(r'\[\[(.*?)\]\]')
+
+
+def parse_frontmatter(filepath):
+    """Extract YAML frontmatter and raw content from a markdown file.
+
+    Returns (data, raw_content) where data is the parsed YAML dict
+    or None if parsing fails. raw_content is always the full file text.
+    """
+    import yaml
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    if not content.startswith('---'):
+        return None, content
+    end_idx = content.find('---', 3)
+    if end_idx == -1:
+        return None, content
+    try:
+        data = yaml.safe_load(content[3:end_idx])
+        return data, content
+    except yaml.YAMLError:
+        return None, content
+
+
+def list_entity_files():
+    """Return all entity markdown file paths in the knowledge graph, excluding READMEs."""
+    import glob as _glob
+    files = _glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
+    return [f for f in files if not f.endswith('README.md') and '/_index/' not in f]
+
+
+def load_all_entities():
+    """Load all knowledge graph entities with their paths, frontmatter, and raw content.
+
+    Returns dict keyed by entity title: {title: {'path': str, 'data': dict, 'raw': str}}
+    """
+    entities = {}
+    for f in list_entity_files():
+        data, raw = parse_frontmatter(f)
+        if data and 'title' in data:
+            entities[data['title']] = {'path': f, 'data': data, 'raw': raw}
+    return entities

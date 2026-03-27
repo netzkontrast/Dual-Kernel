@@ -1,63 +1,33 @@
 """Generate entity relationship visualization as Mermaid graph."""
 import os
 import re
-import glob
-import yaml
 import click
 from collections import defaultdict
-from common import console, slugify, KG_DIR, VALID_DOMAINS
+from common import console, KG_DIR, load_all_entities, WIKILINK_REGEX, DomainEnum
 
 
-def parse_frontmatter(filepath):
-    """Extract YAML frontmatter from a markdown file."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-    if not content.startswith('---'):
-        return None
-    end_idx = content.find('---', 3)
-    if end_idx == -1:
-        return None
-    try:
-        return yaml.safe_load(content[3:end_idx])
-    except yaml.YAMLError:
-        return None
-
-
-def load_all_entities():
-    """Load all entity frontmatter from the knowledge graph."""
-    entities = {}
-    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
-    for f in files:
-        if f.endswith('README.md'):
-            continue
-        data = parse_frontmatter(f)
-        if data and 'title' in data:
-            entities[data['title']] = data
-    return entities
-
-
-DOMAIN_COLORS = {
-    "character": "#4A90D9",
-    "alter-system": "#9B59B6",
-    "world": "#27AE60",
-    "physics": "#E67E22",
-    "aegis": "#E74C3C",
-    "narrative": "#F1C40F",
-    "style": "#1ABC9C",
-    "philosophy": "#8E44AD",
-    "theme": "#D35400",
-    "mechanic": "#2980B9",
-    "juna": "#E91E63",
-    "fundament": "#607D8B",
-    "mathematics": "#795548",
-}
+DOMAIN_COLORS = {d.value: c for d, c in {
+    DomainEnum.CHARACTER: "#4A90D9",
+    DomainEnum.ALTER_SYSTEM: "#9B59B6",
+    DomainEnum.WORLD: "#27AE60",
+    DomainEnum.PHYSICS: "#E67E22",
+    DomainEnum.AEGIS: "#E74C3C",
+    DomainEnum.NARRATIVE: "#F1C40F",
+    DomainEnum.STYLE: "#1ABC9C",
+    DomainEnum.PHILOSOPHY: "#8E44AD",
+    DomainEnum.THEME: "#D35400",
+    DomainEnum.MECHANIC: "#2980B9",
+    DomainEnum.JUNA: "#E91E63",
+    DomainEnum.FUNDAMENT: "#607D8B",
+    DomainEnum.MATHEMATICS: "#795548",
+}.items()}
 
 DOMAIN_SHAPES = {
-    "character": ("([", "])"),
-    "aegis": ("{{", "}}"),
-    "physics": ("[[", "]]"),
-    "world": (">", "]"),
-    "mechanic": ("[/", "/]"),
+    DomainEnum.CHARACTER.value: ("([", "])"),
+    DomainEnum.AEGIS.value: ("{{", "}}"),
+    DomainEnum.PHYSICS.value: ("[[", "]]"),
+    DomainEnum.WORLD.value: (">", "]"),
+    DomainEnum.MECHANIC.value: ("[/", "/]"),
 }
 
 
@@ -75,59 +45,52 @@ def sanitize_id(name):
               help='Filter to specific domain (comma-separated)')
 def graph(output, fmt, domain_filter):
     """Generate an entity relationship graph from knowledge-graph files."""
-    entities = load_all_entities()
+    all_entities = load_all_entities()
+    entities = {name: info['data'] for name, info in all_entities.items()}
 
     if not entities:
         console.print("[bold red]No entities found in knowledge graph.[/bold red]")
         return
 
-    # Apply domain filter
     if domain_filter:
         allowed = {d.strip() for d in domain_filter.split(',')}
         entities = {k: v for k, v in entities.items() if v.get('domain') in allowed}
 
-    # Build adjacency data
-    link_pattern = re.compile(r'\[\[(.*?)\]\]')
     edges = []
     edge_set = set()
     domain_groups = defaultdict(list)
+    conflict_nodes = set()
 
     for name, data in entities.items():
-        domain = data.get('domain', 'fundament')
+        domain = data.get('domain', DomainEnum.FUNDAMENT.value)
         domain_groups[domain].append(name)
 
+        conflicts = data.get('conflicts')
+        if conflicts and conflicts != [] and conflicts != '[]':
+            conflict_nodes.add(name)
+
         related = data.get('related', [])
-        if not related or related == []:
+        if not related:
             continue
 
         for rel in related:
             if isinstance(rel, str):
-                match = link_pattern.search(rel)
+                match = WIKILINK_REGEX.search(rel)
                 if match:
                     target = match.group(1).partition('|')[0]
-                    # Only include edges where both nodes exist
                     if target in entities:
                         edge_key = tuple(sorted([name, target]))
                         if edge_key not in edge_set:
                             edge_set.add(edge_key)
                             edges.append((name, target))
 
-    # Build conflict hotspots
-    conflict_nodes = set()
-    for name, data in entities.items():
-        conflicts = data.get('conflicts')
-        if conflicts and conflicts != [] and conflicts != '[]':
-            conflict_nodes.add(name)
-
     # Generate Mermaid
     lines = ["graph TD"]
 
-    # Style definitions
     for domain, color in DOMAIN_COLORS.items():
         lines.append(f"    classDef {domain.replace('-', '_')} fill:{color},stroke:#333,color:#fff")
     lines.append("    classDef conflict stroke:#ff0000,stroke-width:3px,stroke-dasharray: 5 5")
 
-    # Domain subgraphs
     for domain in sorted(domain_groups.keys()):
         members = domain_groups[domain]
         lines.append(f"    subgraph {domain.replace('-', '_')}_group [\"{domain.upper()}\"]")
@@ -138,19 +101,14 @@ def graph(output, fmt, domain_filter):
             lines.append(f"        {node_id}{shape_open}\"{label}\"{shape_close}")
         lines.append("    end")
 
-    # Edges
     for src, tgt in edges:
-        src_id = sanitize_id(src)
-        tgt_id = sanitize_id(tgt)
-        lines.append(f"    {src_id} --- {tgt_id}")
+        lines.append(f"    {sanitize_id(src)} --- {sanitize_id(tgt)}")
 
-    # Apply domain classes
     for domain, members in domain_groups.items():
         ids = ",".join(sanitize_id(m) for m in members)
         if ids:
             lines.append(f"    class {ids} {domain.replace('-', '_')}")
 
-    # Mark conflict nodes
     if conflict_nodes:
         ids = ",".join(sanitize_id(n) for n in conflict_nodes if n in entities)
         if ids:
@@ -158,22 +116,14 @@ def graph(output, fmt, domain_filter):
 
     mermaid_code = "\n".join(lines)
 
-    # Compute statistics
-    total_nodes = len(entities)
-    total_edges = len(edges)
-    total_conflicts = len(conflict_nodes)
-    domains_used = len(domain_groups)
+    # Statistics
+    max_edges = len(entities) * (len(entities) - 1) / 2 if len(entities) > 1 else 1
+    density = len(edges) / max_edges
 
-    # Density: ratio of edges to max possible edges
-    max_edges = total_nodes * (total_nodes - 1) / 2 if total_nodes > 1 else 1
-    density = total_edges / max_edges
-
-    # Connection counts per entity
     connection_counts = defaultdict(int)
     for src, tgt in edges:
         connection_counts[src] += 1
         connection_counts[tgt] += 1
-
     hub_entities = sorted(connection_counts.items(), key=lambda x: x[1], reverse=True)[:5]
 
     if fmt == 'html':
@@ -191,7 +141,7 @@ h1 {{ color: #4A90D9; }}
 </head><body>
 <h1>Entity Relationship Graph</h1>
 <div class="stats">
-<p><strong>Nodes:</strong> {total_nodes} | <strong>Edges:</strong> {total_edges} | <strong>Domains:</strong> {domains_used} | <strong>Conflicts:</strong> {total_conflicts} | <strong>Density:</strong> {density:.3f}</p>
+<p><strong>Nodes:</strong> {len(entities)} | <strong>Edges:</strong> {len(edges)} | <strong>Domains:</strong> {len(domain_groups)} | <strong>Conflicts:</strong> {len(conflict_nodes)} | <strong>Density:</strong> {density:.3f}</p>
 </div>
 <div class="mermaid">
 {mermaid_code}
@@ -207,10 +157,10 @@ h1 {{ color: #4A90D9; }}
 
 | Metric | Value |
 |--------|-------|
-| Entities | {total_nodes} |
-| Relationships | {total_edges} |
-| Domains | {domains_used} |
-| Conflict Hotspots | {total_conflicts} |
+| Entities | {len(entities)} |
+| Relationships | {len(edges)} |
+| Domains | {len(domain_groups)} |
+| Conflict Hotspots | {len(conflict_nodes)} |
 | Graph Density | {density:.3f} |
 
 ## Hub Entities (Most Connected)
@@ -238,7 +188,6 @@ h1 {{ color: #4A90D9; }}
 
         content += "\n_Automatisch generiert von `relationship_graph.py`._\n"
 
-    # Write output
     if output is None:
         ext = '.html' if fmt == 'html' else '.md'
         index_dir = os.path.join(KG_DIR, '_index')
@@ -250,7 +199,7 @@ h1 {{ color: #4A90D9; }}
         f.write(content)
 
     console.print(f"[bold green]Generated relationship graph:[/bold green] {output}")
-    console.print(f"  Entities: {total_nodes} | Edges: {total_edges} | Domains: {domains_used} | Conflicts: {total_conflicts}")
+    console.print(f"  Entities: {len(entities)} | Edges: {len(edges)} | Domains: {len(domain_groups)} | Conflicts: {len(conflict_nodes)}")
 
     if hub_entities:
         console.print("\n[bold cyan]Hub Entities:[/bold cyan]")

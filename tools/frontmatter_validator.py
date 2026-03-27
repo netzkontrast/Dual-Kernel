@@ -1,32 +1,16 @@
-import glob
-import yaml
-from common import console, VALID_DOMAINS, VALID_CANON_STATUSES, KG_DIR
+from common import console, VALID_DOMAINS, VALID_CANON_STATUSES, list_entity_files, parse_frontmatter
 
 
 def validate_frontmatter():
-    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
-    files = [f for f in files if not f.endswith('README.md')]
+    files = list_entity_files()
 
     invalid_files = []
 
     for file in files:
-        with open(file, 'r', encoding='utf-8') as f:
-            content = f.read()
+        data, _ = parse_frontmatter(file)
 
-        if not content.startswith('---'):
-            invalid_files.append((file, "No frontmatter found"))
-            continue
-
-        end_idx = content.find('---', 3)
-        if end_idx == -1:
-            invalid_files.append((file, "Unclosed frontmatter"))
-            continue
-
-        yaml_content = content[3:end_idx]
-        try:
-            data = yaml.safe_load(yaml_content)
-        except yaml.YAMLError as e:
-            invalid_files.append((file, f"Invalid YAML: {e}"))
+        if data is None:
+            invalid_files.append((file, "No valid frontmatter found"))
             continue
 
         required_keys = ['title', 'id', 'domain', 'canon_status', 'sources']

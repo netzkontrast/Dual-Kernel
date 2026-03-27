@@ -126,7 +126,7 @@ graph TD
     class Integrity_Guardian,AEGIS,Riss_Mandats,Primal_Directive aegis
     class Riss fundament
     class Juna,Kael,Komponente_734,Lex character
-    class Konstrukt_Stadt,Kael,Komponente_734,K_J_Verbindung,Riss,Riss_Mandats,AEGIS,Juna,Riss_Mandat,Lex,Nexus,Integrity_Guardian conflict
+    class Riss,Riss_Mandat,Riss_Mandats,Integrity_Guardian,Nexus,Lex,AEGIS,Juna,Komponente_734,K_J_Verbindung,Kael,Konstrukt_Stadt conflict
 ```
 
 ## Domain Legend

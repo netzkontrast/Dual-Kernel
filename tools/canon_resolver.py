@@ -1,151 +1,68 @@
 """Semi-automated canon status resolution based on source evidence and consensus."""
 import os
 import re
-import glob
-import yaml
 import click
 from datetime import datetime
 from collections import defaultdict
 from common import (
-    console, KG_DIR, VALID_CANON_STATUSES,
-    load_inventory, load_conflicts, slugify
+    console, KG_DIR, VALID_CANON_STATUSES, load_all_entities
 )
 
 
-def parse_frontmatter(filepath):
-    """Extract YAML frontmatter from a markdown file."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-    if not content.startswith('---'):
-        return None, content
-    end_idx = content.find('---', 3)
-    if end_idx == -1:
-        return None, content
-    try:
-        data = yaml.safe_load(content[3:end_idx])
-        return data, content
-    except yaml.YAMLError:
-        return None, content
-
-
-def load_all_entities():
-    """Load all entity files with their paths and frontmatter."""
-    entities = {}
-    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
-    for f in files:
-        if f.endswith('README.md'):
-            continue
-        data, raw = parse_frontmatter(f)
-        if data and 'title' in data:
-            entities[data['title']] = {
-                'path': f,
-                'data': data,
-                'raw': raw,
-            }
-    return entities
-
-
 def compute_source_score(entity_data):
-    """Score an entity based on its source evidence strength.
-
-    Scoring factors:
-    - Number of distinct source files (more files = stronger consensus)
-    - Number of mentions across files
-    - Whether the entity is in the known entities list
-    """
+    """Score entity based on source evidence strength (0.0 to 1.0)."""
     sources = entity_data.get('sources', [])
-    if not sources:
+    if not sources or not isinstance(sources, list):
         return 0.0
-
-    source_count = len(sources) if isinstance(sources, list) else 0
-    # Base score from number of sources
-    score = min(source_count / 5.0, 1.0)  # Cap at 5 sources = 1.0
-    return score
+    return min(len(sources) / 5.0, 1.0)
 
 
 def compute_conflict_severity(entity_data):
-    """Score conflict severity (0 = no conflicts, 1 = severe)."""
+    """Score conflict severity (0.0 = none, 1.0 = severe)."""
     conflicts = entity_data.get('conflicts')
     if not conflicts or not isinstance(conflicts, list):
         return 0.0
 
-    total_variants = 0
     conflict_types = 0
+    total_variants = 0
     for conflict in conflicts:
         if isinstance(conflict, dict):
             conflict_types += 1
-            variants = conflict.get('variants', [])
-            total_variants += len(variants)
+            total_variants += len(conflict.get('variants', []))
 
     if conflict_types == 0:
         return 0.0
-
-    # More conflict types and more variants = more severe
-    severity = min((conflict_types * 0.3) + (total_variants * 0.1), 1.0)
-    return severity
+    return min((conflict_types * 0.3) + (total_variants * 0.1), 1.0)
 
 
-def suggest_canon_status(entity_name, entity_data):
+def suggest_canon_status(entity_data):
     """Suggest a canon status based on evidence analysis.
 
     Returns (suggested_status, confidence, reasoning).
     """
-    current_status = entity_data.get('canon_status', 'uncertain')
     source_score = compute_source_score(entity_data)
     conflict_severity = compute_conflict_severity(entity_data)
 
-    reasons = []
-
-    # No conflicts + good sources = confirmed
     if conflict_severity == 0 and source_score >= 0.4:
-        reasons.append(f"No conflicts, {len(entity_data.get('sources', []))} source(s)")
-        return 'confirmed', 0.8 + source_score * 0.2, reasons
+        return 'confirmed', 0.8 + source_score * 0.2, \
+            [f"No conflicts, {len(entity_data.get('sources', []))} source(s)"]
 
-    # No conflicts but weak sources = provisional
-    if conflict_severity == 0 and source_score < 0.4:
-        reasons.append("No conflicts but limited source evidence")
-        return 'provisional', 0.5, reasons
+    if conflict_severity == 0:
+        return 'provisional', 0.5, ["No conflicts but limited source evidence"]
 
-    # Has conflicts but they're minor (1-2 variants)
-    if 0 < conflict_severity <= 0.3:
-        reasons.append(f"Minor conflicts (severity {conflict_severity:.2f})")
+    if conflict_severity <= 0.3:
+        reason = f"Minor conflicts (severity {conflict_severity:.2f})"
         if source_score >= 0.6:
-            reasons.append("Strong source base may resolve conflicts")
-            return 'provisional', 0.6, reasons
-        return 'disputed', 0.5, reasons
+            return 'provisional', 0.6, [reason, "Strong source base may resolve conflicts"]
+        return 'disputed', 0.5, [reason]
 
-    # Significant conflicts
-    if conflict_severity > 0.3:
-        reasons.append(f"Significant conflicts (severity {conflict_severity:.2f})")
-        return 'disputed', 0.7, reasons
-
-    return current_status, 0.3, ["Insufficient data for determination"]
+    return 'disputed', 0.7, [f"Significant conflicts (severity {conflict_severity:.2f})"]
 
 
-def format_resolution_report(entity_name, entity_info, suggestion, confidence, reasons):
-    """Format a single entity resolution recommendation."""
-    data = entity_info['data']
-    current = data.get('canon_status', '?')
-    path = entity_info['path']
-
-    status_emoji = {
-        'confirmed': '✓',
-        'provisional': '~',
-        'disputed': '⚠',
-        'uncertain': '?',
-        'decanonized': '✗',
-    }
-
-    return {
-        'entity': entity_name,
-        'current': current,
-        'suggested': suggestion,
-        'confidence': confidence,
-        'reasons': reasons,
-        'path': path,
-        'changed': current != suggestion,
-        'emoji': status_emoji.get(suggestion, '?'),
-    }
+STATUS_EMOJI = {
+    'confirmed': '✓', 'provisional': '~', 'disputed': '⚠',
+    'uncertain': '?', 'decanonized': '✗',
+}
 
 
 @click.command()
@@ -165,7 +82,6 @@ def resolve(apply, min_confidence, output, status_filter):
         console.print("[bold red]No entities found in knowledge graph.[/bold red]")
         return
 
-    # Filter by status
     if status_filter:
         allowed = {s.strip() for s in status_filter.split(',')}
         entities = {
@@ -177,15 +93,18 @@ def resolve(apply, min_confidence, output, status_filter):
 
     resolutions = []
     for entity_name, entity_info in sorted(entities.items()):
-        suggestion, confidence, reasons = suggest_canon_status(
-            entity_name, entity_info['data']
-        )
-        resolution = format_resolution_report(
-            entity_name, entity_info, suggestion, confidence, reasons
-        )
-        resolutions.append(resolution)
+        suggestion, confidence, reasons = suggest_canon_status(entity_info['data'])
+        current = entity_info['data'].get('canon_status', '?')
+        resolutions.append({
+            'entity': entity_name,
+            'current': current,
+            'suggested': suggestion,
+            'confidence': confidence,
+            'reasons': reasons,
+            'changed': current != suggestion,
+            'emoji': STATUS_EMOJI.get(suggestion, '?'),
+        })
 
-    # Display results
     changed = [r for r in resolutions if r['changed']]
     unchanged = [r for r in resolutions if not r['changed']]
 
@@ -207,19 +126,16 @@ def resolve(apply, min_confidence, output, status_filter):
         unchanged_list = ", ".join(r['entity'] for r in unchanged)
         console.print(f"\n[dim]Unchanged ({len(unchanged)}): {unchanged_list}[/dim]")
 
-    # Summary statistics
     status_dist = defaultdict(int)
     for r in resolutions:
         status_dist[r['suggested']] += 1
 
     console.print("\n[bold cyan]Suggested Status Distribution:[/bold cyan]")
-    for status in ['confirmed', 'provisional', 'disputed', 'uncertain', 'decanonized']:
+    for status in sorted(VALID_CANON_STATUSES):
         count = status_dist.get(status, 0)
         if count > 0:
-            bar = '█' * count
-            console.print(f"  {status:15} {bar} {count}")
+            console.print(f"  {status:15} {'█' * count} {count}")
 
-    # Apply changes if requested
     if apply:
         applied_count = 0
         skipped_count = 0
@@ -234,30 +150,23 @@ def resolve(apply, min_confidence, output, status_filter):
                 continue
 
             entity_info = entities[r['entity']]
-            filepath = entity_info['path']
-            content = entity_info['raw']
-
-            # Update canon_status in frontmatter
             content = re.sub(
                 r'canon_status:\s*"[^"]*"',
                 f'canon_status: "{r["suggested"]}"',
-                content
+                entity_info['raw']
             )
 
-            with open(filepath, 'w', encoding='utf-8') as f:
+            with open(entity_info['path'], 'w', encoding='utf-8') as f:
                 f.write(content)
 
             applied_count += 1
-            console.print(
-                f"  [green]Applied:[/green] {r['entity']} → {r['suggested']}"
-            )
+            console.print(f"  [green]Applied:[/green] {r['entity']} → {r['suggested']}")
 
         console.print(
             f"\n[bold green]Applied {applied_count} changes[/bold green]"
             f" ({skipped_count} skipped below confidence threshold)"
         )
 
-    # Save report
     if output:
         md_lines = ["# Canon Resolution Report\n"]
         md_lines.append(f"**Date:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -281,7 +190,7 @@ def resolve(apply, min_confidence, output, status_filter):
         md_lines.append("\n## Status Distribution\n")
         md_lines.append("| Status | Count |")
         md_lines.append("|--------|-------|")
-        for status in ['confirmed', 'provisional', 'disputed', 'uncertain', 'decanonized']:
+        for status in sorted(VALID_CANON_STATUSES):
             count = status_dist.get(status, 0)
             if count > 0:
                 md_lines.append(f"| {status} | {count} |")

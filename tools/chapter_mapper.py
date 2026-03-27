@@ -1,21 +1,14 @@
 """Map entities to their chapter appearances using the 39-chapter matrix."""
 import os
 import re
-import glob
-import yaml
 import click
 from collections import defaultdict
 from common import (
-    console, slugify, KG_DIR, KNOWN_ENTITIES_REGEX,
-    KNOWN_ENTITIES, load_inventory
+    console, KG_DIR, KNOWN_ENTITIES_REGEX, load_all_entities
 )
 
 
 CHAPTER_SOURCE = 'Markdown-docs/KoharenzProtokoll39KapitelMatrix.md'
-
-# Fields in the chapter matrix that contain entity references
-ENTITY_FIELDS = ['Charaktere', 'Ort', 'Plot-Beat', 'Narrative Funktion',
-                 'Perspektive & Stimme', 'Überschrift', 'Titel']
 
 
 def parse_chapters(filepath):
@@ -24,7 +17,6 @@ def parse_chapters(filepath):
         content = f.read()
 
     chapters = []
-    # Split by chapter headers: ## **Kapitel N** or - **Kapitel N**
     chapter_pattern = re.compile(
         r'(?:##\s*\*\*|-\s*\*\*)Kapitel\s+(\d+)\*\*',
         re.IGNORECASE
@@ -41,25 +33,11 @@ def parse_chapters(filepath):
             'number': chapter_num,
             'text': chapter_text,
             'title': '',
-            'characters': [],
-            'location': '',
         }
 
-        # Extract structured fields
         title_match = re.search(r'\*\*Titel:\*\*\s*(.+)', chapter_text)
         if title_match:
             chapter_data['title'] = title_match.group(1).strip()
-
-        char_match = re.search(r'\*\*Charaktere:\*\*\s*(.+)', chapter_text)
-        if char_match:
-            chapter_data['characters'] = [
-                c.strip().rstrip('.')
-                for c in re.split(r'[,;]', char_match.group(1))
-            ]
-
-        loc_match = re.search(r'\*\*Ort:\*\*\s*(.+)', chapter_text)
-        if loc_match:
-            chapter_data['location'] = loc_match.group(1).strip()
 
         chapters.append(chapter_data)
 
@@ -69,43 +47,10 @@ def parse_chapters(filepath):
 def find_entity_mentions_in_chapters(chapters):
     """Find all known entity mentions within each chapter's text."""
     entity_chapters = defaultdict(set)
-
     for chapter in chapters:
-        text = chapter['text']
-        # Find known entities via regex
-        for match in KNOWN_ENTITIES_REGEX.finditer(text):
-            entity_name = match.group(0)
-            entity_chapters[entity_name].add(chapter['number'])
-
+        for match in KNOWN_ENTITIES_REGEX.finditer(chapter['text']):
+            entity_chapters[match.group(0)].add(chapter['number'])
     return entity_chapters
-
-
-def parse_frontmatter(filepath):
-    """Extract YAML frontmatter from a markdown file."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        content = f.read()
-    if not content.startswith('---'):
-        return None
-    end_idx = content.find('---', 3)
-    if end_idx == -1:
-        return None
-    try:
-        return yaml.safe_load(content[3:end_idx])
-    except yaml.YAMLError:
-        return None
-
-
-def load_kg_entities():
-    """Load existing knowledge graph entities."""
-    entities = {}
-    files = glob.glob(f'{KG_DIR}/**/*.md', recursive=True)
-    for f in files:
-        if f.endswith('README.md'):
-            continue
-        data = parse_frontmatter(f)
-        if data and 'title' in data:
-            entities[data['title']] = {'path': f, 'data': data}
-    return entities
 
 
 @click.command()
@@ -128,22 +73,16 @@ def map_chapters(chapter_file, update, output):
 
     console.print(f"[bold blue]Parsed {len(chapters)} chapters[/bold blue]")
 
-    # Find entity mentions in chapters
     entity_chapters = find_entity_mentions_in_chapters(chapters)
+    kg_entities = load_all_entities()
 
-    # Load existing KG entities for cross-reference
-    kg_entities = load_kg_entities()
-
-    # Build chapter-entity matrix
     all_entities_sorted = sorted(entity_chapters.keys())
-    all_chapters_sorted = sorted({ch['number'] for ch in chapters})
 
     # Generate markdown report
     lines = ["# Chapter-Entity Matrix\n"]
     lines.append(f"**Source:** `{chapter_file}`\n")
     lines.append(f"**Chapters:** {len(chapters)} | **Entities Found:** {len(entity_chapters)}\n")
 
-    # Entity appearance summary
     lines.append("\n## Entity Appearances\n")
     lines.append("| Entity | Chapters | Count | In KG |")
     lines.append("|--------|----------|-------|-------|")
@@ -154,7 +93,6 @@ def map_chapters(chapter_file, update, output):
         in_kg = "✓" if entity in kg_entities else "—"
         lines.append(f"| {entity} | {ch_str} | {len(ch_nums)} | {in_kg} |")
 
-    # Chapter breakdown
     lines.append("\n## Chapter Breakdown\n")
     for chapter in sorted(chapters, key=lambda c: c['number']):
         num = chapter['number']
@@ -178,14 +116,11 @@ def map_chapters(chapter_file, update, output):
     arc_data = []
     for entity in all_entities_sorted:
         ch_nums = sorted(entity_chapters[entity])
-        first = ch_nums[0]
-        last = ch_nums[-1]
+        first, last = ch_nums[0], ch_nums[-1]
         span = last - first
-        # Visual arc bar
-        bar_chars = 39
-        bar = ['·'] * bar_chars
+        bar = ['·'] * 39
         for c in ch_nums:
-            if 0 <= c < bar_chars:
+            if 0 <= c < 39:
                 bar[c] = '█'
         arc_str = ''.join(bar[:max(last + 2, 10)])
         arc_data.append((entity, first, last, span, arc_str))
@@ -197,7 +132,6 @@ def map_chapters(chapter_file, update, output):
     report_content = "\n".join(lines)
     report_content += "\n\n_Automatisch generiert von `chapter_mapper.py`._\n"
 
-    # Write output
     if output is None:
         index_dir = os.path.join(KG_DIR, '_index')
         os.makedirs(index_dir, exist_ok=True)
@@ -209,7 +143,6 @@ def map_chapters(chapter_file, update, output):
 
     console.print(f"[bold green]Generated chapter-entity matrix:[/bold green] {output}")
 
-    # Optionally update entity files with chapter data
     if update:
         updated_count = 0
         for entity_name, ch_nums_set in entity_chapters.items():
@@ -217,27 +150,22 @@ def map_chapters(chapter_file, update, output):
                 continue
 
             ch_nums = sorted(ch_nums_set)
-            first_ch = ch_nums[0]
-            last_ch = ch_nums[-1]
+            first_ch, last_ch = ch_nums[0], ch_nums[-1]
+            entity_info = kg_entities[entity_name]
+            content = entity_info['raw']
 
-            entity_path = kg_entities[entity_name]['path']
-            with open(entity_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-
-            # Update first_appearance_chapter
             content = re.sub(
                 r'first_appearance_chapter:\s*\S+',
                 f'first_appearance_chapter: {first_ch}',
                 content
             )
-            # Update last_referenced_chapter
             content = re.sub(
                 r'last_referenced_chapter:\s*\S+',
                 f'last_referenced_chapter: {last_ch}',
                 content
             )
 
-            with open(entity_path, 'w', encoding='utf-8') as f:
+            with open(entity_info['path'], 'w', encoding='utf-8') as f:
                 f.write(content)
 
             updated_count += 1
@@ -245,7 +173,6 @@ def map_chapters(chapter_file, update, output):
 
         console.print(f"\n[bold green]Updated {updated_count} entity files with chapter data.[/bold green]")
 
-    # Print summary
     console.print(f"\n[bold cyan]Top entities by chapter span:[/bold cyan]")
     for entity, first, last, span, _ in arc_data[:10]:
         console.print(f"  {entity}: chapters {first}–{last} (span {span})")
