@@ -63,12 +63,11 @@ def _split_batches(files: list[str], n: int) -> list[list[str]]:
 
 
 def _merge_worker_results(results: list[dict[str, Any]]) -> dict[str, Any]:
-    """
-    Combine per-worker entity dicts into one unified structure.
+    """Combine per-worker entity dicts into one unified structure.
 
-    Worker results may contain overlapping entity names (the same entity can
-    appear in files processed by different workers).  File-level mentions are
-    de-duplicated by line number.
+    The same entity name can appear across workers (it may be mentioned in
+    files owned by different workers), but each file_id is owned by exactly
+    one worker, so file-level mentions never collide.
     """
     merged: dict[str, Any] = {}
     all_errors: list[dict[str, str]] = []
@@ -83,14 +82,7 @@ def _merge_worker_results(results: list[dict[str, Any]]) -> dict[str, Any]:
                     "files": {},
                 }
             for file_id, mentions in data["files"].items():
-                if file_id not in merged[name]["files"]:
-                    merged[name]["files"][file_id] = list(mentions)
-                else:
-                    seen = {m["line_number"] for m in merged[name]["files"][file_id]}
-                    for m in mentions:
-                        if m["line_number"] not in seen:
-                            merged[name]["files"][file_id].append(m)
-                            seen.add(m["line_number"])
+                merged[name]["files"][file_id] = mentions
 
     return {"entities": merged, "errors": all_errors}
 

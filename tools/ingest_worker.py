@@ -15,18 +15,13 @@ from typing import Any
 # Ensure tools/ is on the path for both fork and spawn start methods
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from common import KNOWN_ENTITIES, KNOWN_ENTITIES_REGEX, guess_domain
+from common import KNOWN_ENTITIES, KNOWN_ENTITIES_REGEX, guess_domain, get_context, build_mention
 
 # Module-level spaCy handle; populated by _worker_init() in the worker process
 _nlp = None
 
 
 def _worker_init() -> None:
-    """
-    Initializer for ProcessPoolExecutor workers.
-    Loads the spaCy model once per worker process so every task in that
-    process reuses the same in-memory model instead of reloading it.
-    """
     import spacy
 
     global _nlp
@@ -36,46 +31,7 @@ def _worker_init() -> None:
     )
 
 
-def _get_context(lines: list[str], index: int, context_size: int = 2) -> str:
-    start = max(0, index - context_size)
-    end = min(len(lines), index + context_size + 1)
-    return "\n".join(lines[start:end])
-
-
-def _build_mention(
-    entity_name: str,
-    file_id: str,
-    line_number: int,
-    context: str,
-    seq: int,
-) -> dict[str, Any]:
-    return {
-        "mention_id": f"{entity_name}_{line_number}_{seq}",
-        "entity_name": entity_name,
-        "file_id": file_id,
-        "line_number": line_number,
-        "context_text": context,
-        "is_bold": False,
-    }
-
-
 def scan_file(filepath: str) -> dict[str, Any]:
-    """
-    Scan a single markdown file for entity mentions.
-
-    Returns a dict::
-
-        {
-          "file_id": str,
-          "entities": {
-              entity_name: {
-                  "is_known": bool,
-                  "domain": str,          # DomainEnum.value
-                  "mentions": [mention, ...]
-              }
-          }
-        }
-    """
     if _nlp is None:
         # Fallback: lazy-load when called outside a worker pool (e.g. tests)
         _worker_init()
@@ -89,7 +45,6 @@ def scan_file(filepath: str) -> dict[str, Any]:
         lambda: {"is_known": False, "domain": None, "mentions": []}
     )
 
-    # ── Pass 1: regex scan for known entities ─────────────────────────────────
     for i, line in enumerate(lines):
         for match in KNOWN_ENTITIES_REGEX.finditer(line):
             name = match.group(0)
@@ -98,10 +53,9 @@ def scan_file(filepath: str) -> dict[str, Any]:
                 entities[name]["domain"] = domain.value if domain else None
                 entities[name]["is_known"] = True
             entities[name]["mentions"].append(
-                _build_mention(name, file_id, i + 1, _get_context(lines, i), len(entities[name]["mentions"]))
+                build_mention(name, file_id, i + 1, get_context(lines, i), len(entities[name]["mentions"]))
             )
 
-    # ── Pass 2: spaCy NER for previously unseen names ─────────────────────────
     doc = _nlp(content)
 
     # Build line-start char-offsets for O(log N) line-number lookup
@@ -122,39 +76,20 @@ def scan_file(filepath: str) -> dict[str, Any]:
         entities[name]["domain"] = domain.value if domain else None
         entities[name]["is_known"] = False
         entities[name]["mentions"].append(
-            _build_mention(name, file_id, line_idx + 1, _get_context(lines, line_idx), len(entities[name]["mentions"]))
+            build_mention(name, file_id, line_idx + 1, get_context(lines, line_idx), len(entities[name]["mentions"]))
         )
 
     return {"file_id": file_id, "entities": dict(entities)}
 
 
 def process_batch(filepaths: list[str], worker_id: int) -> dict[str, Any]:
-    """
-    Process a batch of markdown files.
-
-    Called by ``ProcessPoolExecutor`` workers; returns a serializable dict::
-
-        {
-          "worker_id":       int,
-          "files_processed": int,
-          "entities": {
-              entity_name: {
-                  "is_known": bool,
-                  "domain":   str,
-                  "files": {
-                      file_id: [mention, ...]
-                  }
-              }
-          },
-          "errors": [{"file": str, "error": str}, ...]
-        }
-    """
     merged: dict[str, Any] = {}
     errors: list[dict[str, str]] = []
 
     for filepath in filepaths:
         try:
             result = scan_file(filepath)
+            file_id = result["file_id"]
             for name, data in result["entities"].items():
                 if not data["mentions"]:
                     continue
@@ -164,16 +99,8 @@ def process_batch(filepaths: list[str], worker_id: int) -> dict[str, Any]:
                         "domain": data["domain"],
                         "files": {},
                     }
-                file_id = result["file_id"]
-                if file_id not in merged[name]["files"]:
-                    merged[name]["files"][file_id] = data["mentions"]
-                else:
-                    # De-duplicate by line number
-                    seen = {m["line_number"] for m in merged[name]["files"][file_id]}
-                    for m in data["mentions"]:
-                        if m["line_number"] not in seen:
-                            merged[name]["files"][file_id].append(m)
-                            seen.add(m["line_number"])
+                # Each filepath is unique in the batch, so file_id is never seen twice here
+                merged[name]["files"][file_id] = data["mentions"]
         except Exception as exc:  # noqa: BLE001
             errors.append({"file": filepath, "error": str(exc)})
 
