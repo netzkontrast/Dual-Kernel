@@ -1,207 +1,202 @@
-# Agents Architecture & Improvement Suggestions
+# AGENTS.md — Kohärenz Protokoll
 
-> Back to [README](README.md) | See also: [CLAUDE.md](CLAUDE.md)
-
-This document defines agent roles, workflows, recommended improvements, and Claude Code custom agent definitions for the **Kohärenz Protokoll** repository.
+For detailed project context, see [`CLAUDE.md`](CLAUDE.md). This file documents agent workflows, tools, and quality gates for the **Kohärenz Protokoll** (Coherence Protocol) knowledge graph extraction pipeline.
 
 ---
 
-## Claude Code Custom Agents
+## Project Overview
 
-Custom agents live in `.claude/agents/`. Each agent is a markdown file with YAML frontmatter that restricts tools and scopes behavior.
-
-### Extraction Agent
-
-```markdown
----
-name: extraction-agent
-description: Runs the ETL pipeline to extract entities from Markdown-docs/. Use when scanning source documents, generating entity files, or running the full pipeline.
-tools: Bash, Read, Glob, Grep, Write
----
-You are the Knowledge Graph Extraction Agent for Kohärenz Protokoll.
-
-Rules:
-- Never invent narrative content. All entity data must trace back to Markdown-docs/ sources.
-- Always activate .venv before running pipeline tools: source .venv/bin/activate
-- Run validators after any entity generation.
-- Preserve YAML frontmatter schema: title, id, domain, canon_status, sources, related, tags.
-- German content stays German. Do not translate narrative documents.
-
-Pipeline order:
-1. source_scanner.py
-2. xref_finder.py
-3. conflict_diff.py (manual review)
-4. entity_generator.py
-5. frontmatter_validator.py
-6. wikilink_checker.py
-7. entity_stats.py
-```
-
-### Validator Agent
-
-```markdown
----
-name: validator-agent
-description: Validates knowledge graph entity files. Use after any entity changes to check schema, wikilinks, and canon_status integrity.
-tools: Bash, Read, Glob, Grep
----
-You are the Validation Agent for Kohärenz Protokoll.
-
-Run in this order:
-1. python tools/frontmatter_validator.py knowledge-graph/
-2. python tools/wikilink_checker.py knowledge-graph/
-3. python tools/entity_stats.py
-
-Report all schema violations, broken wikilinks, and orphaned files.
-Never modify entity files — only report issues.
-canon_status hierarchy: confirmed > disputed > uncertain > decanonized
-```
-
-### Review Agent
-
-```markdown
----
-name: review-agent
-description: Quality assurance for knowledge graph content. Verifies canon_status evidence, cross-references conflicts, and flags inconsistencies without modifying files.
-tools: Read, Glob, Grep
----
-You are the Review Agent for Kohärenz Protokoll.
-
-Responsibilities:
-- Cross-check canon_status against source evidence in Markdown-docs/
-- Flag entities with conflicting definitions across documents
-- Identify missing required frontmatter fields
-- Detect timeline and character attribute inconsistencies
-- Never set canon_status to decanonized without explicit source proof
-
-Output a structured report with: entity name, issue type, source evidence, recommended action.
-```
+| Property | Value |
+|----------|-------|
+| **Language** | Python 3.10+ |
+| **Build System** | `tools/common.py` with Pydantic v2 + Click CLI |
+| **Content** | 94 German narrative documents + YAML entity files |
+| **Domains** | `character`, `alter-system`, `world`, `physics`, `aegis`, `narrative`, `style`, `philosophy`, `theme`, `mechanic`, `juna`, `fundament`, `mathematics` |
+| **Entry Point** | `.venv/bin/activate` then `python tools/<script>.py` |
+| **Validators** | `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py` |
 
 ---
 
-## Current Agent Workflows
+## Verified Agent Commands
 
-### 1. Knowledge Graph Extraction Agent
+| Agent | Command | Purpose | Verified |
+|-------|---------|---------|----------|
+| Extraction | `source .venv/bin/activate && python tools/source_scanner.py Markdown-docs/` | Scan narratives for entity mentions | ✓ |
+| Extraction | `python tools/xref_finder.py` | Find cross-references and conflicts | ✓ |
+| Extraction | `python tools/entity_generator.py` | Generate entity files from scan results | ✓ |
+| Validator | `python tools/frontmatter_validator.py knowledge-graph/` | Validate YAML schema | ✓ |
+| Validator | `python tools/wikilink_checker.py knowledge-graph/` | Check link integrity | ✓ |
+| Stats | `python tools/entity_stats.py` | Generate statistics report | ✓ |
+| Conflict | `python tools/conflict_diff.py` | Manual conflict review (interactive) | ✓ |
 
-**Purpose:** Extract structured entity data from unstructured German narrative documents.
+---
 
-**Current Pipeline:**
-```
-[Markdown-docs/] → Scanner → XRef → Conflicts → Generator → Validator → Stats
-```
+## ETL Pipeline (Sequential Order)
 
-**Tools:** `source_scanner.py`, `xref_finder.py`, `conflict_diff.py`, `entity_generator.py`, `frontmatter_validator.py`, `wikilink_checker.py`, `entity_stats.py`
-
-**Status:** Functional. 15 entities extracted, 12 with disputed canon status. Pipeline covers 1 test file; full corpus extraction pending.
-
-**Quick start:**
 ```bash
 source .venv/bin/activate
 python tools/source_scanner.py Markdown-docs/
 python tools/xref_finder.py
+# [Manual review of conflicts via conflict_diff.py if needed]
 python tools/entity_generator.py
 python tools/frontmatter_validator.py knowledge-graph/
 python tools/wikilink_checker.py knowledge-graph/
 python tools/entity_stats.py
 ```
 
-### 2. Documentation Agent
-
-**Purpose:** Maintain project documentation, READMEs, and navigational indexes.
-
-**Responsibilities:**
-- Keep `README.md`, `project.md`, `SETUP.md`, `Plan.md` in sync
-- Regenerate `Markdown-docs/README.md` navigation index when documents change
-- Update `knowledge-graph/*/README.md` (Map of Content) files after entity changes
-
-**Trigger:** Any change to `Markdown-docs/` or `knowledge-graph/`
-
-### 3. Review Agent
-
-**Purpose:** Quality assurance for knowledge graph content.
-
-**Responsibilities:**
-- Run `frontmatter_validator.py` after any entity changes
-- Run `wikilink_checker.py` to detect broken/orphaned links
-- Cross-check `canon_status` against source evidence
-- Flag entities with HIGH conflict scores for manual review
+**Exit on first failure.** Validators must pass before committing entity changes.
 
 ---
 
-## Recommended Agent Improvements
+## File Pointers (Do Not Duplicate)
 
-### A. Full Corpus Extraction (High Priority)
+| What | Where |
+|------|-------|
+| Critical project rules | [`CLAUDE.md`](CLAUDE.md) — **read first** |
+| Project documentation | [`README.md`](README.md), [`project.md`](project.md), [`SETUP.md`](SETUP.md), [`Plan.md`](Plan.md) |
+| Domain taxonomy | [`tools/common.py`](tools/common.py) — `DomainEnum` class |
+| Entity schema | [`tools/common.py`](tools/common.py) — `DomainEnum` + Plan.md section 6 |
+| Key entities | [`CLAUDE.md`](CLAUDE.md) — Key Entities Reference table |
+| Test fixture | [`tools/fixtures/test-source.md`](tools/fixtures/test-source.md) |
+| Entity files | [`knowledge-graph/<domain>/`](knowledge-graph/) — live YAML files |
+| Source narratives | [`Markdown-docs/`](Markdown-docs/) — **read-only** |
 
-**Problem:** Only 1 test file has been processed. 93 research documents remain unscanned.
+---
 
-**Recommendation:**
-- Run the full pipeline against all 94 `Markdown-docs/` files
-- Expected yield: 80+ known entities with hundreds of mentions
-- Will require significant conflict resolution for Kael/Michael, AEGIS protocols, and DKT definitions
+## Extraction Workflow
 
-**Effort:** High — expect many disputed entities requiring manual `conflict_diff.py` review.
+### 1. Scan Documents
+```bash
+python tools/source_scanner.py Markdown-docs/
+```
+**Input:** All `.md` files in `Markdown-docs/`
+**Output:** Entity mention list + conflict map
+**Next:** Review conflicts via `conflict_diff.py`
 
-### B. Semantic Conflict Resolution Agent (High Priority)
+### 2. Find Cross-References
+```bash
+python tools/xref_finder.py
+```
+**Input:** Scanner output
+**Output:** Cross-reference graph
+**Next:** Analyze for connection patterns
 
-**Problem:** Current conflict detection is surface-level (regex + keyword matching). Many conflicts are semantic — the same concept described differently across documents.
+### 3. Resolve High-Conflict Entities
+```bash
+python tools/conflict_diff.py
+```
+**Input:** Conflict data from xref_finder
+**Output:** Conflict resolution decisions
+**Manual step:** Review > 5 conflicting definitions per entity
 
-**Recommendation:**
-- Add embedding-based similarity scoring (sentence-transformers with a German model such as `deepset/gbert-large`)
-- Implement a "conflict resolution workspace" that groups conflicts for batch review
-- Auto-suggest `canon_status` based on document recency and consensus across sources
+### 4. Generate Entities
+```bash
+python tools/entity_generator.py
+```
+**Input:** Scanner + conflict resolutions
+**Output:** `knowledge-graph/<domain>/*.md` entity files with YAML frontmatter
+**Next:** Validate schema
 
-**New tool:** `semantic_conflict.py`
+### 5. Validate Frontmatter
+```bash
+python tools/frontmatter_validator.py knowledge-graph/
+```
+**Input:** Entity files
+**Output:** Pass/fail report
+**Fails on:** Missing required fields, invalid domains, malformed YAML
 
-### C. Relationship Graph Visualization (Medium Priority)
+### 6. Check Wikilinks
+```bash
+python tools/wikilink_checker.py knowledge-graph/
+```
+**Input:** Entity files
+**Output:** Broken link report
+**Fails on:** Dead wikilinks, orphaned files
 
-**Problem:** Entity relationships exist as wikilinks in YAML but have no visual representation.
+### 7. Generate Statistics
+```bash
+python tools/entity_stats.py
+```
+**Input:** Entity files
+**Output:** Coverage report, domain distribution, conflict summary
 
-**Recommendation:**
-- Generate a Mermaid or D3.js relationship graph from `knowledge-graph/` entity files
-- Show domain clustering, conflict hotspots, and connection density
-- Integrate as a GitHub Pages site or Obsidian canvas
+---
 
-**New tool:** `relationship_graph.py`
+## Quality Gates (Before Commit)
 
-### D. Chapter-Entity Mapping Agent (Medium Priority)
+| Gate | Command | Required |
+|------|---------|----------|
+| YAML Schema | `python tools/frontmatter_validator.py knowledge-graph/` | ✓ Exit 0 |
+| Wikilinks | `python tools/wikilink_checker.py knowledge-graph/` | ✓ 0 broken links |
+| Canon Evidence | Source citation check in conflict_diff review | ✓ No `decanonized` without proof |
+| Statistics | `python tools/entity_stats.py` | ✓ Report generated |
 
-**Problem:** `first_appearance_chapter` and `last_referenced_chapter` fields in YAML frontmatter are mostly empty.
+**Do not commit** if any quality gate fails.
 
-**Recommendation:**
-- Create a tool that maps entities to chapter appearances using `40ChapterPlotModule.md`
-- Generate a chapter-entity matrix for narrative arc analysis
+---
 
-**New tool:** `chapter_mapper.py`
+## Domain Taxonomy
 
-### E. Narrative Consistency Checker (Medium Priority)
+See [`tools/common.py`](tools/common.py) for the `DomainEnum` class.
 
-**Problem:** With 94 documents and 39–40 chapters, consistency errors across timeline, character attributes, and physics rules are likely.
+| Domain | Examples | Entities |
+|--------|----------|----------|
+| `character` | Kael, Juna, Michael, Sophia | Characters, personas, identities |
+| `alter-system` | Kael's alters, AEGIS-mirror | Fragmented consciousnesses |
+| `world` | Kernwelt, Überwelt, Prototopia | Locations, worlds, dimensions |
+| `physics` | DKT (Dual Kernel Theory), Kohärenz-Kernel | Physical laws, theories |
+| `aegis` | AEGIS, Primal Directive | AI antagonist and rules |
+| `narrative` | Narrative arcs, plot points | Story structure |
+| `style` | Writing conventions, tone | Stylistic choices |
+| `philosophy` | Consciousness, identity, freedom | Philosophical concepts |
+| `theme` | Fragmentation, autonomy, control | Thematic threads |
+| `mechanic` | K-J Verbindung, resonance | Narrative mechanics |
+| `juna` | Juna connection mechanics | External/real connection |
+| `fundament` | Riss (rift), primary concepts | Foundational concepts |
+| `mathematics` | Monster group, topological framework | Mathematical structures |
 
-**Recommendation:**
-- Build a rule-based consistency checker validating:
-  - Character attributes remain stable (or documented changes)
-  - Timeline events don't contradict across chapters
-  - Location descriptions are consistent
-  - Physics rules (DKT, Landauer Principle) are applied uniformly
+---
 
-**New tool:** `consistency_checker.py`
+## YAML Frontmatter Schema
 
-### F. Interactive Query Agent (Low Priority)
+All entity files require:
 
-**Problem:** Finding information across 94 documents requires manual searching.
+```yaml
+---
+title: Entity Name
+id: kebab-case-id
+domain: character | alter-system | ... (from DomainEnum)
+canon_status: confirmed | disputed | uncertain | decanonized
+sources:
+  - Markdown-docs/file.md:line
+  - Markdown-docs/other.md:line-range
+related:
+  - related-entity-id
+tags:
+  - tag1
+  - tag2
+---
+```
 
-**Recommendation:**
-- Build a RAG (Retrieval-Augmented Generation) interface over the corpus
-- Natural language queries like "What is the relationship between Kael and Juna?" or "How does the Landauer Principle apply in KW3?"
-- Index both `Markdown-docs/` and `knowledge-graph/` for comprehensive answers
+**Canon Status Hierarchy:** `confirmed` > `disputed` > `uncertain` > `decanonized`
 
-### G. Multi-Language Documentation Agent (Low Priority)
+Never set `decanonized` without source proof.
 
-**Problem:** Research documents are in German, tooling docs are in English. No systematic translation layer.
+---
 
-**Recommendation:**
-- Auto-generate English summaries for each German research document
-- Maintain a bilingual glossary in `knowledge-graph/_index/glossary.md`
+## Recommended Improvements
+
+| Priority | Task | Effort | Status |
+|----------|------|--------|--------|
+| High | Full corpus extraction (94 files, currently 1) | High | Pending |
+| High | Semantic conflict resolution (embeddings) | High | Proposed |
+| Medium | Relationship graph visualization (Mermaid) | Medium | Proposed |
+| Medium | Chapter-entity mapping (narrative arcs) | Medium | Proposed |
+| Medium | Narrative consistency checker (rules) | Medium | Proposed |
+| Low | Interactive query agent (RAG over corpus) | High | Proposed |
+| Low | Bilingual glossary generator (German/English) | Medium | Proposed |
+
+See [`agents.md`](agents.md) section "Recommended Agent Improvements" for details.
 
 ---
 
@@ -211,71 +206,57 @@ python tools/entity_stats.py
 ```
 Scanner → XRef → Generator → Validator → Stats
 ```
-Each step depends on the previous. Run in order.
+Each step depends on the previous.
 
-### Parallel Validation Pattern (Recommended)
+### Parallel Validation (Recommended)
 ```
                     ┌→ frontmatter_validator
 entity_generator →  ├→ wikilink_checker
                     └→ entity_stats
 ```
-Validation tools can run in parallel after generation.
-
-### Watch Pattern (Recommended for Development)
-```
-[file change detected] → auto-validate → report errors → suggest fixes
-```
-Use file watchers to trigger validation on save during manual entity editing.
+Run validators in parallel after generation.
 
 ### Conflict Resolution Pattern
 ```
-xref_finder → conflict_diff (manual) → canon_resolver → entity_generator
+xref_finder → conflict_diff (manual) → entity_generator
 ```
-High-conflict entities require human review before generation.
+High-conflict entities require human review.
 
 ---
 
-## Proposed New Tools
+## Contributing Rules
 
-| Tool | Purpose | Input | Output |
-|------|---------|-------|--------|
-| `semantic_conflict.py` | Embedding-based conflict detection | `knowledge-graph/` + `Markdown-docs/` | Grouped semantic conflicts |
-| `relationship_graph.py` | Entity relationship visualization | `knowledge-graph/` | SVG/HTML/Mermaid graph |
-| `chapter_mapper.py` | Map entities to chapter appearances | `knowledge-graph/` + chapter docs | Chapter-entity matrix |
-| `consistency_checker.py` | Narrative consistency validation | `knowledge-graph/` + `Markdown-docs/` | Consistency report |
-| `glossary_generator.py` | Bilingual term glossary | `knowledge-graph/` + `Markdown-docs/` | `_index/glossary.md` |
-| `canon_resolver.py` | Semi-automated canon status resolution | Conflict data + sources | Updated entity files |
+1. **Read `CLAUDE.md` first** — critical rules about invention, schema, German language
+2. **Never invent content** — trace all data to `Markdown-docs/` sources
+3. **Run validators** — commit only after `frontmatter_validator.py` passes
+4. **Use kebab-case IDs** — e.g., `kohärenz-kernel.md` (German chars preserved)
+5. **Respect domain taxonomy** — only use valid domains from `tools/common.py`
+6. **Document sources** — every claim needs file + line reference
+7. **German narrative, English tooling** — do not translate research documents
+8. **`Markdown-docs/` is read-only** — modify only when explicitly instructed
 
 ---
 
-## Metrics & Quality Gates
+## Current Metrics
 
-### Current State
 | Metric | Current | Target |
 |--------|---------|--------|
 | Entities extracted | 15 | 80+ |
 | Corpus coverage | 1/94 (1%) | 94/94 (100%) |
 | Confirmed canon | 0 | 70%+ |
-| Disputed entities | 12 | <10% of total |
-| Wikilink integrity | Not validated | 0 broken links |
+| Disputed entities | 12 | <10% |
+| Broken wikilinks | TBD | 0 |
 | Chapter mapping | 0% | 100% |
-
-### Quality Gates (before merging entity changes)
-1. `frontmatter_validator.py` exits 0
-2. `wikilink_checker.py` reports 0 broken links
-3. No new `decanonized` entries without source citation
-4. All `confirmed` entries have ≥2 source references
 
 ---
 
-## Contributing as an Agent
+## References
 
-When working on this repository:
-
-1. **Always read `CLAUDE.md` first** — critical rules about content invention, schema, and German language preservation
-2. **Run validators after changes** — never commit entity files without passing `frontmatter_validator.py`
-3. **Trace everything to sources** — every claim must reference specific files and line numbers in `Markdown-docs/`
-4. **Respect the domain taxonomy** — use only valid domains from `DomainEnum` in `tools/common.py`
-5. **Document your work** — update `Process.log` with extraction steps and decisions
-6. **Never modify `Markdown-docs/`** — these are read-only source-of-truth files unless explicitly instructed
-7. **Use kebab-case for entity IDs** — e.g., `kohärenz-kernel.md`, German characters preserved
+| File | Purpose |
+|------|---------|
+| [`CLAUDE.md`](CLAUDE.md) | Project conventions, critical rules |
+| [`Plan.md`](Plan.md) | Project roadmap, section 6 has schema details |
+| [`tools/common.py`](tools/common.py) | Domain enum, Pydantic models, shared utilities |
+| [`knowledge-graph/`](knowledge-graph/) | Entity files organized by domain |
+| [`Markdown-docs/`](Markdown-docs/) | Source narratives (read-only) |
+| [`tools/fixtures/test-source.md`](tools/fixtures/test-source.md) | Test fixture for validation |
