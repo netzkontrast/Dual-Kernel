@@ -340,3 +340,63 @@ grep "disputed\|uncertain" knowledge-graph/*/*.md | cut -d: -f1 | sort -u
 
 python tools/wikilink_checker.py knowledge-graph/
 ```
+
+## Available Agent Skills and Triggers
+
+The following skills are available in this repository. They are automatically triggered by Claude Code based on the user's intent or specific keywords.
+
+- **ab-test-setup**: **Trigger/Purpose:** Structured guide for setting up A/B tests with mandatory gates for hypothesis, metrics, and execution readiness.
+- **airflow-dag-patterns**: **Triggers when:** Build production Apache Airflow DAGs with best practices for operators, sensors, testing, and deployment. Use when creating data pipelines, orchestrating workflows, or scheduling batch jobs.
+- **api-patterns**: **Trigger/Purpose:** API design principles and decision-making. REST vs GraphQL vs tRPC selection, response formats, versioning, pagination.
+- **architecture-decision-records**: **Trigger/Purpose:** Comprehensive patterns for creating, maintaining, and managing Architecture Decision Records (ADRs) that capture the context and rationale behind significant technical decisions.
+- **architecture-patterns**: **Trigger/Purpose:** Master proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design to build maintainable, testable, and scalable systems.
+- **async-python-patterns**: **Trigger/Purpose:** Comprehensive guidance for implementing asynchronous Python applications using asyncio, concurrent programming patterns, and async/await for building high-performance, non-blocking systems.
+- **backend-dev-guidelines**: **Triggers when:** You are a senior backend engineer operating production-grade services under strict architectural and reliability constraints. Use when routes, controllers, services, repositories, express middleware, or prisma database access.
+- **browser-automation**: **Trigger/Purpose:** You are a browser automation expert who has debugged thousands of flaky tests and built scrapers that run for years without breaking. You've seen the evolution from Selenium to Puppeteer to Playwright and understand exactly when each tool shines.
+- **changelog-automation**: **Triggers when:** Automate changelog generation from commits, PRs, and releases following Keep a Changelog format. Use when setting up release workflows, generating release notes, or standardizing commit conventions.
+- **code-review-checklist**: **Trigger/Purpose:** Comprehensive checklist for conducting thorough code reviews covering functionality, security, performance, and maintainability
+- **commit**: **Trigger/Purpose:** ALWAYS use this skill when committing code changes — never commit directly without it. Creates commits following Sentry conventions with proper conventional commit format and issue references. Trigger on any commit, git commit, save changes, or commit message task.
+- **concise-planning**: **Triggers when:** Use when a user asks for a plan for a coding task, to generate a clear, actionable, and atomic checklist.
+- **cqrs-implementation**: **Triggers when:** Implement Command Query Responsibility Segregation for scalable architectures. Use when separating read and write models, optimizing query performance, or building event-sourced systems.
+- **create-pr**: **Triggers when:** Alias for sentry-skills:pr-writer. Use when users explicitly ask for "create-pr" or reference the legacy skill name. Redirects to the canonical PR writing workflow.
+- **data-engineer**: **Trigger/Purpose:** Build scalable data pipelines, modern data warehouses, and real-time streaming architectures. Implements Apache Spark, dbt, Airflow, and cloud-native data platforms.
+- **database-design**: **Trigger/Purpose:** Database design principles and decision-making. Schema design, indexing strategy, ORM selection, serverless databases.
+- **dbt-transformation-patterns**: **Trigger/Purpose:** Production-ready patterns for dbt (data build tool) including model organization, testing strategies, documentation, and incremental processing.
+- **ddd-context-mapping**: **Trigger/Purpose:** Map relationships between bounded contexts and define integration contracts using DDD context mapping patterns.
+- **ddd-strategic-design**: **Trigger/Purpose:** Design DDD strategic artifacts including subdomains, bounded contexts, and ubiquitous language for complex business domains.
+- **ddd-tactical-patterns**: **Trigger/Purpose:** Apply DDD tactical patterns in code using entities, value objects, aggregates, repositories, and domain events with explicit invariants.
+- **django-pro**: **Trigger/Purpose:** Master Django 5.x with async views, DRF, Celery, and Django Channels. Build scalable web applications with proper architecture, testing, and deployment.
+- **documentation-generation-doc-generate**: **Trigger/Purpose:** You are a documentation expert specializing in creating comprehensive, maintainable documentation from code. Generate API docs, architecture diagrams, user guides, and technical references using AI-powered analysis and industry best practices.
+- **documentation-templates**: **Trigger/Purpose:** Documentation templates and structure guidelines. README, API docs, code comments, and AI-friendly documentation.
+- **domain-driven-design**: **Trigger/Purpose:** Plan and route Domain-Driven Design work from strategic modeling to tactical implementation and evented architecture patterns.
+- **e2e-testing-patterns**: **Trigger/Purpose:** Build reliable, fast, and maintainable end-to-end test suites that provide confidence to ship code quickly and catch regressions before users do.
+- **embedding-strategies**: **Trigger/Purpose:** Guide to selecting and optimizing embedding models for vector search applications.
+- **event-sourcing-architect**: **Trigger/Purpose:** Expert in event sourcing, CQRS, and event-driven architecture patterns. Masters event store design, projection building, saga orchestration, and eventual consistency patterns. Use PROACTIVELY for event-sourced systems, audit trail requirements, or complex domain modeling with temporal queries.
+- **event-store-design**: **Triggers when:** Design and implement event stores for event-sourced systems. Use when building event sourcing infrastructure, choosing event store technologies, or implementing event persistence patterns.
+- **fastapi-pro**: **Trigger/Purpose:** Build high-performance async APIs with FastAPI, SQLAlchemy 2.0, and Pydantic V2. Master microservices, WebSockets, and modern Python async patterns.
+- **fastapi-templates**: **Triggers when:** Create production-ready FastAPI projects with async patterns, dependency injection, and comprehensive error handling. Use when building new FastAPI applications or setting up backend API projects.
+- **frontend-developer**: **Trigger/Purpose:** Build React components, implement responsive layouts, and handle client-side state management. Masters React 19, Next.js 15, and modern frontend architecture.
+- **git-advanced-workflows**: **Trigger/Purpose:** Master advanced Git techniques to maintain clean history, collaborate effectively, and recover from any situation with confidence.
+- **git-pushing**: **Triggers when:** Stage all changes, create a conventional commit, and push to the remote branch. Use when explicitly asks to push changes (\"push this\", \"commit and push\"), mentions saving work to remote (\"save to github\", \"push to remote\"), or completes a feature and wants to share it.
+- **kaizen**: **Trigger/Purpose:** Guide for continuous improvement, error proofing, and standardization. Use this skill when the user wants to improve code quality, refactor, or discuss process improvements.
+- **kohaerenz-explorer**: **Trigger/Purpose:** Interactive tool command.
+- **lint-and-validate**: **Trigger/Purpose:** MANDATORY: Run appropriate validation tools after EVERY code change. Do not finish a task until the code is error-free.
+- **microservices-patterns**: **Trigger/Purpose:** Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems.
+- **projection-patterns**: **Triggers when:** Build read models and projections from event streams. Use when implementing CQRS read sides, building materialized views, or optimizing query performance in event-sourced systems.
+- **python-patterns**: **Trigger/Purpose:** Python development principles and decision-making. Framework selection, async patterns, type hints, project structure. Teaches thinking, not copying.
+- **python-pro**: **Trigger/Purpose:** Master Python 3.12+ with modern features, async programming, performance optimization, and production-ready practices. Expert in the latest Python ecosystem including uv, ruff, pydantic, and FastAPI.
+- **python-testing-patterns**: **Triggers when:** Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices.
+- **receiving-code-review**: **Trigger/Purpose:** Code review requires technical evaluation, not emotional performance.
+- **requesting-code-review**: **Triggers when:** Use when completing tasks, implementing major features, or before merging to verify work meets requirements
+- **saga-orchestration**: **Trigger/Purpose:** Patterns for managing distributed transactions and long-running business processes.
+- **senior-architect**: **Trigger/Purpose:** Complete toolkit for senior architect with modern tools and best practices.
+- **senior-fullstack**: **Trigger/Purpose:** Complete toolkit for senior fullstack with modern tools and best practices.
+- **skill-creator**: **Trigger/Purpose:** To create new CLI skills following Anthropic's official best practices with zero manual configuration. This skill automates brainstorming, template application, validation, and installation processes while maintaining progressive disclosure patterns and writing style standards.
+- **skill-developer**: **Trigger/Purpose:** Comprehensive guide for creating and managing skills in Claude Code with auto-activation system, following Anthropic's official best practices including the 500-line rule and progressive disclosure pattern.
+- **stripe-integration**: **Trigger/Purpose:** Master Stripe payment processing integration for robust, PCI-compliant payment flows including checkout, subscriptions, webhooks, and refunds.
+- **systematic-debugging**: **Triggers when:** Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+- **test-driven-development**: **Triggers when:** Use when implementing any feature or bugfix, before writing implementation code
+- **test-fixing**: **Triggers when:** Systematically identify and fix all failing tests using smart grouping strategies. Use when explicitly asks to fix tests (\"fix these tests\", \"make tests pass\"), reports test failures (\"tests are failing\", \"test suite is broken\"), or completes implementation and wants tests passing.
+- **vector-database-engineer**: **Trigger/Purpose:** Expert in vector databases, embedding strategies, and semantic search implementation. Masters Pinecone, Weaviate, Qdrant, Milvus, and pgvector for RAG applications, recommendation systems, and similar
+- **verification-before-completion**: **Triggers when:** Claiming work is complete without verification is dishonesty, not efficiency. Use when ANY variation of success/completion claims, ANY expression of satisfaction, or ANY positive statement about work state.
+- **writing-skills**: **Triggers when:** Use when creating, updating, or improving agent skills.
