@@ -60,21 +60,6 @@
       "path": "skills/stripe-integration/SKILL.md",
       "user_invocable": true
     },
-    "skill-creator": {
-      "description": "Design effective new skills with proper structure and triggers.",
-      "path": "skills/skill-creator/SKILL.md",
-      "user_invocable": true
-    },
-    "skill-developer": {
-      "description": "Implement triggers, hooks, and skill lifecycle management.",
-      "path": "skills/skill-developer/SKILL.md",
-      "user_invocable": true
-    },
-    "writing-skills": {
-      "description": "Improve clarity and structure of skill instructions.",
-      "path": "skills/writing-skills/SKILL.md",
-      "user_invocable": true
-    },
     "documentation-generation-doc-generate": {
       "description": "Generate maintainable technical documentation.",
       "path": "skills/documentation-generation-doc-generate/SKILL.md",
