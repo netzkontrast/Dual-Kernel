@@ -266,6 +266,11 @@
       {
         "type": "command",
         "command": "./.claude/hooks/session-start.sh"
+      },
+      {
+        "type": "command",
+        "command": "python3 ./.claude/hooks/context-compiler-hook.py",
+        "statusMessage": "Compiling context from skills..."
       }
     ],
     "UserPromptSubmit": [
