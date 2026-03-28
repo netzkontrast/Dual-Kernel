@@ -15,15 +15,15 @@ During the refactoring of `skill-creator`, `writing-skills`, `skill-developer`, 
 
 ### Cluster 1: Domain-Driven Design (DDD) & Event Sourcing Architecture
 **Skills to Merge:**
-- `domain-driven-design`
-- `ddd-strategic-design`
-- `ddd-tactical-patterns`
-- `ddd-context-mapping`
-- `event-sourcing-architect`
-- `event-store-design`
-- `cqrs-implementation`
-- `projection-patterns`
-- `saga-orchestration`
+- `domain-driven-design` (Audited)
+- `ddd-strategic-design` (Audited)
+- `ddd-tactical-patterns` (Audited)
+- `ddd-context-mapping` (Audited)
+- `event-sourcing-architect` (Audited)
+- `event-store-design` (Audited)
+- `cqrs-implementation` (Audited)
+- `projection-patterns` (Audited)
+- `saga-orchestration` (Audited)
 
 **Refactoring Strategy:**
 Create a unified **`architecture-ddd-event-sourcing`** skill. The root `SKILL.md` acts as an Architectural Decision Record (ADR) dispatcher. Break tactical implementations (CQRS, Sagas) and strategic modeling (Context Maps) into separate files under `references/architecture` and `references/patterns`.
@@ -84,7 +84,7 @@ Create a unified **`data-engineering-ai`** skill. Split the knowledge base into 
 - `documentation-generation-doc-generate`
 - `documentation-templates`
 - `architecture-decision-records`
-- `architecture-patterns`
+- `architecture-patterns` (Audited)
 - `microservices-patterns`
 - `backend-dev-guidelines`
 - `senior-architect`
