@@ -25,3 +25,30 @@ The agent is forced to context-switch between `domain-driven-design`, `ddd-strat
 ## Ecosystem Recommendation
 **Action:** Consolidate into `architecture-ddd-event-sourcing`.
 Create a unified root `SKILL.md` that acts as an Architectural Decision Record (ADR) dispatcher. Break the individual tactical implementations (CQRS, Sagas) and strategic modeling (Context Maps) into separate markdown files under `references/architecture/` and `references/patterns/` within the new skill directory.
+
+## Cluster 2: Python Backend Mastery
+
+| Skill Name | Coverage / Score | Gap / Overlap |
+|------------|------------------|---------------|
+| python-pro | 72% | Overlaps with other Python skills. Needs merging. |
+| python-patterns | 69% | Overlaps with other Python skills. Needs merging. |
+| async-python-patterns | 72% | Overlaps with other Python skills. Needs merging. |
+| fastapi-pro | 72% | Overlaps with other Python skills. Needs merging. |
+| fastapi-templates | 78% | Overlaps with other Python skills. Needs merging. |
+| django-pro | 76% | Overlaps with other Python skills. Needs merging. |
+
+## Cluster 5: Data & Vector Engineering (Partial)
+
+| Skill Name | Coverage / Score | Gap / Overlap |
+|------------|------------------|---------------|
+| data-engineer | 72% | Overlaps with other Data/AI skills. Needs merging. |
+| dbt-transformation-patterns | 72% | Overlaps with other Data/AI skills. Needs merging. |
+| airflow-dag-patterns | 78% | Overlaps with other Data/AI skills. Needs merging. |
+| vector-database-engineer | 72% | Overlaps with other Data/AI skills. Needs merging. |
+
+## Analysis (Batch 2)
+The Python ecosystem contains 6 specific skills separating fundamental Python, Async patterns, FastAPI, and Django. This causes conflict between standard Python rules and framework-specific rules. The Data ecosystem similarly isolates ETL tools (Airflow/dbt) from modern AI Data (Vector DBs).
+
+## Ecosystem Recommendation (Batch 2)
+**Action:** Consolidate Python into `python-backend-engineering` grouped by framework (`fastapi`, `django`) and language features (`async`, `patterns`) under `references/`.
+**Action:** Consolidate Data into `data-engineering-ai` by splitting knowledge into traditional ETL (dbt, Airflow) and Modern AI Data within `references/`.
