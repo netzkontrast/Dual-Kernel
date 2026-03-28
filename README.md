@@ -71,6 +71,17 @@ Dual-Kernel/
 | **Fundament** | Core concepts underlying all domains | Riss (rift/tear), coherence vs. collapse |
 | **Mechanic** | Narrative/world mechanics and rules | K-J Verbindung, Riss-Mandat, Ratchet-Prinzip |
 
+## Memory Architecture (Mnemonic)
+
+The project heavily utilizes a **[MIF Level 3](https://mif-spec.dev/) filesytem-based memory system**, driven by the [zircote/mnemonic](https://github.com/zircote/mnemonic) protocol. This system guarantees that our autopoietic, multi-agent loop retains an *append-only*, immutable history of its decisions, failures, and context-engineering iterations.
+
+The Memory system uses a cognitive triad of namespaces:
+- **`_semantic/`**: Organizational-wide facts, architectural decisions, and knowledge.
+- **`_episodic/`**: Iteration histories, sessions, blockers, and incidents (e.g., `iteration-history.memory.md`).
+- **`_procedural/`**: Context-compiler patterns, runbooks, and migrations.
+
+The `Memory Integrator` skill ensures that at the end of every agent iteration, variables and lessons learned are permanently appended to the ledger via `/mnemonic:capture`, avoiding memory degradation and loss of the system's evolutionary trajectory.
+
 ## ETL Pipeline
 
 The project includes a Python-based knowledge graph extraction and analysis pipeline:

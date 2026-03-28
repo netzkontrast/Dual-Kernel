@@ -34,16 +34,16 @@ Map the extracted lessons to the core domains of the Kohärenz Protokoll:
 - **Topology:** How did the shape of the system change?
 - **Systems Theory (Autopoiesis):** Did the self-referential loop sustain itself or require external correction?
 
-### 4. The Append-Only Appendix (The "Commitment" Phase)
-You must **never overwrite** previous lessons. Instead, formulate the new insights as a distinct, dated entry.
-When updating the Memory Interchange Format (MIF) files (or creating a new iteration plan), append the extracted lessons to an **"Appendix of Extracted Lessons"** section at the bottom of the memory file or the current plan document.
+### 4. The Mnemonic Capture Phase (The "Commitment" Phase)
+You must **never overwrite** previous lessons. Instead, formulate the new insights and trigger the Mnemonic system to create a new immutable entry.
+To do this, use the `/mnemonic:capture` command from the core skill, supplying the appropriate Mnemonic namespace (e.g., `_episodic/sessions` or `_semantic/decisions`) and your summarized title.
 
-## Format Requirements for the Appendix Entry
+## Format Requirements for the Captured Entry
 
-Append the following structure to the memory/plan document:
+When running the capture tool or writing the memory directly, you must adhere to the **MIF Level 3** standard format and supply Dual-Kernel mapping directly in the body:
 
 ```markdown
-### Iteration [Number or Date/Hash] - Memory Integration
+# Iteration [Number or Date/Hash] - Memory Integration
 
 **Context Variables:**
 - Prompt Framework Used: [Framework]
@@ -63,6 +63,6 @@ Append the following structure to the memory/plan document:
 
 ## Constraints
 
-- **DO NOT** delete or summarize previous appendix entries. They must remain as an immutable ledger of the system's evolution.
+- **DO NOT** modify or delete existing `.memory.md` files. Only create new ones using the `/mnemonic:capture` protocol or by writing a new MIF Level 3 `.memory.md` file.
 - **DO NOT** skip this step. The autopoietic loop relies on this reflection to achieve coherence.
 - **DO NOT** resolve narrative conflicts from the ETL pipeline here; this is for *meta-system* (agent) memory integration.
