@@ -30,12 +30,12 @@ Create a unified **`architecture-ddd-event-sourcing`** skill. The root `SKILL.md
 
 ### Cluster 2: Python Backend Mastery
 **Skills to Merge:**
-- `python-pro`
-- `python-patterns`
-- `async-python-patterns`
-- `fastapi-pro`
-- `fastapi-templates`
-- `django-pro`
+- `python-pro` (Audited)
+- `python-patterns` (Audited)
+- `async-python-patterns` (Audited)
+- `fastapi-pro` (Audited)
+- `fastapi-templates` (Audited)
+- `django-pro` (Audited)
 
 **Refactoring Strategy:**
 Create a unified **`python-backend-engineering`** skill. Group by framework (`fastapi`, `django`) and core language features (`async`, `patterns`) under `references/`. This prevents conflict between standard Python rules and FastAPI specific async rules.
@@ -70,10 +70,10 @@ Create a unified **`version-control-and-review`** skill. This tracks the entire 
 
 ### Cluster 5: Data & Vector Engineering
 **Skills to Merge:**
-- `data-engineer`
-- `dbt-transformation-patterns`
-- `airflow-dag-patterns`
-- `vector-database-engineer`
+- `data-engineer` (Audited)
+- `dbt-transformation-patterns` (Audited)
+- `airflow-dag-patterns` (Audited)
+- `vector-database-engineer` (Audited)
 - `embedding-strategies`
 
 **Refactoring Strategy:**
