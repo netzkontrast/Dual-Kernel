@@ -259,6 +259,11 @@
       "description": "Standardize docs, handoffs, and project documentation.",
       "path": "skills/documentation-templates/SKILL.md",
       "user_invocable": true
+    },
+    "memory-integrator": {
+      "description": "Mandatory skill for every iteration to manage the 'changing memories (not appending)' problem. Reflects on past iterations, extracts variables/lessons, and integrates them into an append-only appendix.",
+      "path": "skills/memory-integrator/SKILL.md",
+      "user_invocable": true
     }
   },
   "hooks": {
