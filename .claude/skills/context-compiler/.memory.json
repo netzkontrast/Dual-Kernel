@@ -1,0 +1,138 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "mif": "https://github.com/netzkontrast/MIF/vocab#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dk": "https://kohaerenz-protokoll.de/ontology#"
+  },
+  "@type": "CreativeWork",
+  "mif:version": "0.1.0",
+  "mif:conformanceLevel": 2,
+  "identifier": "context-compiler-memory",
+  "mif:namespace": "kohaerenz-protokoll/context-compiler",
+  "mif:iteration": 0,
+  "mif:stability": "seeding",
+  "dateCreated": "2026-03-28T00:00:00Z",
+  "dateModified": "2026-03-28T00:00:00Z",
+  "mif:adverseFrameworkHistory": [],
+  "mif:entities": [
+    {
+      "@type": "mif:Entity",
+      "mif:entityCategory": "Concept",
+      "name": "K0-Kollaps-Kernel",
+      "description": "Fragmentierung, adverses Lernen, Reibung",
+      "dk:dualKernelRole": "K0"
+    },
+    {
+      "@type": "mif:Entity",
+      "mif:entityCategory": "Concept",
+      "name": "AEGIS-System",
+      "description": "Regelstruktur, Kontrolle, Constraints",
+      "dk:dualKernelRole": "AEGIS"
+    },
+    {
+      "@type": "mif:Entity",
+      "mif:entityCategory": "Concept",
+      "name": "K1-Kohaerenz-Kernel",
+      "description": "Synthese, Integration, Emergenz",
+      "dk:dualKernelRole": "K1"
+    }
+  ],
+  "mif:memories": [
+    {
+      "@type": "mif:EpisodicMemory",
+      "mif:iterationIndex": 0,
+      "name": "K0-Seed",
+      "description": "Erster Start — kein Prior, maximale Fragmentierung",
+      "mif:event": "Initial seeding",
+      "mif:adverseFramework": null,
+      "mif:friction": "Keine Daten",
+      "mif:emergentQuestion": "Was destilliert der erste echte Compile-Durchlauf?",
+      "keywords": ["kael", "trauma", "fragmentation", "seed", "k0"],
+      "prov:generatedAtTime": "2026-03-28T00:00:00Z",
+      "mif:relationships": [
+        {
+          "mif:relationType": "precedes",
+          "mif:targetMemory": "K0-Iteration-1"
+        }
+      ]
+    },
+    {
+      "@type": "mif:ProceduralMemory",
+      "mif:iterationIndex": 0,
+      "name": "AEGIS-CoreRules",
+      "description": "Grundlegende Constraints und Regeln des Context-Compilers",
+      "mif:rules": [
+        "no-content-duplication-from-linked-skills",
+        "no-commit-compiled-context",
+        "rotate-adverse-frameworks-no-repeat",
+        "judge-score-gate-3.5-minimum"
+      ],
+      "mif:activeSkillCount": 12,
+      "mif:activeSkills": [
+        "context-fundamentals",
+        "context-degradation",
+        "context-compression",
+        "context-optimization",
+        "context-engineering-collection",
+        "multi-agent-patterns",
+        "memory-systems",
+        "tool-design",
+        "evaluation",
+        "filesystem-context",
+        "hosted-agents",
+        "prompt-architect"
+      ],
+      "keywords": ["aegis", "system", "control", "rules", "constraints"],
+      "prov:generatedAtTime": "2026-03-28T00:00:00Z"
+    },
+    {
+      "@type": "mif:SemanticMemory",
+      "mif:iterationIndex": 0,
+      "name": "K1-Seed",
+      "description": "Initialer Wissensstand — Seed für Iteration 1",
+      "mif:synthesis": "Erster Start — kein Prior. Maximale Fragmentierung (K0 dominiert).",
+      "mif:convergenceState": "K0 und AEGIS vollständig getrennt — keine gemeinsame Sprache",
+      "mif:nextSeed": "signal-density-test aus context-fundamentals",
+      "mif:nextIterationQuestion": "Welches der 12 Skills trägt den höchsten Informationsgehalt pro Token?",
+      "mif:stabilityScore": 0.0,
+      "mif:activePrinciples": [],
+      "keywords": ["kohaerenz-kernel", "synthesis", "integration", "seed", "k1"],
+      "prov:generatedAtTime": "2026-03-28T00:00:00Z",
+      "mif:relationships": [
+        {
+          "mif:relationType": "synthesizes",
+          "mif:targetMemory": "K0-Seed"
+        },
+        {
+          "mif:relationType": "synthesizes",
+          "mif:targetMemory": "AEGIS-CoreRules"
+        }
+      ]
+    }
+  ],
+  "mif:rotationPolicy": {
+    "maxIterations": 7,
+    "onRotation": "compress-oldest-k0-into-k1",
+    "stabilityThreshold": 0.10,
+    "stabilitySignal": "kohaerenz-erreicht"
+  },
+  "mif:externalReferences": [
+    {
+      "@type": "mif:Citation",
+      "name": "MIF Specification",
+      "url": "https://github.com/netzkontrast/MIF"
+    },
+    {
+      "@type": "mif:Citation",
+      "name": "soul.md Framework",
+      "url": "https://github.com/netzkontrast/soul.md"
+    },
+    {
+      "@type": "mif:Citation",
+      "name": "Dual-Kernel Theory",
+      "description": "DKT — Kohärenz Protokoll Physik-Framework",
+      "dk:canonStatus": "confirmed"
+    }
+  ]
+}
