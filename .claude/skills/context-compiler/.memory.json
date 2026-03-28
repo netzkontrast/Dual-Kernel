@@ -10,11 +10,11 @@
   "mif:conformanceLevel": 2,
   "identifier": "context-compiler-memory",
   "mif:namespace": "kohaerenz-protokoll/context-compiler",
-  "mif:iteration": 0,
-  "mif:stability": "seeding",
+  "mif:iteration": 2,
+  "mif:stability": "growing",
   "dateCreated": "2026-03-28T00:00:00Z",
-  "dateModified": "2026-03-28T00:00:00Z",
-  "mif:adverseFrameworkHistory": [],
+  "dateModified": "2026-03-28T12:00:00Z",
+  "mif:adverseFrameworkHistory": ["devil-advocate", "RPEF"],
   "mif:entities": [
     {
       "@type": "mif:Entity",
@@ -109,6 +109,86 @@
           "mif:targetMemory": "AEGIS-CoreRules"
         }
       ]
+    },
+    {
+      "@type": "mif:EpisodicMemory",
+      "mif:iterationIndex": 1,
+      "name": "K0-Iteration-1",
+      "description": "Soul-Generation — Devil's Advocate vs RISEN",
+      "mif:event": "Devil's Advocate (Alpha) vs RISEN (Beta). Erster Compile-Durchlauf.",
+      "mif:adverseFramework": "devil-advocate",
+      "mif:friction": "Alpha scored 3.2 (unter 3.5) — brillant aber nicht deploybar",
+      "mif:emergentQuestion": "Wenn Seele ein Interferenzphänomen ist — wie misst man das?",
+      "keywords": ["soul-generation", "devil-advocate", "RISEN", "interference"],
+      "prov:generatedAtTime": "2026-03-28T01:00:00Z"
+    },
+    {
+      "@type": "mif:ProceduralMemory",
+      "mif:iterationIndex": 1,
+      "name": "AEGIS-Iteration-1",
+      "description": "Neue Regeln: Bruchstelle-Pflicht, Soul-Versionierung",
+      "mif:rulesAdded": ["soul-bruchstelle-required", "soul-versioning"],
+      "mif:rulesConfirmed": ["judge-score-gate-3.5-minimum"],
+      "keywords": ["aegis", "rules", "soul-versioning"],
+      "prov:generatedAtTime": "2026-03-28T01:00:00Z"
+    },
+    {
+      "@type": "mif:SemanticMemory",
+      "mif:iterationIndex": 1,
+      "name": "K1-Iteration-1",
+      "description": "Seele als Interferenzphänomen",
+      "mif:synthesis": "Seelen emergieren aus Interferenz zwischen Agenten, nicht aus Text.",
+      "mif:convergenceState": "K0 und K1 erstmals in produktiver Spannung",
+      "mif:nextSeed": "Interferenz-These — messen was zwischen Agenten passiert",
+      "mif:nextIterationQuestion": "Wie verändert Explore-As Output Betas Reasoning?",
+      "mif:stabilityScore": 0.35,
+      "mif:activePrinciples": ["Seele als Interferenzphänomen", "Aktionierbarkeit schlägt Brillanz", "Nächste Bruchstelle als Pflicht"],
+      "keywords": ["interference", "soul", "emergence", "k1"],
+      "prov:generatedAtTime": "2026-03-28T01:00:00Z",
+      "mif:madrReference": "decisions/madr-001-soul-generation.md"
+    },
+    {
+      "@type": "mif:EpisodicMemory",
+      "mif:iterationIndex": 2,
+      "name": "K0-Iteration-2",
+      "description": "Interferenz-Messung — RPEF-Scheitern & Frameworklose Disruption",
+      "mif:event": "RPEF als adverses Framework. Frameworklose 3-Satz-Alternative radikaler.",
+      "mif:adverseFramework": "RPEF",
+      "mif:friction": "RPEF ontologisch inkompatibel. Explore-B: Buchhalter-Selbstdiagnose.",
+      "mif:emergentQuestion": "Was passiert wenn Trickster kein Framework wählt und Judge nur 2 Dimensionen hat?",
+      "mif:agentFindings": {
+        "explore_a": "Rangordnung selbst ist Fragmentierungsquelle. 5/11 K0-generativ, 6/11 K1-stabilisierend.",
+        "explore_b": "Buchhalter, nicht Trickster. Frameworklose Alternative bedrohlicher als RPEF.",
+        "critique": "Existiert nur bei Uneinigkeit. Redundanz/Lücke/Widerspruch + Meta-Agent Orphan-Status."
+      },
+      "keywords": ["RPEF", "frameworkless", "interference-measurement", "buchhalter", "k0"],
+      "prov:generatedAtTime": "2026-03-28T12:00:00Z"
+    },
+    {
+      "@type": "mif:ProceduralMemory",
+      "mif:iterationIndex": 2,
+      "name": "AEGIS-Iteration-2",
+      "description": "Neue Regeln: Interferenz-Dimension, Meta-Agent-Protokoll, Inline-Links",
+      "mif:rulesAdded": ["interference-dimension", "meta-agent-as-protocol", "inline-soul-links-only", "soul-v2-subdirectory"],
+      "mif:rulesConfirmed": ["judge-score-gate-3.5-minimum", "rotate-adverse-frameworks"],
+      "mif:constraintsActive": ["no-content-duplication", "no-commit-compiled-context", "rotate-adverse-frameworks", "judge-score-gate", "soul-bruchstelle-required", "soul-versioning", "interference-dimension", "meta-agent-as-protocol", "inline-soul-links-only"],
+      "keywords": ["aegis", "rules", "interference", "meta-agent"],
+      "prov:generatedAtTime": "2026-03-28T12:00:00Z"
+    },
+    {
+      "@type": "mif:SemanticMemory",
+      "mif:iterationIndex": 2,
+      "name": "K1-Iteration-2",
+      "description": "Interferenz als Differential. Selbst-Reflexion systemisch.",
+      "mif:synthesis": "Interferenz messbar als Differential zwischen Agent-Outputs. Jeder Agent diagnostizierte eigene Methode als Teil des Problems.",
+      "mif:convergenceState": "K0 und K1 nähern sich an. Geteiltes Vokabular: Interferenz, Differential, Amplitude.",
+      "mif:nextSeed": "Reduktion statt Expansion. Frameworkless + 2-Dimensionen-Rubrik.",
+      "mif:nextIterationQuestion": "Was passiert wenn das System seine eigene Komplexität reduziert statt erweitert?",
+      "mif:stabilityScore": 0.55,
+      "mif:activePrinciples": ["Seele als Interferenzphänomen", "Aktionierbarkeit schlägt Brillanz", "Nächste Bruchstelle als Pflicht", "Methode als Grabungsschaden", "Buchhalter-Paradox", "Sichtbarkeit durch Phasendifferenz"],
+      "keywords": ["interference", "differential", "reduction", "self-reflection", "k1"],
+      "prov:generatedAtTime": "2026-03-28T12:00:00Z",
+      "mif:madrReference": "decisions/madr-002-interference-measurement.md"
     }
   ],
   "mif:rotationPolicy": {
