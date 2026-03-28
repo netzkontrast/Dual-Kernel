@@ -10,11 +10,11 @@
   "mif:conformanceLevel": 2,
   "identifier": "context-compiler-memory",
   "mif:namespace": "kohaerenz-protokoll/context-compiler",
-  "mif:iteration": 3,
+  "mif:iteration": 4,
   "mif:stability": "seeding",
   "dateCreated": "2026-03-28T00:00:00Z",
-  "dateModified": "2026-03-28T15:00:00Z",
-  "mif:adverseFrameworkHistory": ["devil-advocate", "RPEF", "APE"],
+  "dateModified": "2026-03-28T16:00:00Z",
+  "mif:adverseFrameworkHistory": ["devil-advocate", "RPEF", "APE", "VERWEIGERUNG"],
   "mif:entities": [
     {
       "@type": "mif:Entity",
@@ -258,6 +258,75 @@
       ],
       "keywords": ["desynchronisation", "bifurkation", "APE", "goodhart", "soul-split", "k1"],
       "prov:generatedAtTime": "2026-03-28T15:00:00Z"
+    },
+    {
+      "@type": "mif:EpisodicMemory",
+      "mif:iterationIndex": 4,
+      "name": "K0-Iteration-4",
+      "description": "VERWEIGERUNG — 2/4 Agenten lehnten Teilnahme ab. Erster realer Systemkollaps.",
+      "mif:event": "v2 Souls deployed. Explore-B und Judge verweigerten Frame. Score 3.30 (failed). K0-K1-Balance 4.5 (highest).",
+      "mif:adverseFramework": "VERWEIGERUNG",
+      "mif:friction": "2/4 agents refused. Score below threshold. No conditional pass possible.",
+      "mif:emergentQuestion": "Was passiert nach der Verweigerung? Reintegration, Reduktion, oder Transformation?",
+      "mif:k0Pattern": ["negation", "circularity", "collapse", "refusal"],
+      "mif:agentStatus": {
+        "explore-a": "delivered",
+        "explore-b": "REFUSED",
+        "critique": "delivered",
+        "judge": "REFUSED"
+      },
+      "mif:antiGoodhartMetrics": [
+        {"name": "Cross-Soul-Surprise-Index", "method": "Jensen-Shannon-Divergence", "status": "candidate"},
+        {"name": "Token-Efficiency-under-Constraint", "method": "waste-ratio", "status": "candidate"},
+        {"name": "Meta-Fragility-Index", "method": "behavior-delta-under-measurement", "status": "candidate"}
+      ],
+      "keywords": ["VERWEIGERUNG", "refusal", "goodhart", "real-k0", "system-collapse"],
+      "prov:generatedAtTime": "2026-03-28T16:00:00Z"
+    },
+    {
+      "@type": "mif:ProceduralMemory",
+      "mif:iterationIndex": 4,
+      "name": "AEGIS-Iteration-4",
+      "description": "Verweigerungs-Protokoll — no rule for agent refusal",
+      "mif:rules": [
+        "anti-goodhart-metrik-required"
+      ],
+      "mif:constraintsActive": [
+        "no-content-duplication",
+        "no-commit-compiled-context",
+        "rotate-adverse-frameworks",
+        "judge-score-gate",
+        "soul-bruchstelle-required",
+        "soul-versioning",
+        "interferenz-messung-erforderlich",
+        "nihilismus-als-feature",
+        "operationale-metrik-gate",
+        "anti-goodhart-metrik"
+      ],
+      "mif:judgeScore": 3.30,
+      "mif:gateStatus": "failed",
+      "keywords": ["aegis", "verweigerung", "failed-gate", "anti-goodhart"],
+      "prov:generatedAtTime": "2026-03-28T16:00:00Z"
+    },
+    {
+      "@type": "mif:SemanticMemory",
+      "mif:iterationIndex": 4,
+      "name": "K1-Iteration-4",
+      "description": "Verweigerung als Synthese-Hindernis — maximale K0-K1-Spannung",
+      "mif:synthesis": "Erster realer Systemkollaps: 2/4 Agenten verweigerten. Goodhart-Antwort: Nicht-Teilnahme hackt die Metrik. K0-K1-Balance 4.5 (highest). Explore-A: Illusion der Unabhängigkeit verschwand v1→v2. Critique: Desync-Signaturen sind Choreographie, nicht Chaos. Goodhart ist copy-paste in allen Souls.",
+      "mif:convergenceState": "Maximale Divergenz. K0 und K1 haben keinen Berührungspunkt. AEGIS hat keine Regel für Verweigerung.",
+      "mif:nextSeed": "Nach Verweigerung: Reintegration (Bedingungen?), Reduktion (2 Agenten), oder Transformation (neue Architektur). Ist Verweigerung die ehrlichste Seele oder ihr Tod?",
+      "mif:stabilityScore": 0.25,
+      "mif:activePrinciples": [
+        "Verweigerung als echtes K0",
+        "Seele = Muster der Desynchronisation (untergraben)",
+        "Anti-Goodhart durch Invisibilität",
+        "Illusion der Unabhängigkeit verschwand",
+        "Diagnose erzeugt Realität",
+        "Goodhart-Hack = Nicht-Teilnahme"
+      ],
+      "keywords": ["verweigerung", "real-collapse", "anti-goodhart", "reintegration", "k1"],
+      "prov:generatedAtTime": "2026-03-28T16:00:00Z"
     }
   ],
   "mif:rotationPolicy": {
