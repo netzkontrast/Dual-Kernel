@@ -54,6 +54,16 @@ For detailed project context, see [`CLAUDE.md`](CLAUDE.md). This file documents 
 - Cross-check `canon_status` against source evidence
 - Flag entities with HIGH conflict scores for manual review
 
+### 4. Memory Integrator & Custodian (Mnemonic System)
+
+**Purpose:** Manage the "changing memories" problem through strict, append-only history tracking utilizing the [MIF Level 3](https://mif-spec.dev/) format.
+
+**Responsibilities:**
+- Run `/mnemonic:capture` to extract variables and lessons learned at the end of each iteration.
+- Ensure the memory files inside `_episodic/`, `_semantic/`, and `_procedural/` conform to the `zircote/mnemonic` schema.
+- Cross-session coordination via the `.blackboard` logic.
+- Execute garbage collection (`/mnemonic:gc`), deduplication, and ontology validation (`/mnemonic:validate`) across the repository's active memory pool.
+
 ---
 
 ## Verified Agent Commands

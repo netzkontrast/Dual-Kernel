@@ -50,6 +50,12 @@ fi
 if ! grep -q "VIRTUAL_ENV" "${CLAUDE_ENV_FILE}" 2>/dev/null; then
   echo "export VIRTUAL_ENV=\"${VIRTUAL_ENV}\"" >> "${CLAUDE_ENV_FILE}"
 fi
+if ! grep -q "MNEMONIC_ROOT" "${CLAUDE_ENV_FILE}" 2>/dev/null; then
+  echo "export MNEMONIC_ROOT=\"\$(pwd)\"" >> "${CLAUDE_ENV_FILE}"
+fi
+if ! grep -q "CLAUDE_PLUGIN_ROOT" "${CLAUDE_ENV_FILE}" 2>/dev/null; then
+  echo "export CLAUDE_PLUGIN_ROOT=\".claude/mnemonic\"" >> "${CLAUDE_ENV_FILE}"
+fi
 
 echo "✅ Setup complete! Virtual environment ready."
 echo "   Run: source .venv/bin/activate"

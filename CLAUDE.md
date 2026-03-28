@@ -15,7 +15,8 @@ This is **Kohärenz Protokoll** (Coherence Protocol), a narrative fiction projec
 - `tools/` -- Python extraction & analysis pipeline (13 scripts). All tools use Click CLI, Pydantic v2 models, and share `common.py`.
 - `docs/` -- PDF backups of the markdown documents. Do not modify.
 - Root docs: `README.md`, `project.md`, `Plan.md`, `SETUP.md` -- project documentation.
-- `.claude/` -- Claude Code configuration: hooks, skills, settings
+- `_episodic/`, `_semantic/`, `_procedural/` -- Mnemonic filesystem memory storage capturing autopoietic multi-agent iteration history, conflicts, and resolutions following the `MIF Level 3` format.
+- `.claude/` -- Claude Code configuration: hooks, skills, settings (includes `.claude/mnemonic/` framework files).
 - `requirements.txt` -- Python dependencies: spacy, PyYAML, rich, click
 
 ## Development Workflow
@@ -248,6 +249,12 @@ If entity generation produces unexpected output:
 - Feature branches: `feature/<description>`
 - Commit messages: conventional commits (`feat:`, `fix:`, `docs:`, `refactor:`)
 - Never commit `.venv/`, `tools/output/`, `__pycache__/`, or `*.pyc`
+
+### Mnemonic (Agent Memory System)
+**Mandatory Process:** At the end of every multi-agent loop iteration, the `Memory Integrator` must run to track context changes. Memory should NEVER be overwritten.
+- Use `/mnemonic:capture {namespace} "{title}"` to record lessons, applying variables directly to the `_semantic`, `_episodic`, or `_procedural` directories.
+- All stored memories must conform to **MIF Level 3** (YAML frontmatter + Markdown).
+- For searching historical conflicts or decisions, execute `/mnemonic:search`.
 
 ## Claude Code Integration
 
