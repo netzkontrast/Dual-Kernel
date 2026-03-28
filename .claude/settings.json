@@ -271,7 +271,7 @@
     "UserPromptSubmit": [
       {
         "type": "command",
-        "command": "python3 /home/user/Dual-Kernel/.claude/hooks/prompt-architect-hook.py",
+        "command": "python3  ./.claude/hooks/prompt-architect-hook.py",
         "statusMessage": "Analyzing prompt structure..."
       }
     ],
