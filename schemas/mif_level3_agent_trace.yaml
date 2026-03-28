@@ -1,0 +1,135 @@
+# MIF Level 3 Schema for Agent Traces and Memory Entities
+# This schema enforces the ontological constraints defined by the Dual-Kernel architecture
+# and ensures interoperability for the autopoietic skill loop.
+
+type: object
+required:
+  - id
+  - type
+  - timestamp
+  - namespace
+  - dual_kernel_mapping
+  - provenance
+  - temporal
+  - relationships
+
+properties:
+  # Level 1: Core Identity
+  id:
+    type: string
+    pattern: "^mif:[a-z0-9-]+$"
+    description: "Unique identifier for the memory trace."
+  type:
+    type: string
+    enum: [trace, incident-report, debug-session, shell-output, eval-score, refinement-step, framework-choice, architecture-choice, bias-variance-tradeoff, technology, concept, api-knowledge, system-state, component, skill-definition, runbook, design-pattern, migration]
+    description: "The specific entity type defined by the ontology."
+  timestamp:
+    type: string
+    format: date-time
+
+  # Level 2: Namespaces and Entities
+  namespace:
+    type: string
+    enum: [mif-base, dual-kernel, prompt-architect, context-skill, skill-engineer]
+  dual_kernel_mapping:
+    type: object
+    required: [cognitive_function, variance, bias, storage_tier]
+    properties:
+      cognitive_function:
+        type: string
+        enum: [exploration, exploitation, semantic_consolidation, zero_shot_reaction]
+      variance:
+        type: string
+        enum: [high, low, zero]
+        description: "High for STM/Exploration, Low for LTM/Exploitation."
+      bias:
+        type: string
+        enum: [high, low, zero]
+        description: "Low for STM/Exploration, High for LTM/Exploitation."
+      storage_tier:
+        type: string
+        enum: [STM, LTM, PM]
+
+  # Level 3: Advanced Temporal, Provenance & Graph Relationships
+  temporal:
+    type: object
+    required: [transaction_time, valid_time]
+    properties:
+      transaction_time:
+        type: string
+        format: date-time
+        description: "When the memory was recorded."
+      valid_time:
+        type: string
+        format: date-time
+        description: "When the fact was actually true/valid."
+      decay_rate:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Ebbinghaus-inspired confidence decay parameter for LTM pruning."
+
+  provenance:
+    type: object
+    required: [agent_source, confidence_score]
+    properties:
+      agent_source:
+        type: string
+        enum: [prompt-architect, context-skill, skill-engineer, system-evaluator, nyquist-layer]
+      confidence_score:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Reliability of the trace/memory."
+      derivation_chain:
+        type: array
+        items:
+          type: string
+          pattern: "^mif:[a-z0-9-]+$"
+        description: "Links to source MIF IDs this memory was derived from."
+
+  relationships:
+    type: object
+    properties:
+      caused_by:
+        type: array
+        items: { type: string }
+      resolved_by:
+        type: array
+        items: { type: string }
+      followed_by:
+        type: array
+        items: { type: string }
+      derived_from:
+        type: array
+        items: { type: string }
+      improves_upon:
+        type: array
+        items: { type: string }
+      justifies:
+        type: array
+        items: { type: string }
+      constrains:
+        type: array
+        items: { type: string }
+      depends_on:
+        type: array
+        items: { type: string }
+      relates_to:
+        type: array
+        items: { type: string }
+      defines:
+        type: array
+        items: { type: string }
+      implements:
+        type: array
+        items: { type: string }
+      orchestrates:
+        type: array
+        items: { type: string }
+      requires:
+        type: array
+        items: { type: string }
+      validates:
+        type: array
+        items: { type: string }
