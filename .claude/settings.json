@@ -432,5 +432,13 @@
         "timeout": 60
       }
     ]
+  },
+  "extraKnownMarketplaces": {
+    "agent-skills-context-engineering": {
+      "source": {
+        "source": "github",
+        "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering"
+      }
+    }
   }
 }
