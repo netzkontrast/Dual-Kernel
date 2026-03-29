@@ -1,136 +1,81 @@
 # Overall Ecosystem Audit & Refactoring Strategy
 
 ## Overview
-A total of 88 skills were analyzed and categorized into 6 domains.
+A total of 88 local AI skills were analyzed and categorized into 6 primary domains: Python, Architecture, Frontend, Testing Quality, Data, and Git Workflow.
 
-## Category Breakdown
-- **Python Skills**: 37 skills
-- **Architecture Skills**: 33 skills
-- **Frontend Skills**: 10 skills
-- **Testing Quality Skills**: 5 skills
-- **Data Skills**: 1 skills
-- **Git Workflow Skills**: 2 skills
+## The "Unified Architect" Refactoring Plan
 
-## Simplification and Combination Strategy
+The current ecosystem suffers from extreme fragmentation. 88 isolated skills compete for the LLM's context window, leading to missed triggers and inconsistent quality.
 
-### Python Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `lint-and-validate` (Score: 66%)
-- `integrate` (Score: 73%)
-- `data-engineer` (Score: 69%)
-- `agent-rules` (Score: 72%)
-- `async-python-patterns` (Score: 66%)
-- `ontology` (Score: 78%)
-- `custodian` (Score: 71%)
-- `fastapi-pro` (Score: 76%)
-- `ddd-tactical-patterns` (Score: 71%)
-- `django-pro` (Score: 79%)
-- `skill-engineering` (Score: 67%)
-- `tool-design` (Score: 75%)
-- `core` (Score: 66%)
-- `digital-brain-skill` (Score: 70%)
-- `book-sft-pipeline` (Score: 76%)
-- `interleaved-thinking` (Score: 81%)
-- `evaluation` (Score: 80%)
-- `memory-systems` (Score: 75%)
-- `embedding-strategies` (Score: 66%)
-- `filesystem-context` (Score: 73%)
-- `event-store-design` (Score: 63%)
-- `python-pro` (Score: 81%)
-- `context-optimization` (Score: 75%)
-- `skill-creator` (Score: 73%)
-- `bdi-mental-states` (Score: 70%)
-- `setup` (Score: 75%)
-- `senior-fullstack` (Score: 78%)
-- `saga-orchestration` (Score: 74%)
-- `senior-architect` (Score: 78%)
-- `kohaerenz-explorer` (Score: 72%)
-- `api-patterns` (Score: 75%)
-- `context-fundamentals` (Score: 75%)
-- `multi-agent-patterns` (Score: 76%)
-- `fastapi-templates` (Score: 61%)
-- `python-patterns` (Score: 78%)
-- `python-testing-patterns` (Score: 62%)
-- `stripe-integration` (Score: 76%)
+The strategy is to combine these into **6 Core "Architect" Skills**. Each Architect will serve as the single entry point for its domain. It will analyze the user's request, perform context gathering, and delegate execution to specialized **Submodules**.
 
-**Refactoring Plan:** Create a master `python-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+Below is the concrete Interaction Design, Submodule breakdown, and inspiration mapping for each new Architect.
 
-### Architecture Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `domain-driven-design` (Score: 66%)
-- `search` (Score: 71%)
-- `kaizen` (Score: 77%)
-- `ddd-context-mapping` (Score: 78%)
-- `context-compiler` (Score: 77%)
-- `projection-patterns` (Score: 57%)
-- `changelog-automation` (Score: 64%)
-- `context-compression` (Score: 75%)
-- `dbt-transformation-patterns` (Score: 55%)
-- `advanced-evaluation` (Score: 75%)
-- `ddd-strategic-design` (Score: 72%)
-- `test-driven-development` (Score: 72%)
-- `verification-before-completion` (Score: 81%)
-- `context-engineering-collection` (Score: 76%)
-- `comprehensive-research-agent` (Score: 75%)
-- `format` (Score: 68%)
-- `commit` (Score: 65%)
-- `blackboard` (Score: 73%)
-- `airflow-dag-patterns` (Score: 65%)
-- `cqrs-implementation` (Score: 61%)
-- `writing-skills` (Score: 66%)
-- `vector-database-engineer` (Score: 63%)
-- `test-fixing` (Score: 78%)
-- `database-design` (Score: 70%)
-- `documentation-generation-doc-generate` (Score: 69%)
-- `documentation-templates` (Score: 82%)
-- `microservices-patterns` (Score: 58%)
-- `requesting-code-review` (Score: 65%)
-- `context-degradation` (Score: 75%)
-- `event-sourcing-architect` (Score: 55%)
-- `memory-integrator` (Score: 73%)
-- `systematic-debugging` (Score: 78%)
-- `project-development` (Score: 75%)
+---
 
-**Refactoring Plan:** Create a master `architecture-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+### 1. Python Architect (`python-architect`)
+**Interaction Design:**
+Triggers on any backend, data engineering, or Python-specific task. It first detects the framework (Django vs. FastAPI) by scanning the `pyproject.toml` or `requirements.txt`. It then delegates API creation to the API Submodule and data tasks to the Data Engineering Submodule. It must hook into the `Testing Quality Architect` before finalizing any code.
 
-### Frontend Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `browser-automation` (Score: 70%)
-- `hosted-agents` (Score: 75%)
-- `frontend-developer` (Score: 72%)
-- `architecture-patterns` (Score: 61%)
-- `e2e-testing-patterns` (Score: 68%)
-- `architecture-decision-records` (Score: 75%)
-- `backend-dev-guidelines` (Score: 71%)
-- `skill-developer` (Score: 76%)
-- `receiving-code-review` (Score: 74%)
-- `prompt-architect` (Score: 75%)
+**Submodules & Inspirations:**
+- **Web Frameworks Submodule:** (Inspiration: `fastapi-pro`, `django-pro`, `fastapi-templates`, `senior-fullstack`)
+- **Async & Performance Submodule:** (Inspiration: `async-python-patterns`, `python-patterns`, `python-pro`)
+- **Integration & API Submodule:** (Inspiration: `api-patterns`, `integrate`, `stripe-integration`)
+- **AI/LLM Engineering Submodule:** (Inspiration: `embedding-strategies`, `book-sft-pipeline`, `digital-brain-skill`)
+- **Data Engineering Submodule:** (Inspiration: `data-engineer`, `ontology`, `event-store-design`)
 
-**Refactoring Plan:** Create a master `frontend-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+### 2. Architecture Architect (`architecture-architect`)
+**Interaction Design:**
+Triggers on system design, planning, or refactoring tasks. It operates highly interactively. Instead of immediately writing code, it asks 2-3 targeted questions to determine boundaries (e.g., "Is this a new microservice or part of the monolith?"). It produces Machine-Readable Architectural Decision Records (ADRs) that other Architects must read.
 
-### Testing Quality Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `concise-planning` (Score: 64%)
-- `git-advanced-workflows` (Score: 75%)
-- `qmd-setup` (Score: 55%)
-- `ab-test-setup` (Score: 71%)
-- `code-review-checklist` (Score: 78%)
+**Submodules & Inspirations:**
+- **Strategic Design Submodule:** (Inspiration: `ddd-strategic-design`, `domain-driven-design`, `ddd-context-mapping`)
+- **Tactical Implementation Submodule:** (Inspiration: `ddd-tactical-patterns`, `architecture-patterns`, `cqrs-implementation`)
+- **Microservices & Orchestration Submodule:** (Inspiration: `microservices-patterns`, `saga-orchestration`, `event-sourcing-architect`)
+- **Decision & ADR Submodule:** (Inspiration: `architecture-decision-records`, `senior-architect`, `projection-patterns`)
 
-**Refactoring Plan:** Create a master `testing-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+### 3. Frontend Architect (`frontend-architect`)
+**Interaction Design:**
+Triggers on UI/UX, browser automation, or client-side logic. It enforces a strict separation of concerns (State vs. UI). It coordinates with the `Testing Quality Architect` for visual regression setups and interacts directly with browser automation tools to verify UI changes in real-time.
 
-### Data Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `qmd-reindex` (Score: 47%)
+**Submodules & Inspirations:**
+- **UI/Component Design Submodule:** (Inspiration: `frontend-developer`, `senior-fullstack`)
+- **Browser Automation Submodule:** (Inspiration: `browser-automation`)
 
-**Refactoring Plan:** Create a master `data-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+### 4. Testing Quality Architect (`testing-quality-architect`)
+**Interaction Design:**
+Acts as the ultimate gatekeeper. It is rarely invoked directly by the user; instead, it is an event-driven skill invoked by the `python-architect` or `frontend-architect` *after* they generate code. It strictly enforces TDD (if requested) and runs systematic debugging loops if the pre-commit checks fail.
 
-### Git Workflow Skills
-To simplify this domain, the following skills should be combined into a cohesive suite:
-- `git-pushing` (Score: 50%)
-- `create-pr` (Score: 45%)
+**Submodules & Inspirations:**
+- **Validation & Linting Submodule:** (Inspiration: `lint-and-validate`, `python-testing-patterns`)
+- **Testing Patterns & Debugging Submodule:** (Inspiration: `systematic-debugging`, `test-driven-development`, `test-fixing`, `e2e-testing-patterns`)
+- **Evaluation Submodule:** (Inspiration: `evaluation`, `advanced-evaluation`)
 
-**Refactoring Plan:** Create a master `git-architect` skill that delegates tasks to specialized sub-agents. The overlap in trigger conditions can be unified by routing requests through a central orchestrator. Redundant files should be merged into centralized architectural decision records (ADRs).
+### 5. Git Workflow Architect (`git-workflow-architect`)
+**Interaction Design:**
+Triggers exclusively at the end of a task or during PR creation. It reads the generated ADRs from the `Architecture Architect` to write comprehensive, context-aware PR descriptions and changelogs. It enforces semantic versioning and commit message formats.
 
-## Recommendations on Interaction
+**Submodules & Inspirations:**
+- **Version Control Submodule:** (Inspiration: `git-advanced-workflows`, `git-pushing`, `commit`)
+- **Code Review & PR Submodule:** (Inspiration: `create-pr`, `changelog-automation`, `requesting-code-review`, `receiving-code-review`, `code-review-checklist`)
 
-The refactored skills should interact via a unified event-driven or delegated pattern. For instance, the **Python Architect** skill should act as the entry point and invoke specialized testing or data skills seamlessly without explicit user prompts. Common context logic from `agent-context-skills` should be extracted into a shared library.
+### 6. Agent Context & Meta Architect (`agent-context-architect`)
+**Interaction Design:**
+The autopoietic framework. It operates continuously in the background to manage the Memory Interchange Format (MIF Level 3). It monitors the "context degradation" of the LLM and dynamically recompiles system prompts. It enforces the bitemporal tracking of all architectural decisions.
+
+**Submodules & Inspirations:**
+- **Memory & Context Optimization Submodule:** (Inspiration: `memory-systems`, `context-optimization`, `context-compression`, `context-degradation`, `filesystem-context`)
+- **Skill Engineering Submodule:** (Inspiration: `skill-engineering`, `skill-developer`, `skill-creator`, `tool-design`, `context-compiler`, `prompt-architect`)
+- **Cognitive Architecture Submodule:** (Inspiration: `bdi-mental-states`, `blackboard`, `multi-agent-patterns`, `interleaved-thinking`, `core`, `kohaerenz-explorer`)
+- **Project Governance Submodule:** (Inspiration: `setup`, `project-development`, `kaizen`, `concise-planning`, `verification-before-completion`)
+
+---
+
+## Unified Interaction Flow Example
+
+1. **User:** "Add Stripe subscription billing to the FastAPI backend."
+2. **`python-architect`** triggers. It reads `pyproject.toml` and confirms FastAPI.
+3. **`python-architect`** queries **`architecture-architect`** for existing payment bounded contexts. An ADR is retrieved.
+4. **`python-architect`** invokes its *Integration & API Submodule* (inspired by `stripe-integration`) to generate the webhook and checkout logic.
+5. **`python-architect`** hands the code to **`testing-quality-architect`**, which uses its *Testing Patterns Submodule* to write Mocked Stripe tests.
+6. Once tests pass, **`git-workflow-architect`** generates the semantic commit.
