@@ -40,4 +40,10 @@ next-env.d.ts
 tools/output/
 __pycache__/
 *.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
 .claude/compiled-context.md

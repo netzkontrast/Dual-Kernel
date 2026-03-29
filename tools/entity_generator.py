@@ -2,7 +2,7 @@ import os
 import re
 from common import (
     console, load_inventory, load_conflicts, slugify,
-    KG_DIR, KNOWN_ENTITIES_REGEX, DomainEnum
+    KG_DIR, DomainEnum
 )
 
 

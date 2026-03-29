@@ -1,10 +1,9 @@
 """Validate narrative consistency across knowledge graph and source documents."""
 import os
-import re
 import click
 from collections import defaultdict
 from common import (
-    console, KG_DIR, DomainEnum, WIKILINK_REGEX, load_all_entities
+    console, DomainEnum, WIKILINK_REGEX, load_all_entities
 )
 
 
