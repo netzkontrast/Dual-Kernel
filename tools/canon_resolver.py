@@ -5,7 +5,7 @@ import click
 from datetime import datetime
 from collections import defaultdict
 from common import (
-    console, KG_DIR, VALID_CANON_STATUSES, load_all_entities
+    console, VALID_CANON_STATUSES, load_all_entities
 )
 
 

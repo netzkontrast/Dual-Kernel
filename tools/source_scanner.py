@@ -1,7 +1,5 @@
-import re
 import click
 import spacy
-import json
 import os
 from bisect import bisect_right
 from collections import defaultdict
