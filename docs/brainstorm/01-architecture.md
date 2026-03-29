@@ -138,20 +138,47 @@ qmd query "Kael interiority dissociation" -c kp-sources
 qmd vsearch "K0 collapse state" -c kp-entities   # vector-only
 ```
 
+## MCP Servers (Two, Complementary)
+
+```json
+{
+  "mcpServers": {
+    "kp-server": {
+      "command": "python3",
+      "args": [".claude/mcp/kp-server/server.py"]
+    },
+    "qmd": {
+      "command": "qmd",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+| MCP Server | Tools | Purpose |
+|------------|-------|---------|
+| `kp-server` (Python/FastMCP) | entity_lookup, graph_neighbors, chapter_entities, writing_state, run_validate | Entity management, graph, pipeline |
+| `qmd` (built-in) | query, get, multi_get, status | Hybrid semantic search over all corpora |
+
+**qmd daemon** must be started in `session-start.sh` to avoid 16s cold-start latency.
+Warm query latency: ~10ms. Run: `qmd mcp --http --daemon`
+
 ## Technology Stack
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
 | Plugin skills | Markdown SKILL.md | Claude Code slash commands |
 | Plugin hooks | Bash + hooks.json | Session start, pre-commit |
-| MCP server | FastMCP (Python) | Exposes tools to Claude in-context |
+| MCP server (entities) | FastMCP (Python) | entity/graph/pipeline tools |
+| MCP server (search) | qmd built-in MCP | `qmd mcp` — no wrapper needed |
 | Core library | Python 3.10+ (kp/) | Click CLI + Pydantic v2 |
 | Agent orchestration | LangGraph 1.0 | State machine, conditional routing |
 | Agent model | claude-sonnet-4-6 | Full entity files as context |
-| Search | @tobilu/qmd | BM25 + vector hybrid over markdown |
+| Search | @tobilu/qmd v2.0.1 | BM25 + vector + LLM reranking, multilingual |
+| Search models | embeddinggemma-300M + Qwen3-Reranker-0.6B | ~1.9GB, local, German-capable |
 | Graph analysis | NetworkX | In-memory, sufficient for 177 entities |
-| Web framework | Next.js 15 | App Router, API routes |
+| Web framework | Next.js 15 | App Router, Node.js runtime (NOT edge) |
 | Auth | NextAuth.js | WRITING_SECRET env var |
-| Deployment | Vercel | Serverless, single command deploy |
+| Deployment | Vercel | Pre-built qmd .sqlite bundled with deploy |
 | Persistence | Git repo | Every significant write = commit |
 | Memory | Mnemonic _episodic/ | MIF Level 3, append-only |
