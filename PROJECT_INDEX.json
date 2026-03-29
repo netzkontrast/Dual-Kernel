@@ -1,0 +1,95 @@
+{
+  "project": {
+    "name": "Kohärenz Protokoll",
+    "type": "narrative-fiction + etl-pipeline",
+    "generated": "2026-03-29",
+    "languages": {"content": "German", "tooling": "English"},
+    "python_version": "3.10+"
+  },
+  "structure": {
+    "source_docs": {"path": "Markdown-docs/", "count": 94, "format": "markdown", "read_only": true},
+    "knowledge_graph": {"path": "knowledge-graph/", "entity_count": 177, "format": "yaml+markdown"},
+    "tools": {"path": "tools/", "script_count": 15, "language": "Python"},
+    "memory": {"paths": ["_episodic/", "_semantic/", "_procedural/"], "format": "MIF Level 3"},
+    "claude_config": ".claude/"
+  },
+  "domains": {
+    "character": 53,
+    "fundament": 43,
+    "aegis": 39,
+    "world": 36,
+    "mechanic": 2,
+    "physics": 1,
+    "narrative": 1,
+    "alter-system": 0,
+    "style": 0,
+    "philosophy": 0,
+    "theme": 0,
+    "juna": 0,
+    "mathematics": 0
+  },
+  "entity_schema": {
+    "required_fields": ["title", "id", "domain", "canon_status", "sources", "related", "tags"],
+    "canon_statuses": ["confirmed", "provisional", "disputed", "uncertain", "decanonized"],
+    "id_format": "kebab-case"
+  },
+  "tools": [
+    {"file": "tools/common.py", "purpose": "Shared infrastructure — models, NLP, helpers", "cli": false},
+    {"file": "tools/source_scanner.py", "purpose": "Phase 1: Scan single MD file for entities", "cli": true, "args": "--file <path>"},
+    {"file": "tools/parallel_ingestion.py", "purpose": "Phase 1: Parallel scan of all 94 docs", "cli": true, "args": ""},
+    {"file": "tools/ingest_worker.py", "purpose": "Phase 1: Per-process worker for parallel scan", "cli": false},
+    {"file": "tools/xref_finder.py", "purpose": "Phase 1: Cross-reference conflict detection", "cli": true, "args": ""},
+    {"file": "tools/conflict_diff.py", "purpose": "Phase 1: Interactive conflict resolution", "cli": true, "args": ""},
+    {"file": "tools/entity_generator.py", "purpose": "Phase 1→2: Generate entity MD files", "cli": false},
+    {"file": "tools/frontmatter_validator.py", "purpose": "Phase 2: YAML schema validation", "cli": true, "args": "knowledge-graph/"},
+    {"file": "tools/wikilink_checker.py", "purpose": "Phase 2: [[wikilink]] integrity check", "cli": true, "args": "knowledge-graph/"},
+    {"file": "tools/consistency_checker.py", "purpose": "Phase 2: Narrative consistency rules", "cli": true, "args": "knowledge-graph/"},
+    {"file": "tools/entity_stats.py", "purpose": "Phase 3: Extraction statistics report", "cli": true, "args": ""},
+    {"file": "tools/relationship_graph.py", "purpose": "Phase 3: Mermaid relationship graph", "cli": true, "args": ""},
+    {"file": "tools/chapter_mapper.py", "purpose": "Phase 3: Chapter×entity appearance matrix", "cli": true, "args": ""},
+    {"file": "tools/glossary_generator.py", "purpose": "Phase 3: DE-EN bilingual glossary", "cli": true, "args": "--discover"},
+    {"file": "tools/canon_resolver.py", "purpose": "Phase 3: Semi-automated canon status resolution", "cli": true, "args": "--apply"}
+  ],
+  "pipeline_phases": {
+    "phase1_extract": {
+      "outputs": ["tools/output/source-inventory.json", "tools/output/cross-references.json", "tools/output/conflicts-resolved.json", "knowledge-graph/<domain>/*.md"],
+      "scripts": ["source_scanner.py", "parallel_ingestion.py", "xref_finder.py", "conflict_diff.py", "entity_generator.py"]
+    },
+    "phase2_validate": {
+      "note": "EXIT ON FIRST FAILURE — do not proceed to phase 3",
+      "scripts": ["frontmatter_validator.py", "wikilink_checker.py", "consistency_checker.py"]
+    },
+    "phase3_analyze": {
+      "outputs": ["tools/output/extraction-report.md", "knowledge-graph/_index/relationship-graph.md", "knowledge-graph/_index/chapter-entity-matrix.md", "knowledge-graph/_index/glossary.md"],
+      "scripts": ["entity_stats.py", "relationship_graph.py", "chapter_mapper.py", "glossary_generator.py", "canon_resolver.py"]
+    }
+  },
+  "dependencies": {
+    "python": ["spacy", "PyYAML", "rich", "click", "pydantic"],
+    "nlp_model": "de_core_news_lg",
+    "python_stdlib": ["json", "os", "re", "datetime", "collections", "enum", "bisect", "concurrent.futures"]
+  },
+  "key_entities": [
+    {"name": "Kael", "domain": "character", "file": "knowledge-graph/character/kael.md", "role": "Protagonist, fragmented TSDP identity"},
+    {"name": "Juna", "domain": "character", "file": "knowledge-graph/character/juna.md", "role": "External anchor"},
+    {"name": "AEGIS", "domain": "aegis", "file": "knowledge-graph/aegis/aegis.md", "role": "Superintelligence antagonist"},
+    {"name": "Primal Directive", "domain": "aegis", "file": "knowledge-graph/aegis/primal-directive.md", "role": "AEGIS core directive"},
+    {"name": "K1", "domain": "physics", "file": "knowledge-graph/fundament/k1.md", "role": "Kohärenz-Kernel"},
+    {"name": "K0", "domain": "physics", "file": "knowledge-graph/fundament/k0.md", "role": "Kollaps-Kernel"}
+  ],
+  "git": {
+    "active_branch": "claude/check-project-status-BhVZ3",
+    "conventions": {
+      "feature_branches": "feature/<description>",
+      "commit_types": ["feat", "fix", "docs", "refactor", "chore"],
+      "never_commit": [".venv/", "tools/output/", "__pycache__/", "*.pyc"]
+    }
+  },
+  "critical_rules": [
+    "Markdown-docs/ is read-only",
+    "All entity data must trace to Markdown-docs/ sources with line numbers",
+    "Never set canon_status: decanonized without source proof",
+    "German content stays German",
+    "Phase 2 validators must pass before commit or Phase 3"
+  ]
+}
